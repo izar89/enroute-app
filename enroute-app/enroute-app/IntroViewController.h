@@ -10,8 +10,9 @@
 #import "IntroView.h"
 #import "TaskMenuViewController.h"
 
-@interface IntroViewController : UIViewController
+@interface IntroViewController : UIViewController<CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IntroView *view;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

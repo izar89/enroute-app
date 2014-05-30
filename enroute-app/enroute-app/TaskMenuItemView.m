@@ -10,10 +10,11 @@
 
 @implementation TaskMenuItemView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame taskId:(int)taskId
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.taskId = taskId;
         self.btnSelect = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnSelect.frame = CGRectMake(15, frame.size.height - 65, frame.size.width - 30, 40);
         self.btnSelect.backgroundColor = [UIColor blackColor];

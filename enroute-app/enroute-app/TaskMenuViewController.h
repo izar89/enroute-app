@@ -11,10 +11,13 @@
 #import "TaskMenuView.h"
 #import "TaskMenuItemView.h"
 #import "TaskOneViewController.h"
+#import "TaskMenuInfoViewController.h"
 
-@interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate>
+@interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate, UIViewControllerTransitioningDelegate>
 
 @property (strong, nonatomic) TaskMenuView *view;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) float contentOffset;
+@property (strong, nonatomic) TaskMenuInfoViewController *taskMenuInfoVC;
 
 @end

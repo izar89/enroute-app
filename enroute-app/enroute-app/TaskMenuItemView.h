@@ -10,6 +10,9 @@
 
 @interface TaskMenuItemView : UIView
 
+@property (nonatomic) int taskId;
 @property (strong, nonatomic)UIButton *btnSelect;
+
+- (id)initWithFrame:(CGRect)frame taskId:(int)taskId;
 
 @end
