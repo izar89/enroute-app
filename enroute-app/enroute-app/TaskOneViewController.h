@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TaskOneView.h"
 #import "TaskMenuViewController.h"
+#import "TaskOneInfoViewController.h"
 
 @interface TaskOneViewController : UIViewController
 
 @property (strong, nonatomic) TaskOneView *view;
+@property (strong, nonatomic) TaskOneInfoViewController *taskOneInfoVC;
 
 @end

@@ -18,7 +18,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.taskOneInfoVC = [[TaskOneInfoViewController alloc] init];
+        [self addChildViewController:self.taskOneInfoVC];
+        [self.view addSubview:self.taskOneInfoVC.view];
+        [self.taskOneInfoVC didMoveToParentViewController:self];
     }
     return self;
 }
@@ -44,6 +47,11 @@
 {
     TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
     [self.navigationController pushViewController:taskMenuVC animated:YES];
+}
+
+- (void)btnBigCityCameraTapped:(id)sender
+{
+    
 }
 
 @end

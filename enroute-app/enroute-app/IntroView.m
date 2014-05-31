@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor enrouteBlueColor];
         
         self.btnStart = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnStart.frame = frame;
