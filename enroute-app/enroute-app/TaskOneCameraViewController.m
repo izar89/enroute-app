@@ -21,7 +21,6 @@
         
         self.captureManager = [[AVCamCaptureManager alloc] init];
         self.captureManager.delegate = self;
-        [self.captureManager setupSession];
         
         // Create video preview layer
         self.view.captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];

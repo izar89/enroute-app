@@ -10,75 +10,69 @@
 
 @implementation AVCamRecorder
 
-- (id) initWithSession:(AVCaptureSession *)aSession outputFileURL:(NSURL *)anOutputFileURL
+- (id) initWithSession:(AVCaptureSession *)session outputFileURL:(NSURL *)outputFileURL
 {
     self = [super init];
     if (self != nil) {
-        AVCaptureMovieFileOutput *aMovieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
-        if ([aSession canAddOutput:aMovieFileOutput])
-            [aSession addOutput:aMovieFileOutput];
-        [self setMovieFileOutput:aMovieFileOutput];
-		
-		[self setSession:aSession];
-		[self setOutputFileURL:anOutputFileURL];
+        self.session = session;
+        self.outputFileURL = outputFileURL;
+        self.movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+        if ([self.session canAddOutput:self.movieFileOutput]){
+            [self.session addOutput:self.movieFileOutput];
+        }
     }
-    
 	return self;
 }
 
 - (void) dealloc
 {
-    [[self session] removeOutput:[self movieFileOutput]];
-}
-
--(BOOL)recordsVideo
-{
-	AVCaptureConnection *videoConnection = [[self movieFileOutput] connectionWithMediaType:AVMediaTypeVideo];
-	return [videoConnection isActive];
-}
-
--(BOOL)recordsAudio
-{
-	AVCaptureConnection *audioConnection = [[self movieFileOutput] connectionWithMediaType:AVMediaTypeAudio];
-	return [audioConnection isActive];
-}
-
--(BOOL)isRecording
-{
-    NSLog(@"[AVCamRecorder] isRecording");
-    
-    return [[self movieFileOutput] isRecording];
+    [self.session removeOutput:self.movieFileOutput];
 }
 
 -(void)startRecordingWithOrientation:(AVCaptureVideoOrientation)videoOrientation;
 {
-    NSLog(@"[AVCamRecorder] startRecordingWithOrientation");
-    
-    AVCaptureConnection *videoConnection = [[self movieFileOutput] connectionWithMediaType:AVMediaTypeVideo];
-    if ([videoConnection isVideoOrientationSupported])
-        [videoConnection setVideoOrientation:videoOrientation];
-    
-    [[self movieFileOutput] startRecordingToOutputFileURL:[self outputFileURL] recordingDelegate:self];
+    AVCaptureConnection *videoConnection = [self.movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
+    if (videoConnection.isVideoOrientationSupported){
+        videoConnection.videoOrientation = videoOrientation;
+    }
+    [self.movieFileOutput startRecordingToOutputFileURL:self.outputFileURL recordingDelegate:self];
 }
 
 -(void)stopRecording
 {
-    NSLog(@"[AVCamRecorder] stopRecording");
-    
-    [[self movieFileOutput] stopRecording];
+    [self.movieFileOutput stopRecording];
 }
 
+#pragma mark - States
+-(BOOL)recordsVideo
+{
+	AVCaptureConnection *videoConnection = [self.movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
+	return videoConnection.isActive;
+}
+
+-(BOOL)recordsAudio
+{
+	AVCaptureConnection *audioConnection = [self.movieFileOutput connectionWithMediaType:AVMediaTypeAudio];
+	return audioConnection.isActive;
+}
+
+-(BOOL)isRecording
+{
+    return self.movieFileOutput.isRecording;
+}
+
+#pragma mark - Delegates
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didStartRecordingToOutputFileAtURL:(NSURL *)fileURL fromConnections:(NSArray *)connections
 {
-    if ([[self delegate] respondsToSelector:@selector(recorderRecordingDidBegin:)]) {
-        [[self delegate] recorderRecordingDidBegin:self];
+    if ([self.delegate respondsToSelector:@selector(recorderRecordingDidBegin:)]) {
+        [self.delegate recorderRecordingDidBegin:self];
     }
 }
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)anOutputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
-    if ([[self delegate] respondsToSelector:@selector(recorder:recordingDidFinishToOutputFileURL:error:)]) {
-        [[self delegate] recorder:self recordingDidFinishToOutputFileURL:anOutputFileURL error:error];
+    if ([self.delegate respondsToSelector:@selector(recorder:recordingDidFinishToOutputFileURL:error:)]) {
+        [self.delegate recorder:self recordingDidFinishToOutputFileURL:anOutputFileURL error:error];
     }
 }
 

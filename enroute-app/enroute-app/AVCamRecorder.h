@@ -21,14 +21,14 @@
 @property (nonatomic,readonly,getter=isRecording) BOOL recording;
 @property (nonatomic,weak) id <AVCamRecorderDelegate> delegate;
 
--(id)initWithSession:(AVCaptureSession *)session outputFileURL:(NSURL *)outputFileURL;
--(void)startRecordingWithOrientation:(AVCaptureVideoOrientation)videoOrientation;
--(void)stopRecording;
+- (id)initWithSession:(AVCaptureSession *)session outputFileURL:(NSURL *)outputFileURL;
+- (void)startRecordingWithOrientation:(AVCaptureVideoOrientation)videoOrientation;
+- (void)stopRecording;
 
 @end
 
 @protocol AVCamRecorderDelegate <NSObject>
 @required
--(void)recorderRecordingDidBegin:(AVCamRecorder *)recorder;
--(void)recorder:(AVCamRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error;
+- (void)recorderRecordingDidBegin:(AVCamRecorder *)recorder;
+- (void)recorder:(AVCamRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error;
 @end
