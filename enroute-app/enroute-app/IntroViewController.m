@@ -38,6 +38,7 @@
 - (void)loadView
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSLog(@"width: %f, height: %f", bounds.size.width, bounds.size.height);
     self.view = [[IntroView alloc] initWithFrame:bounds];
 }
 

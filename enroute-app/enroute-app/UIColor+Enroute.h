@@ -11,5 +11,6 @@
 @interface UIColor (Enroute)
 
 + (UIColor *)enrouteBlueColor;
++ (UIColor *)enrouteRedColor;
 
 @end

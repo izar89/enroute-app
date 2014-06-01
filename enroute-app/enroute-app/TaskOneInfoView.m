@@ -16,7 +16,7 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         
-        CGRect containerFrame = CGRectMake(15, 15, frame.size.width - 30, frame.size.height - 30);
+        CGRect containerFrame = CGRectMake(15, 0, frame.size.width - 30, frame.size.height - 30);
         self.container = [[UIView alloc] initWithFrame:containerFrame];
         self.container.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
         [self addSubview:self.container];

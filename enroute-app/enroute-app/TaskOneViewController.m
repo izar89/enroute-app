@@ -18,10 +18,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.taskOneInfoVC = [[TaskOneInfoViewController alloc] init];
-        [self addChildViewController:self.taskOneInfoVC];
-        [self.view addSubview:self.taskOneInfoVC.view];
-        [self.taskOneInfoVC didMoveToParentViewController:self];
+//        self.taskOneInfoVC = [[TaskOneInfoViewController alloc] init];
+//        [self addChildViewController:self.taskOneInfoVC];
+//        [self.view addSubview:self.taskOneInfoVC.view];
+//        [self.taskOneInfoVC didMoveToParentViewController:self];
+        
+        self.taskOneCameraVC = [[TaskOneCameraViewController alloc] init];
+        [self addChildViewController:self.taskOneCameraVC];
+        [self.view addSubview:self.taskOneCameraVC.view];
+        [self.taskOneCameraVC didMoveToParentViewController:self];
     }
     return self;
 }

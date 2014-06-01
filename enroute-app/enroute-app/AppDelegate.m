@@ -14,12 +14,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     IntroViewController *introVC = [[IntroViewController alloc] init];
     self.navC = [[UINavigationController alloc] initWithRootViewController:introVC];
     [self.navC setNavigationBarHidden:YES];
+    //[[UINavigationBar appearance] setBarTintColor:[UIColor enrouteRedColor]];
     self.window.rootViewController = self.navC;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

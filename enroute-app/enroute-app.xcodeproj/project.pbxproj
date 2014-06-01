@@ -12,6 +12,12 @@
 		1206A0621938F227004112AF /* TaskOneInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0611938F227004112AF /* TaskOneInfoViewController.m */; };
 		1206A0651938F24A004112AF /* TaskOneInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0641938F24A004112AF /* TaskOneInfoView.m */; };
 		1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0671939C1B4004112AF /* UIColor+Enroute.m */; };
+		1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */; };
+		1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A06D1939F62C004112AF /* TaskOneCameraView.m */; };
+		1206A0701939FF00004112AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A06F1939FF00004112AF /* AVFoundation.framework */; };
+		1206A073193A0D5A004112AF /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A072193A0D5A004112AF /* AVCamCaptureManager.m */; };
+		1206A076193B00B6004112AF /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A075193B00B6004112AF /* AVCamRecorder.m */; };
+		1206A07A193B061C004112AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A079193B061C004112AF /* AssetsLibrary.framework */; };
 		124E241419376D6F00E997FE /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241319376D6F00E997FE /* IntroViewController.m */; };
 		124E241719376D8100E997FE /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241619376D8100E997FE /* IntroView.m */; };
 		124E241B19376E4400E997FE /* TaskMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241A19376E4400E997FE /* TaskMenuViewController.m */; };
@@ -56,6 +62,16 @@
 		1206A0641938F24A004112AF /* TaskOneInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneInfoView.m; sourceTree = "<group>"; };
 		1206A0661939C1B4004112AF /* UIColor+Enroute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Enroute.h"; sourceTree = "<group>"; };
 		1206A0671939C1B4004112AF /* UIColor+Enroute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Enroute.m"; sourceTree = "<group>"; };
+		1206A0691939F35C004112AF /* TaskOneCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneCameraViewController.h; sourceTree = "<group>"; };
+		1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneCameraViewController.m; sourceTree = "<group>"; };
+		1206A06C1939F62C004112AF /* TaskOneCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneCameraView.h; sourceTree = "<group>"; };
+		1206A06D1939F62C004112AF /* TaskOneCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneCameraView.m; sourceTree = "<group>"; };
+		1206A06F1939FF00004112AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1206A071193A0D5A004112AF /* AVCamCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamCaptureManager.h; sourceTree = "<group>"; };
+		1206A072193A0D5A004112AF /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamCaptureManager.m; sourceTree = "<group>"; };
+		1206A074193B00B6004112AF /* AVCamRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamRecorder.h; sourceTree = "<group>"; };
+		1206A075193B00B6004112AF /* AVCamRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamRecorder.m; sourceTree = "<group>"; };
+		1206A079193B061C004112AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		124E241219376D6F00E997FE /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		124E241319376D6F00E997FE /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		124E241519376D8100E997FE /* IntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroView.h; sourceTree = "<group>"; };
@@ -96,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1206A07A193B061C004112AF /* AssetsLibrary.framework in Frameworks */,
+				1206A0701939FF00004112AF /* AVFoundation.framework in Frameworks */,
 				12E5A38119377D9D006EF53B /* CoreLocation.framework in Frameworks */,
 				12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */,
 				12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */,
@@ -117,6 +135,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1206A080193B11F4004112AF /* AVCam */ = {
+			isa = PBXGroup;
+			children = (
+				1206A071193A0D5A004112AF /* AVCamCaptureManager.h */,
+				1206A072193A0D5A004112AF /* AVCamCaptureManager.m */,
+				1206A074193B00B6004112AF /* AVCamRecorder.h */,
+				1206A075193B00B6004112AF /* AVCamRecorder.m */,
+			);
+			name = AVCam;
+			sourceTree = "<group>";
+		};
 		124E241819376DA700E997FE /* 1_IntroView */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +185,10 @@
 				1206A0611938F227004112AF /* TaskOneInfoViewController.m */,
 				1206A0631938F24A004112AF /* TaskOneInfoView.h */,
 				1206A0641938F24A004112AF /* TaskOneInfoView.m */,
+				1206A0691939F35C004112AF /* TaskOneCameraViewController.h */,
+				1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */,
+				1206A06C1939F62C004112AF /* TaskOneCameraView.h */,
+				1206A06D1939F62C004112AF /* TaskOneCameraView.m */,
 			);
 			name = TaskOne;
 			sourceTree = "<group>";
@@ -191,6 +224,8 @@
 		12EDF06E1935DFF700E25920 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1206A079193B061C004112AF /* AssetsLibrary.framework */,
+				1206A06F1939FF00004112AF /* AVFoundation.framework */,
 				12E5A38019377D9D006EF53B /* CoreLocation.framework */,
 				12EDF06F1935DFF700E25920 /* Foundation.framework */,
 				12EDF0711935DFF700E25920 /* CoreGraphics.framework */,
@@ -211,6 +246,7 @@
 				124E241819376DA700E997FE /* 1_IntroView */,
 				124E241F19376E6100E997FE /* 2_TaskMenuView */,
 				12E5A38C1937A622006EF53B /* 3_Tasks */,
+				1206A080193B11F4004112AF /* AVCam */,
 				1206A0661939C1B4004112AF /* UIColor+Enroute.h */,
 				1206A0671939C1B4004112AF /* UIColor+Enroute.m */,
 			);
@@ -381,13 +417,17 @@
 			files = (
 				12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */,
 				12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */,
+				1206A076193B00B6004112AF /* AVCamRecorder.m in Sources */,
 				1206A05219389480004112AF /* TaskMenuInfoView.m in Sources */,
+				1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */,
 				12EDF0801935DFF700E25920 /* AppDelegate.m in Sources */,
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
+				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
 				1206A04F19389457004112AF /* TaskMenuInfoViewController.m in Sources */,
 				124E241E19376E5A00E997FE /* TaskMenuView.m in Sources */,
 				124E241419376D6F00E997FE /* IntroViewController.m in Sources */,
+				1206A073193A0D5A004112AF /* AVCamCaptureManager.m in Sources */,
 				124E241B19376E4400E997FE /* TaskMenuViewController.m in Sources */,
 				1206A0621938F227004112AF /* TaskOneInfoViewController.m in Sources */,
 				1206A0651938F24A004112AF /* TaskOneInfoView.m in Sources */,

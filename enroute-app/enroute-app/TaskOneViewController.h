@@ -10,10 +10,12 @@
 #import "TaskOneView.h"
 #import "TaskMenuViewController.h"
 #import "TaskOneInfoViewController.h"
+#import "TaskOneCameraViewController.h"
 
 @interface TaskOneViewController : UIViewController
 
 @property (strong, nonatomic) TaskOneView *view;
 @property (strong, nonatomic) TaskOneInfoViewController *taskOneInfoVC;
+@property (strong, nonatomic) TaskOneCameraViewController *taskOneCameraVC;
 
 @end
