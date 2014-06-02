@@ -13,13 +13,13 @@
 
 @interface AVCamRecorder : NSObject<AVCaptureFileOutputRecordingDelegate>
 
-@property (nonatomic,strong) AVCaptureSession *session;
-@property (nonatomic,strong) AVCaptureMovieFileOutput *movieFileOutput;
-@property (nonatomic,copy) NSURL *outputFileURL;
-@property (nonatomic,readonly) BOOL recordsVideo;
-@property (nonatomic,readonly) BOOL recordsAudio;
-@property (nonatomic,readonly,getter=isRecording) BOOL recording;
-@property (nonatomic,weak) id <AVCamRecorderDelegate> delegate;
+@property (strong, nonatomic) AVCaptureSession *session;
+@property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
+@property (copy, nonatomic) NSURL *outputFileURL;
+@property (readonly, nonatomic) BOOL recordsVideo;
+@property (readonly, nonatomic) BOOL recordsAudio;
+@property (readonly, nonatomic, getter=isRecording) BOOL recording;
+@property (weak, nonatomic) id <AVCamRecorderDelegate> delegate;
 
 - (id)initWithSession:(AVCaptureSession *)session outputFileURL:(NSURL *)outputFileURL;
 - (void)startRecordingWithOrientation:(AVCaptureVideoOrientation)videoOrientation;

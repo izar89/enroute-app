@@ -69,9 +69,11 @@
 - (void)btnSelectTapped:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    TaskMenuItemView *taskMenuItemView = (TaskMenuItemView *)btn.superview;
+    int index = (int)[self.view.taskMenuItemViews indexOfObject:(TaskMenuItemView *)btn.superview];
     
-    if (taskMenuItemView.taskId == 1) {
+    NSLog(@"%i", index);
+    
+    if(index == 0 || index == self.view.taskMenuItemViews.count - 1){
         TaskOneViewController *taskOneVC = [[TaskOneViewController alloc] init];
         [self.navigationController pushViewController:taskOneVC animated:YES];
     }

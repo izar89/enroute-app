@@ -20,11 +20,18 @@
         self.videoPreviewView.layer.masksToBounds = YES; //Check
         [self addSubview:self.videoPreviewView];
         
-        self.btnRecord = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnRecord.frame = CGRectMake(15, frame.size.height - 65, frame.size.width - 30, 40);
-        self.btnRecord.backgroundColor = [UIColor blackColor];
-        [self.btnRecord setTitle:@"Record" forState:UIControlStateNormal];
-        [self addSubview:self.btnRecord];
+        int totalCameraParts = 4;
+        CGRect cameraPartframe = CGRectMake(0, 0, frame.size.width, frame.size.height / totalCameraParts);
+        
+        self.cameraPartViews = [NSMutableArray array];
+        for (int i = 0; i < totalCameraParts; i++) {
+            CameraPartView *cameraPartView = [[CameraPartView alloc] initWithFrame:cameraPartframe];
+            cameraPartView.center = CGPointMake(frame.size.width/2, cameraPartframe.size.height / 2 + (cameraPartframe.size.height * i));
+            cameraPartView.layer.borderColor = [UIColor whiteColor].CGColor;
+            cameraPartView.layer.borderWidth = 1;
+            [self.cameraPartViews addObject:cameraPartView];
+            [self addSubview:cameraPartView];
+        }
     }
     return self;
 }

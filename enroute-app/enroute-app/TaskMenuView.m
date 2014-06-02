@@ -23,13 +23,13 @@
         self.taskMenuItemViews = [NSMutableArray array];
         TaskMenuItemView *firstTaskMenuItemView;
         for (int i = 0; i <= 3; i++) {
-            TaskMenuItemView *taskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:frame taskId:(i + 1)];
+            TaskMenuItemView *taskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:frame];
             taskMenuItemView.backgroundColor = [colors objectAtIndex:i];
             taskMenuItemView.center = CGPointMake(frame.size.width / 2 + frame.size.width * i, frame.size.height / 2);
             [self.scrollView addSubview:taskMenuItemView];
             [self.taskMenuItemViews addObject:taskMenuItemView];
             if(i == 0){
-                firstTaskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:frame taskId:1];
+                firstTaskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:frame];
                 firstTaskMenuItemView.backgroundColor = [colors objectAtIndex:i];
             }
         }

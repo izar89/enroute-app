@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "AVCamCaptureManager.h"
+#import "CameraPartView.h"
 
 @interface TaskOneCameraView : UIView
 
-@property (nonatomic,strong) UIView *videoPreviewView;
-@property (nonatomic,strong) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
-@property (nonatomic,strong) UIButton *btnRecord;
+@property (strong, nonatomic) UIView *videoPreviewView;
+@property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
+@property (strong, nonatomic) NSMutableArray *cameraPartViews;
 
 @end

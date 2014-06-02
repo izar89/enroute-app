@@ -22,6 +22,9 @@
         self.captureManager = [[AVCamCaptureManager alloc] init];
         self.captureManager.delegate = self;
         
+        self.fileManager = [[AVCamFileManager alloc] init];
+        self.fileManager.delegate = self;
+        
         // Create video preview layer
         self.view.captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
         self.view.captureVideoPreviewLayer.bounds = self.view.videoPreviewView.bounds;
@@ -40,7 +43,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view.btnRecord addTarget:self action:@selector(btnRecordTapped:) forControlEvents:UIControlEventTouchUpInside];
+    for(CameraPartView *cameraPartView in self.view.cameraPartViews){
+        [cameraPartView.btnRecord addTarget:self action:@selector(btnRecordDown:) forControlEvents:UIControlEventTouchDown];
+        [cameraPartView.btnRecord addTarget:self action:@selector(btnRecordUp:) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,25 +61,67 @@
     self.view = [[TaskOneCameraView alloc] initWithFrame:bounds];
 }
 
-- (void)btnRecordTapped:(id)sender // toggle record
+- (void)btnRecordDown:(id)sender
 {
-    if (![[[self captureManager] recorder] isRecording]){
-        NSLog(@"start");
-        [[self captureManager] startRecording];
-    } else {
+    NSLog(@"start");
+    
+    UIButton *btn = (UIButton *)sender;
+    self.recordIndex = (int)[self.view.cameraPartViews indexOfObject:(CameraPartView *)btn.superview];
+    
+    [[self captureManager] startRecording];
+    self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(recordingSuccess:) userInfo:nil repeats:NO];
+}
+
+- (void)btnRecordUp:(id)sender
+{
+    [self.recordTimer invalidate];
+    self.recordTimer = nil;
+    [self stopRecording];
+}
+
+- (void)recordingSuccess:(id)sender
+{
+    NSLog(@"success! - index:%i", self.recordIndex);
+
+    //flash
+    CameraPartView *cameraPartView = [self.view.cameraPartViews objectAtIndex:self.recordIndex];
+    UIView *flashView = [[UIView alloc] initWithFrame:cameraPartView.bounds];
+    [cameraPartView addSubview:flashView];
+    [flashView setBackgroundColor:[UIColor whiteColor]];
+    [UIView animateWithDuration:0.4 animations:^{
+        [flashView setAlpha:0];
+    } completion:^(BOOL finished){
+        [flashView removeFromSuperview];
+    }];
+    
+    [self stopRecording];
+}
+
+- (void)stopRecording
+{
+    if ([[[self captureManager] recorder] isRecording]){
         NSLog(@"stop");
         [[self captureManager] stopRecording];
     }
 }
 
+#pragma mark - Delegates captureManager
 - (void)captureManagerRecordingBegan:(AVCamCaptureManager *)captureManager
 {
     NSLog(@"captureManagerRecordingBegan");
 }
 
-- (void)captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager
+- (void)captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager outputFileURL:(NSURL *)outputFileURL
 {
     NSLog(@"captureManagerRecordingFinished");
+    [self.fileManager saveFileToLibrary:outputFileURL];
 }
+
+#pragma mark - Delegates fileManager
+- (void) fileManagerSaveFileToLibraryFinished:(AVCamFileManager *)fileManager
+{
+    NSLog(@"fileManagerSaveFileToLibraryFinished");
+}
+
 
 @end
