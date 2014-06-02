@@ -13,8 +13,8 @@
 @interface TaskOneCameraViewController : UIViewController<AVCamCaptureManagerDelegate, AVCamFileManagerDelegate>
 
 @property (strong, nonatomic) TaskOneCameraView *view;
-@property (strong, nonatomic) AVCamCaptureManager *captureManager;
-@property (strong, nonatomic) AVCamFileManager *fileManager;
+@property (strong, nonatomic) CameraCaptureManager *captureManager;
+@property (strong, nonatomic) CameraFileManager *fileManager;
 @property (strong, nonatomic) NSTimer *recordTimer;
 @property (nonatomic) int recordIndex;
 @property (nonatomic) BOOL recordSuccess;

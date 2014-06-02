@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Stijn Heylen. All rights reserved.
 //
 
-#import "AVCamRecorder.h"
+#import "CameraRecorder.h"
 
-@implementation AVCamRecorder
+@implementation CameraRecorder
 
 - (id) initWithSession:(AVCaptureSession *)session outputFileURL:(NSURL *)outputFileURL
 {

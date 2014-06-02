@@ -19,11 +19,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        self.captureManager = [[AVCamCaptureManager alloc] init];
+        self.captureManager = [[CameraCaptureManager alloc] init];
         self.captureManager.delegate = self;
         
         self.recordSuccess = NO;
-        self.fileManager = [[AVCamFileManager alloc] init];
+        self.fileManager = [[CameraFileManager alloc] init];
         self.fileManager.delegate = self;
         
         // Create video preview layer
@@ -110,12 +110,12 @@
 }
 
 #pragma mark - Delegates captureManager
-- (void)captureManagerRecordingBegan:(AVCamCaptureManager *)captureManager
+- (void)captureManagerRecordingBegan:(CameraCaptureManager *)captureManager
 {
     NSLog(@"captureManagerRecordingBegan");
 }
 
-- (void)captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager outputFileURL:(NSURL *)outputFileURL
+- (void)captureManagerRecordingFinished:(CameraCaptureManager *)captureManager outputFileURL:(NSURL *)outputFileURL
 {
     NSLog(@"captureManagerRecordingFinished");
     
@@ -132,7 +132,7 @@
 }
 
 #pragma mark - Delegates fileManager
-- (void) fileManagerSaveFileToLibraryFinished:(AVCamFileManager *)fileManager
+- (void) fileManagerSaveFileToLibraryFinished:(CameraFileManager *)fileManager
 {
     NSLog(@"fileManagerSaveFileToLibraryFinished");
 }

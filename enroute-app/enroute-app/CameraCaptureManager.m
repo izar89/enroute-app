@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Stijn Heylen. All rights reserved.
 //
 
-#import "AVCamCaptureManager.h"
+#import "CameraCaptureManager.h"
 
-@implementation AVCamCaptureManager
+@implementation CameraCaptureManager
 
 - (id)init
 {
@@ -43,9 +43,9 @@
     }
     
 	// Set up the movie file output
-    self.fileManager = [[AVCamFileManager alloc] init];
+    self.fileManager = [[CameraFileManager alloc] init];
     
-    self.recorder = [[AVCamRecorder alloc] initWithSession:self.session outputFileURL:[self.fileManager tempFileURL]];
+    self.recorder = [[CameraRecorder alloc] initWithSession:self.session outputFileURL:[self.fileManager tempFileURL]];
     self.recorder.delegate = self;
 }
 
@@ -90,14 +90,14 @@
 }
 
 #pragma mark - Delegates
--(void)recorderRecordingDidBegin:(AVCamRecorder *)recorder
+-(void)recorderRecordingDidBegin:(CameraRecorder *)recorder
 {
     if ([self.delegate respondsToSelector:@selector(captureManagerRecordingBegan:)]) {
         [self.delegate captureManagerRecordingBegan:self];
     }
 }
 
--(void)recorder:(AVCamRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error
+-(void)recorder:(CameraRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error
 {
     if (error) {
         if ([self.delegate respondsToSelector:@selector(captureManager:didFailWithError:)]) {

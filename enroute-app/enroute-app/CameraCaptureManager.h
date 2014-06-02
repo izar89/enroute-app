@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "AVCamRecorder.h"
-#import "AVCamFileManager.h"
+#import "CameraRecorder.h"
+#import "CameraFileManager.h"
 
 @protocol AVCamCaptureManagerDelegate;
 
-@interface AVCamCaptureManager : NSObject <AVCamRecorderDelegate, AVCamFileManagerDelegate>
+@interface CameraCaptureManager : NSObject <AVCamRecorderDelegate, AVCamFileManagerDelegate>
 
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (nonatomic) AVCaptureVideoOrientation orientation;
 @property (strong, nonatomic) AVCaptureDeviceInput *videoInput;
 @property (strong, nonatomic) AVCaptureDeviceInput *audioInput;
-@property (strong, nonatomic) AVCamRecorder *recorder;
-@property (strong, nonatomic) AVCamFileManager *fileManager;
+@property (strong, nonatomic) CameraRecorder *recorder;
+@property (strong, nonatomic) CameraFileManager *fileManager;
 @property (weak, nonatomic) id<AVCamCaptureManagerDelegate> delegate;
 
 - (void) setupSession;
@@ -31,7 +31,7 @@
 
 @protocol AVCamCaptureManagerDelegate <NSObject>
 @optional
-- (void) captureManager:(AVCamCaptureManager *)captureManager didFailWithError:(NSError *)error;
-- (void) captureManagerRecordingBegan:(AVCamCaptureManager *)captureManager;
-- (void) captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager outputFileURL:(NSURL *)outputFileURL;
+- (void) captureManager:(CameraCaptureManager *)captureManager didFailWithError:(NSError *)error;
+- (void) captureManagerRecordingBegan:(CameraCaptureManager *)captureManager;
+- (void) captureManagerRecordingFinished:(CameraCaptureManager *)captureManager outputFileURL:(NSURL *)outputFileURL;
 @end

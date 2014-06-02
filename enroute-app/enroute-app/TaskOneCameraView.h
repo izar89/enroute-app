@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "AVCamCaptureManager.h"
+#import "CameraCaptureManager.h"
 #import "CameraPartView.h"
 
 @interface TaskOneCameraView : UIView

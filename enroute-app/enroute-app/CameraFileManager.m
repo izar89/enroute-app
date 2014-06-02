@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Stijn Heylen. All rights reserved.
 //
 
-#import "AVCamFileManager.h"
+#import "CameraFileManager.h"
 
-@implementation AVCamFileManager
+@implementation CameraFileManager
 
 #pragma mark - Files
 - (NSURL *)tempFileURL

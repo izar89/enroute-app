@@ -11,7 +11,7 @@
 
 @protocol AVCamFileManagerDelegate;
 
-@interface AVCamFileManager : NSObject
+@interface CameraFileManager : NSObject
 
 @property (weak, nonatomic) id <AVCamFileManagerDelegate> delegate;
 
@@ -23,6 +23,6 @@
 
 @protocol AVCamFileManagerDelegate <NSObject>
 @optional
-- (void) fileManager:(AVCamFileManager *)fileManager didFailWithError:(NSError *)error;
-- (void) fileManagerSaveFileToLibraryFinished:(AVCamFileManager *)fileManager;
+- (void) fileManager:(CameraFileManager *)fileManager didFailWithError:(NSError *)error;
+- (void) fileManagerSaveFileToLibraryFinished:(CameraFileManager *)fileManager;
 @end

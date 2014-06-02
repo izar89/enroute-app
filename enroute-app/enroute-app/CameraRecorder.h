@@ -11,7 +11,7 @@
 
 @protocol AVCamRecorderDelegate;
 
-@interface AVCamRecorder : NSObject<AVCaptureFileOutputRecordingDelegate>
+@interface CameraRecorder : NSObject<AVCaptureFileOutputRecordingDelegate>
 
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
@@ -29,6 +29,6 @@
 
 @protocol AVCamRecorderDelegate <NSObject>
 @required
-- (void)recorderRecordingDidBegin:(AVCamRecorder *)recorder;
-- (void)recorder:(AVCamRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error;
+- (void)recorderRecordingDidBegin:(CameraRecorder *)recorder;
+- (void)recorder:(CameraRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error;
 @end
