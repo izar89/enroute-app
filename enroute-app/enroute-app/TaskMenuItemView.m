@@ -10,10 +10,16 @@
 
 @implementation TaskMenuItemView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame task:(Task *)task
 {
     self = [super initWithFrame:frame];
     if (self) {
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:30];
+        self.lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, frame.size.width - 30, 40)];
+        self.lblTitle.font = font;
+        self.lblTitle.text = task.title;
+        [self addSubview:self.lblTitle];
+        
         self.btnSelect = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnSelect.frame = CGRectMake(15, frame.size.height - 65, frame.size.width - 30, 40);
         self.btnSelect.backgroundColor = [UIColor blackColor];

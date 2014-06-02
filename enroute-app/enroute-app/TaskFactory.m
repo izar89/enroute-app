@@ -10,4 +10,13 @@
 
 @implementation TaskFactory
 
++ (Task *)createTaskWithDictionary:(NSDictionary *)dictionary
+{
+    Task *task = [[Task alloc] init];
+    task.title = [dictionary objectForKey:@"title"];
+    task.text = [dictionary objectForKey:@"text"];
+    
+    return task;
+}
+
 @end

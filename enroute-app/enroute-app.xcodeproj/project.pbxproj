@@ -21,6 +21,12 @@
 		1206A089193B6413004112AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A088193B6413004112AF /* QuartzCore.framework */; };
 		1206A08C193B6E95004112AF /* CameraPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A08B193B6E95004112AF /* CameraPartView.m */; };
 		1206A08F193B8919004112AF /* CameraFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A08E193B8919004112AF /* CameraFileManager.m */; };
+		1206A092193D0679004112AF /* JSONDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A091193D0679004112AF /* JSONDataManager.m */; };
+		1206A098193D0AA4004112AF /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A097193D0AA4004112AF /* Task.m */; };
+		1206A09A193D0AD3004112AF /* enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = 1206A099193D0AD3004112AF /* enroute.json */; };
+		1206A09E193D0D6C004112AF /* Tasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A09D193D0D6C004112AF /* Tasks.m */; };
+		1206A0A1193D1011004112AF /* TaskFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0A0193D1011004112AF /* TaskFactory.m */; };
+		1206A0A4193D10AF004112AF /* TasksFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0A3193D10AF004112AF /* TasksFactory.m */; };
 		124E241419376D6F00E997FE /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241319376D6F00E997FE /* IntroViewController.m */; };
 		124E241719376D8100E997FE /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241619376D8100E997FE /* IntroView.m */; };
 		124E241B19376E4400E997FE /* TaskMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241A19376E4400E997FE /* TaskMenuViewController.m */; };
@@ -82,6 +88,17 @@
 		1206A08B193B6E95004112AF /* CameraPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPartView.m; sourceTree = "<group>"; };
 		1206A08D193B8919004112AF /* CameraFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFileManager.h; sourceTree = "<group>"; };
 		1206A08E193B8919004112AF /* CameraFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFileManager.m; sourceTree = "<group>"; };
+		1206A090193D0679004112AF /* JSONDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataManager.h; sourceTree = "<group>"; };
+		1206A091193D0679004112AF /* JSONDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataManager.m; sourceTree = "<group>"; };
+		1206A096193D0AA4004112AF /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		1206A097193D0AA4004112AF /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		1206A099193D0AD3004112AF /* enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = enroute.json; sourceTree = "<group>"; };
+		1206A09C193D0D6C004112AF /* Tasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tasks.h; sourceTree = "<group>"; };
+		1206A09D193D0D6C004112AF /* Tasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tasks.m; sourceTree = "<group>"; };
+		1206A09F193D1011004112AF /* TaskFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskFactory.h; sourceTree = "<group>"; };
+		1206A0A0193D1011004112AF /* TaskFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskFactory.m; sourceTree = "<group>"; };
+		1206A0A2193D10AF004112AF /* TasksFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksFactory.h; sourceTree = "<group>"; };
+		1206A0A3193D10AF004112AF /* TasksFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksFactory.m; sourceTree = "<group>"; };
 		124E241219376D6F00E997FE /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		124E241319376D6F00E997FE /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		124E241519376D8100E997FE /* IntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroView.h; sourceTree = "<group>"; };
@@ -157,6 +174,48 @@
 				1206A08E193B8919004112AF /* CameraFileManager.m */,
 			);
 			name = Camera;
+			sourceTree = "<group>";
+		};
+		1206A093193D067F004112AF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1206A099193D0AD3004112AF /* enroute.json */,
+				1206A095193D0A4E004112AF /* Factories */,
+				1206A09B193D0D31004112AF /* Collections */,
+				1206A094193D0934004112AF /* Models */,
+				1206A090193D0679004112AF /* JSONDataManager.h */,
+				1206A091193D0679004112AF /* JSONDataManager.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		1206A094193D0934004112AF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1206A096193D0AA4004112AF /* Task.h */,
+				1206A097193D0AA4004112AF /* Task.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1206A095193D0A4E004112AF /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				1206A0A2193D10AF004112AF /* TasksFactory.h */,
+				1206A0A3193D10AF004112AF /* TasksFactory.m */,
+				1206A09F193D1011004112AF /* TaskFactory.h */,
+				1206A0A0193D1011004112AF /* TaskFactory.m */,
+			);
+			name = Factories;
+			sourceTree = "<group>";
+		};
+		1206A09B193D0D31004112AF /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				1206A09C193D0D6C004112AF /* Tasks.h */,
+				1206A09D193D0D6C004112AF /* Tasks.m */,
+			);
+			name = Collections;
 			sourceTree = "<group>";
 		};
 		124E241819376DA700E997FE /* 1_IntroView */ = {
@@ -264,6 +323,7 @@
 				124E241819376DA700E997FE /* 1_IntroView */,
 				124E241F19376E6100E997FE /* 2_TaskMenuView */,
 				12E5A38C1937A622006EF53B /* 3_Tasks */,
+				1206A093193D067F004112AF /* Data */,
 				1206A080193B11F4004112AF /* Camera */,
 				1206A0661939C1B4004112AF /* UIColor+Enroute.h */,
 				1206A0671939C1B4004112AF /* UIColor+Enroute.m */,
@@ -382,6 +442,7 @@
 			files = (
 				12EDF07A1935DFF700E25920 /* InfoPlist.strings in Resources */,
 				12EDF0821935DFF700E25920 /* Images.xcassets in Resources */,
+				1206A09A193D0AD3004112AF /* enroute.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,17 +499,22 @@
 				12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */,
 				1206A076193B00B6004112AF /* CameraRecorder.m in Sources */,
 				1206A05219389480004112AF /* TaskMenuInfoView.m in Sources */,
+				1206A09E193D0D6C004112AF /* Tasks.m in Sources */,
 				1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */,
 				12EDF0801935DFF700E25920 /* AppDelegate.m in Sources */,
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
+				1206A0A1193D1011004112AF /* TaskFactory.m in Sources */,
 				1206A04F19389457004112AF /* TaskMenuInfoViewController.m in Sources */,
 				124E241E19376E5A00E997FE /* TaskMenuView.m in Sources */,
 				124E241419376D6F00E997FE /* IntroViewController.m in Sources */,
 				1206A073193A0D5A004112AF /* CameraCaptureManager.m in Sources */,
+				1206A098193D0AA4004112AF /* Task.m in Sources */,
 				124E241B19376E4400E997FE /* TaskMenuViewController.m in Sources */,
+				1206A0A4193D10AF004112AF /* TasksFactory.m in Sources */,
 				1206A0621938F227004112AF /* TaskOneInfoViewController.m in Sources */,
+				1206A092193D0679004112AF /* JSONDataManager.m in Sources */,
 				1206A08F193B8919004112AF /* CameraFileManager.m in Sources */,
 				1206A0651938F24A004112AF /* TaskOneInfoView.m in Sources */,
 				12E5A3871937A5D4006EF53B /* TaskOneViewController.m in Sources */,

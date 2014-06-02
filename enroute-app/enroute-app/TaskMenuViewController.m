@@ -18,6 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.dataManager = [JSONDataManager sharedInstance];
+        
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -51,7 +53,7 @@
 - (void)loadView
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    self.view = [[TaskMenuView alloc] initWithFrame:bounds];
+    self.view = [[TaskMenuView alloc] initWithFrame:bounds tasks:self.dataManager.tasks];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TaskMenuItemView.h"
 #import "TaskMenuInfoViewController.h"
+#import "Tasks.h"
 
 @interface TaskMenuView : UIView
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *taskMenuItemViews;
+
+- (id)initWithFrame:(CGRect)frame tasks:(Tasks *)tasks;
 
 @end

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 
 @interface TaskMenuItemView : UIView
 
+@property (strong, nonatomic) UILabel *lblTitle;
 @property (strong, nonatomic)UIButton *btnSelect;
+
+- (id)initWithFrame:(CGRect)frame task:(Task *)task;
 
 @end

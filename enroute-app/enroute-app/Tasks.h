@@ -10,4 +10,6 @@
 
 @interface Tasks : NSObject
 
+@property (nonatomic, strong) NSMutableArray *tasks;
+
 @end

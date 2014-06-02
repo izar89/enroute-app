@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Task.h"
 
 @interface TaskFactory : NSObject
+
++ (Task *)createTaskWithDictionary:(NSDictionary *)dictionary;
 
 @end

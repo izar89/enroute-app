@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tasks.h"
+#import "TasksFactory.h"
 
 @interface JSONDataManager : NSObject
+
++ (JSONDataManager *)sharedInstance;
+
+@property (nonatomic,strong) Tasks *tasks;
 
 @end
