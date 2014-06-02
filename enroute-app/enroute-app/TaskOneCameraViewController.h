@@ -17,5 +17,7 @@
 @property (strong, nonatomic) AVCamFileManager *fileManager;
 @property (strong, nonatomic) NSTimer *recordTimer;
 @property (nonatomic) int recordIndex;
+@property (nonatomic) BOOL recordSuccess;
+@property (nonatomic, strong) AVAssetExportSession *exporter;
 
 @end

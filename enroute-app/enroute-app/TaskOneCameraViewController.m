@@ -22,6 +22,7 @@
         self.captureManager = [[AVCamCaptureManager alloc] init];
         self.captureManager.delegate = self;
         
+        self.recordSuccess = NO;
         self.fileManager = [[AVCamFileManager alloc] init];
         self.fileManager.delegate = self;
         
@@ -45,7 +46,6 @@
     [super viewDidLoad];
     for(CameraPartView *cameraPartView in self.view.cameraPartViews){
         [cameraPartView.btnRecord addTarget:self action:@selector(btnRecordDown:) forControlEvents:UIControlEventTouchDown];
-        [cameraPartView.btnRecord addTarget:self action:@selector(btnRecordUp:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -64,6 +64,10 @@
 - (void)btnRecordDown:(id)sender
 {
     NSLog(@"start");
+    
+    for(CameraPartView *cameraPartView in self.view.cameraPartViews){
+        [cameraPartView.btnRecord removeTarget:self action:@selector(btnRecordDown:) forControlEvents:UIControlEventTouchDown];
+    }
     
     UIButton *btn = (UIButton *)sender;
     self.recordIndex = (int)[self.view.cameraPartViews indexOfObject:(CameraPartView *)btn.superview];
@@ -93,7 +97,7 @@
     } completion:^(BOOL finished){
         [flashView removeFromSuperview];
     }];
-    
+    self.recordSuccess = YES;
     [self stopRecording];
 }
 
@@ -114,7 +118,17 @@
 - (void)captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager outputFileURL:(NSURL *)outputFileURL
 {
     NSLog(@"captureManagerRecordingFinished");
-    [self.fileManager saveFileToLibrary:outputFileURL];
+    
+    if(self.recordSuccess){
+        [self cropVideo:outputFileURL recordIndex:self.recordIndex];
+        //[self.fileManager saveFileToLibrary:outputFileURL];
+        self.recordSuccess = NO;
+    }
+    
+    // Add target
+    for(CameraPartView *cameraPartView in self.view.cameraPartViews){
+        [cameraPartView.btnRecord addTarget:self action:@selector(btnRecordDown:) forControlEvents:UIControlEventTouchDown];
+    }
 }
 
 #pragma mark - Delegates fileManager
@@ -122,6 +136,66 @@
 {
     NSLog(@"fileManagerSaveFileToLibraryFinished");
 }
+
+- (void)cropVideo:(NSURL *)fileURL recordIndex:(int)recordIndex{
+    AVAsset *asset = [AVAsset assetWithURL:fileURL];
+    
+    AVAssetTrack *clipVideoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    NSLog(@"1) width: %f, height: %f",clipVideoTrack.naturalSize.width, clipVideoTrack.naturalSize.height);
+    
+    AVMutableVideoComposition* videoComposition = [AVMutableVideoComposition videoComposition];
+    videoComposition.frameDuration = CMTimeMake(1, 30);
+    videoComposition.renderSize = CGSizeMake(clipVideoTrack.naturalSize.height, clipVideoTrack.naturalSize.height / 2);
+    
+    AVMutableVideoCompositionInstruction *instruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    instruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMakeWithSeconds(60, 30));
+    
+    AVMutableVideoCompositionLayerInstruction* transformer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:clipVideoTrack];
+    
+    //CGAffineTransform t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, -(clipVideoTrack.naturalSize.width - clipVideoTrack.naturalSize.height) /2 );
+    
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, 0 );
+    
+    CGAffineTransform t2 = CGAffineTransformRotate(t1, M_PI_2);
+    
+    CGAffineTransform finalTransform = t2;
+    [transformer setTransform:finalTransform atTime:kCMTimeZero];
+    
+    instruction.layerInstructions = [NSArray arrayWithObject:transformer];
+    videoComposition.instructions = [NSArray arrayWithObject: instruction];
+    
+    NSString * documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *exportPath = [documentsPath stringByAppendingFormat:@"/CroppedVideo.mp4"];
+    NSURL *exportUrl = [NSURL fileURLWithPath:exportPath];
+    
+    [[NSFileManager defaultManager]  removeItemAtURL:exportUrl error:nil];
+    
+    self.exporter = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetHighestQuality] ;
+    self.exporter.videoComposition = videoComposition;
+    self.exporter.outputURL = exportUrl;
+    self.exporter.outputFileType = AVFileTypeQuickTimeMovie;
+    
+    [self.exporter exportAsynchronouslyWithCompletionHandler:^
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             //Call when finished
+             [self exportDidFinish:self.exporter];
+         });
+     }];
+}
+    
+- (void)exportDidFinish:(AVAssetExportSession*)session
+{
+    //Play the New Cropped video
+    NSURL *outputURL = session.outputURL;
+    AVAsset *asset = [AVAsset assetWithURL:outputURL];
+    AVAssetTrack *clipVideoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    NSLog(@"2) width: %f, height: %f",clipVideoTrack.naturalSize.width, clipVideoTrack.naturalSize.height);
+    
+    
+    [self.fileManager saveFileToLibrary:outputURL];
+}
+
 
 
 @end
