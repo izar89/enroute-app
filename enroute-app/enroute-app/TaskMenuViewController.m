@@ -24,17 +24,22 @@
         self.locationManager.delegate = self;
         
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-        [self.locationManager startUpdatingLocation];
         self.locationManager.headingFilter = 5;
         [self.locationManager startUpdatingHeading];
+        NSLog(@"%f", self.locationManager.heading.magneticHeading);
     }
     return self;
+}
+
+- (id)initWithHeading:(float)heading
+{
+    self.previousHeading = heading;
+    return [self init];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setContentOffsetWithHeading:self.locationManager.heading.magneticHeading];
     for(TaskMenuItemView *taskMenuItemView in self.view.taskMenuItemViews){
         [taskMenuItemView.btnSelect addTarget:self action:@selector(btnSelectTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -44,6 +49,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self setContentOffsetWithHeading:self.previousHeading animated:NO];
     [self.locationManager startUpdatingHeading];
 }
 
@@ -74,21 +80,32 @@
     CLLocationDirection  theHeading = ((newHeading.trueHeading > 0) ?
                                        newHeading.trueHeading : newHeading.magneticHeading);
     
-    [self setContentOffsetWithHeading:theHeading];
+    [self setContentOffsetWithHeading:theHeading animated:YES];
 }
 
-- (void)updateHeadingDisplays {
-    // Animate Compass
-
-}
-
-- (void)setContentOffsetWithHeading:(float)heading{
-    self.contentOffset = [self map:heading in_min:0 in_max:360 out_min:0 out_max:self.view.scrollView.frame.size.width * (self.view.taskMenuItemViews.count - 1)];
+- (void)setContentOffsetWithHeading:(float)heading animated:(BOOL)animated{
+    float offset = [self map:heading in_min:0 in_max:360 out_min:0 out_max:self.view.scrollView.frame.size.width * (self.view.taskMenuItemViews.count - 1)];
     
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
-    animations:^{
-                             [self.view.scrollView setContentOffset:CGPointMake(self.contentOffset, 0) animated:NO];
-    } completion:^(BOOL finished) {}];
+    if (animated) {
+        NSLog(@"%f ,%f, %f", self.previousHeading, heading , offset);
+        if (abs(heading - self.previousHeading) > 100) {
+            NSLog(@"true");
+            if ((heading - self.previousHeading) > 0) {
+                NSLog(@"left");
+            } else {
+                NSLog(@"right");
+            }
+        } else {
+            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO];
+                             } completion:^(BOOL finished) {}];
+        }
+    } else {
+        [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO];
+    }
+    
+    self.previousHeading = heading;
 }
 
 - (float)map:(float)x in_min:(float)in_min in_max:(float)in_max out_min:(float)out_min out_max:(float)out_max

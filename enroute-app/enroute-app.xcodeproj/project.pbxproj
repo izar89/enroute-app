@@ -17,7 +17,6 @@
 		1206A076193B00B6004112AF /* CameraRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A075193B00B6004112AF /* CameraRecorder.m */; };
 		1206A07A193B061C004112AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A079193B061C004112AF /* AssetsLibrary.framework */; };
 		1206A089193B6413004112AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A088193B6413004112AF /* QuartzCore.framework */; };
-		1206A08C193B6E95004112AF /* CameraPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A08B193B6E95004112AF /* CameraPartView.m */; };
 		1206A08F193B8919004112AF /* CameraFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A08E193B8919004112AF /* CameraFileManager.m */; };
 		1206A092193D0679004112AF /* JSONDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A091193D0679004112AF /* JSONDataManager.m */; };
 		1206A098193D0AA4004112AF /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A097193D0AA4004112AF /* Task.m */; };
@@ -78,8 +77,6 @@
 		1206A084193B5300004112AF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1206A086193B531F004112AF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1206A088193B6413004112AF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1206A08A193B6E95004112AF /* CameraPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPartView.h; sourceTree = "<group>"; };
-		1206A08B193B6E95004112AF /* CameraPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPartView.m; sourceTree = "<group>"; };
 		1206A08D193B8919004112AF /* CameraFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFileManager.h; sourceTree = "<group>"; };
 		1206A08E193B8919004112AF /* CameraFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFileManager.m; sourceTree = "<group>"; };
 		1206A090193D0679004112AF /* JSONDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataManager.h; sourceTree = "<group>"; };
@@ -251,8 +248,6 @@
 				1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */,
 				1206A06C1939F62C004112AF /* TaskOneCameraView.h */,
 				1206A06D1939F62C004112AF /* TaskOneCameraView.m */,
-				1206A08A193B6E95004112AF /* CameraPartView.h */,
-				1206A08B193B6E95004112AF /* CameraPartView.m */,
 			);
 			name = TaskOne;
 			sourceTree = "<group>";
@@ -484,7 +479,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1206A08C193B6E95004112AF /* CameraPartView.m in Sources */,
 				12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */,
 				12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */,
 				1206A076193B00B6004112AF /* CameraRecorder.m in Sources */,

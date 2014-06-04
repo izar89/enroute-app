@@ -18,8 +18,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        [self.view.btnStart addTarget:self action:@selector(btnStartTapped:) forControlEvents:UIControlEventTouchUpInside];
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.locationManager startUpdatingHeading];
     }
     return self;
 }
@@ -42,9 +44,24 @@
     self.view = [[IntroView alloc] initWithFrame:bounds];
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    [self.locationManager stopUpdatingHeading];
+    
+    if (newHeading.headingAccuracy < 0)
+        return;
+    
+    // Use the true heading if it is valid.
+    self.heading = ((newHeading.trueHeading > 0) ?
+                                       newHeading.trueHeading : newHeading.magneticHeading);
+    
+    [self.view.btnStart addTarget:self action:@selector(btnStartTapped:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
 - (void)btnStartTapped:(id)sender
 {
-    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
+    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] initWithHeading:self.heading];
     [self.navigationController pushViewController:taskMenuVC animated:YES];
 }
 

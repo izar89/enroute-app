@@ -20,18 +20,10 @@
         self.videoPreviewView.layer.masksToBounds = YES; //Check
         [self addSubview:self.videoPreviewView];
         
-        int totalCameraParts = 4;
-        CGRect cameraPartframe = CGRectMake(0, 0, frame.size.width, frame.size.height / totalCameraParts);
+        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 44)];
+        toolbar.center = CGPointMake(frame.size.width / 2, frame.size.height - toolbar.frame.size.height / 2);
         
-        self.cameraPartViews = [NSMutableArray array];
-        for (int i = 0; i < totalCameraParts; i++) {
-            CameraPartView *cameraPartView = [[CameraPartView alloc] initWithFrame:cameraPartframe];
-            cameraPartView.center = CGPointMake(frame.size.width/2, cameraPartframe.size.height / 2 + (cameraPartframe.size.height * i));
-            cameraPartView.layer.borderColor = [UIColor whiteColor].CGColor;
-            cameraPartView.layer.borderWidth = 1;
-            [self.cameraPartViews addObject:cameraPartView];
-            [self addSubview:cameraPartView];
-        }
+        [self addSubview:toolbar];
     }
     return self;
 }

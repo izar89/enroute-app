@@ -13,11 +13,13 @@
 #import "TaskOneViewController.h"
 #import "JSONDataManager.h"
 
-@interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate, UIViewControllerTransitioningDelegate>
+@interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate>
 
 @property (strong, nonatomic) TaskMenuView *view;
 @property (strong, nonatomic) JSONDataManager *dataManager;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (nonatomic) float contentOffset;
+@property (nonatomic) float previousHeading;
+
+- (id)initWithHeading:(float)heading;
 
 @end
