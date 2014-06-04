@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskMenuItemView.h"
-#import "TaskMenuInfoViewController.h"
 #import "Tasks.h"
 
 @interface TaskMenuView : UIView

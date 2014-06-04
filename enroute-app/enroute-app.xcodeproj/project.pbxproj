@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1206A04F19389457004112AF /* TaskMenuInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A04E19389457004112AF /* TaskMenuInfoViewController.m */; };
-		1206A05219389480004112AF /* TaskMenuInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A05119389480004112AF /* TaskMenuInfoView.m */; };
 		1206A0621938F227004112AF /* TaskOneInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0611938F227004112AF /* TaskOneInfoViewController.m */; };
 		1206A0651938F24A004112AF /* TaskOneInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0641938F24A004112AF /* TaskOneInfoView.m */; };
 		1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0671939C1B4004112AF /* UIColor+Enroute.m */; };
@@ -61,10 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1206A04D19389457004112AF /* TaskMenuInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMenuInfoViewController.h; sourceTree = "<group>"; };
-		1206A04E19389457004112AF /* TaskMenuInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMenuInfoViewController.m; sourceTree = "<group>"; };
-		1206A05019389480004112AF /* TaskMenuInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMenuInfoView.h; sourceTree = "<group>"; };
-		1206A05119389480004112AF /* TaskMenuInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMenuInfoView.m; sourceTree = "<group>"; };
 		1206A0601938F227004112AF /* TaskOneInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneInfoViewController.h; sourceTree = "<group>"; };
 		1206A0611938F227004112AF /* TaskOneInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneInfoViewController.m; sourceTree = "<group>"; };
 		1206A0631938F24A004112AF /* TaskOneInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneInfoView.h; sourceTree = "<group>"; };
@@ -238,10 +232,6 @@
 				124E241D19376E5A00E997FE /* TaskMenuView.m */,
 				12E5A3821937839A006EF53B /* TaskMenuItemView.h */,
 				12E5A3831937839A006EF53B /* TaskMenuItemView.m */,
-				1206A04D19389457004112AF /* TaskMenuInfoViewController.h */,
-				1206A04E19389457004112AF /* TaskMenuInfoViewController.m */,
-				1206A05019389480004112AF /* TaskMenuInfoView.h */,
-				1206A05119389480004112AF /* TaskMenuInfoView.m */,
 			);
 			name = 2_TaskMenuView;
 			sourceTree = "<group>";
@@ -498,7 +488,6 @@
 				12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */,
 				12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */,
 				1206A076193B00B6004112AF /* CameraRecorder.m in Sources */,
-				1206A05219389480004112AF /* TaskMenuInfoView.m in Sources */,
 				1206A09E193D0D6C004112AF /* Tasks.m in Sources */,
 				1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */,
 				12EDF0801935DFF700E25920 /* AppDelegate.m in Sources */,
@@ -506,7 +495,6 @@
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
 				1206A0A1193D1011004112AF /* TaskFactory.m in Sources */,
-				1206A04F19389457004112AF /* TaskMenuInfoViewController.m in Sources */,
 				124E241E19376E5A00E997FE /* TaskMenuView.m in Sources */,
 				124E241419376D6F00E997FE /* IntroViewController.m in Sources */,
 				1206A073193A0D5A004112AF /* CameraCaptureManager.m in Sources */,

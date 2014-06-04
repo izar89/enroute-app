@@ -28,8 +28,6 @@
         NSError *error = nil;
         NSArray *loadedData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
         
-        NSLog(@"%@", loadedData);
-        
         if( !error ){;
             self.tasks = [TasksFactory createTasksWithDictionary:[[loadedData objectAtIndex:0] objectForKey:@"enroute"]];
         }else {

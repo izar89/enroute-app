@@ -11,7 +11,6 @@
 #import "TaskMenuView.h"
 #import "TaskMenuItemView.h"
 #import "TaskOneViewController.h"
-#import "TaskMenuInfoViewController.h"
 #import "JSONDataManager.h"
 
 @interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate, UIViewControllerTransitioningDelegate>
@@ -20,7 +19,5 @@
 @property (strong, nonatomic) JSONDataManager *dataManager;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) float contentOffset;
-@property (strong, nonatomic) TaskMenuInfoViewController *taskMenuInfoVC;
-
 
 @end

@@ -23,6 +23,7 @@
 //        [self.view addSubview:self.taskOneInfoVC.view];
 //        [self.taskOneInfoVC didMoveToParentViewController:self];
         
+        
         self.taskOneCameraVC = [[TaskOneCameraViewController alloc] init];
         [self addChildViewController:self.taskOneCameraVC];
         [self.view addSubview:self.taskOneCameraVC.view];
@@ -35,6 +36,18 @@
 {
     [super viewDidLoad];
     [self.view.btnBack addTarget:self action:@selector(btnBackTapped:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,11 +65,6 @@
 {
     TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
     [self.navigationController pushViewController:taskMenuVC animated:YES];
-}
-
-- (void)btnBigCityCameraTapped:(id)sender
-{
-    
 }
 
 @end
