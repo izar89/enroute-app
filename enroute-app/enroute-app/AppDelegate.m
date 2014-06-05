@@ -18,6 +18,7 @@
     IntroViewController *introVC = [[IntroViewController alloc] init];
     self.navC = [[UINavigationController alloc] initWithRootViewController:introVC];
     [self.navC setNavigationBarHidden:YES];
+    self.navC.navigationController.interactivePopGestureRecognizer.enabled = NO;
     //[[UINavigationBar appearance] setBarTintColor:[UIColor enrouteRedColor]];
     self.window.rootViewController = self.navC;
     

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskOneCameraView.h"
+#import "TaskOneView.h"
 
 @interface TaskOneCameraViewController : UIViewController<AVCamCaptureManagerDelegate, AVCamFileManagerDelegate>
 

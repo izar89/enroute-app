@@ -23,10 +23,9 @@
 //        [self.view addSubview:self.taskOneInfoVC.view];
 //        [self.taskOneInfoVC didMoveToParentViewController:self];
         
-        
         self.taskOneCameraVC = [[TaskOneCameraViewController alloc] init];
         [self addChildViewController:self.taskOneCameraVC];
-        [self.view addSubview:self.taskOneCameraVC.view];
+        [self.view.contentContainerView addSubview:self.taskOneCameraVC.view];
         [self.taskOneCameraVC didMoveToParentViewController:self];
     }
     return self;
@@ -36,18 +35,6 @@
 {
     [super viewDidLoad];
     [self.view.btnBack addTarget:self action:@selector(btnBackTapped:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void)didReceiveMemoryWarning

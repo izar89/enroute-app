@@ -12,10 +12,20 @@
 
 @interface TaskOneCameraView : UIView
 
-@property (strong, nonatomic) UIBarButtonItem *btnSave;
-@property (strong, nonatomic) UIBarButtonItem *btnRecordVideo;
-@property (strong, nonatomic) UIBarButtonItem *btnRecordAudio;
+/* Bottom toolbar */
+@property (strong, nonatomic) UIView *bottomToolbarView;
+@property (strong, nonatomic) UIButton *btnSave;
+@property (strong, nonatomic) UIButton *btnRecordVideo;
+@property (strong, nonatomic) UIButton *btnRecordAudio;
+
+/* Video preview */
 @property (strong, nonatomic) UIView *videoPreviewView;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
+
+/* Add floor */
+@property (strong, nonatomic) UIButton *btnAddFloor;
+
+/* Floors */
+@property (strong, nonatomic) UIScrollView *scrollFloorsView;
 
 @end
