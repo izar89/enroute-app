@@ -9,7 +9,7 @@
 #import "TaskMenuViewController.h"
 
 @interface TaskMenuViewController ()
-@property (nonatomic, strong) CaptureManager *captureManager;
+@property (nonatomic, strong) VideoCaptureManager *videoCaptureManager;
 @end
 
 @implementation TaskMenuViewController
@@ -20,7 +20,7 @@
     if (self) {
         self.dataManager = [JSONDataManager sharedInstance];
         
-        self.captureManager = [[CaptureManager alloc] initWithPreviewView:self.view.videoPreviewView];
+        self.videoCaptureManager = [[VideoCaptureManager alloc] initWithPreviewView:self.view.videoPreviewView];
         
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;

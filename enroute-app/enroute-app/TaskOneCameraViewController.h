@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskOneCameraView.h"
-#import "CaptureManager.h"
+#import "AudioCaptureManager.h"
+#import "VideoCaptureManager.h"
 
-@interface TaskOneCameraViewController : UIViewController <CaptureManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface TaskOneCameraViewController : UIViewController <AudioCaptureManagerDelegate, VideoCaptureManagerDelegate>
 
 @property (strong, nonatomic) TaskOneCameraView *view;
 

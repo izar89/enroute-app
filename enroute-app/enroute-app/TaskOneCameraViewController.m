@@ -9,7 +9,8 @@
 #import "TaskOneCameraViewController.h"
 
 @interface TaskOneCameraViewController ()
-@property (nonatomic, strong) CaptureManager *captureManager;
+@property (nonatomic, strong) VideoCaptureManager *videoCaptureManager;
+@property (nonatomic, strong) AudioCaptureManager *audioCaptureManager;
 @end
 
 @implementation TaskOneCameraViewController
@@ -26,8 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.captureManager = [[CaptureManager alloc] initWithPreviewView:self.view.videoPreviewView];
-    self.captureManager.delegate = self;
+    
+    self.videoCaptureManager = [[VideoCaptureManager alloc] initWithPreviewView:self.view.videoPreviewView];
+    self.videoCaptureManager.delegate = self;
+    
+    self.audioCaptureManager = [[AudioCaptureManager alloc] init];
+    self.audioCaptureManager.delegate = self;
+    
     [self.view.btnRecordVideo addTarget:self action:@selector(btnRecordVideoDown:) forControlEvents:UIControlEventTouchDown];
     [self.view.btnRecordVideo addTarget:self action:@selector(btnRecordVideoUp:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnRecordAudio addTarget:self action:@selector(btnRecordAudioDown:) forControlEvents:UIControlEventTouchDown];
@@ -61,49 +67,77 @@
 #pragma mark - btnRecordVideo
 - (void)btnRecordVideoDown:(id)sender
 {
-    [self.captureManager startVideoRecording];
+    //[self.captureManager startVideoRecording];
+    [self.videoCaptureManager startVideoRecording];
 }
 
 - (void)btnRecordVideoUp:(id)sender
 {
-    [self.captureManager stopRecording];
+    //[self.captureManager stopRecording];
+    [self.videoCaptureManager stopVideoRecording];
 }
 
 #pragma mark - btnRecordAudio
 - (void)btnRecordAudioDown:(id)sender
 {
-    
+    [self.audioCaptureManager startAudioRecording];
 }
 
 - (void)btnRecordAudioUp:(id)sender
 {
-    
+    [self.audioCaptureManager stopAudioRecording];
 }
 
-#pragma mark - Delegates captureManager
-- (void)recordingDidFailWithError:(NSError *)error
+#pragma mark - Delegates videoCaptureManager
+- (void)videoRecordingDidFailWithError:(NSError *)error
 {
-    
+    NSLog(@"videoRecordingDidFailWithError");
 }
 
-- (void)recordingWillBegin
+- (void)videoRecordingWillBegin
 {
-    NSLog(@"recordingWillBegin");
+    NSLog(@"videoRecordingWillBegin");
 }
 
-- (void)recordingBegan
+- (void)videoRecordingBegan
 {
-    NSLog(@"recordingBegan");
+    NSLog(@"videoRecordingBegan");
 }
 
-- (void)recordingWillFinish
+- (void)videoRecordingWillFinish
 {
-    NSLog(@"recordingWillFinish");
+    NSLog(@"videoRecordingWillFinish");
 }
 
-- (void)recordingFinished:(NSURL *)outputFileURL
+- (void)videoRecordingFinished:(NSURL *)outputFileURL
 {
-    NSLog(@"recordingFinished: %@", outputFileURL);
+    NSLog(@"videoRecordingFinished: %@", outputFileURL);
+}
+
+#pragma mark - Delegates audioCaptureManager
+- (void)audioRecordingDidFailWithError:(NSError *)error
+{
+    NSLog(@"audioRecordingDidFailWithError");
+}
+
+- (void)audioRecordingWillBegin
+{
+    NSLog(@"audioRecordingWillBegin");
+}
+
+- (void)audioRecordingBegan
+{
+    NSLog(@"audioRecordingBegan");
+}
+
+- (void)audioRecordingWillFinish
+{
+    NSLog(@"audioRecordingWillFinish");
+}
+
+- (void)audioRecordingFinished:(NSURL *)outputFileURL
+{
+    NSLog(@"audioRecordingFinished: %@", outputFileURL);
 }
 
 @end
