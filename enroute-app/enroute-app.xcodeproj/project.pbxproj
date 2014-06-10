@@ -28,6 +28,9 @@
 		124E241719376D8100E997FE /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241619376D8100E997FE /* IntroView.m */; };
 		124E241B19376E4400E997FE /* TaskMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241A19376E4400E997FE /* TaskMenuViewController.m */; };
 		124E241E19376E5A00E997FE /* TaskMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 124E241D19376E5A00E997FE /* TaskMenuView.m */; };
+		127808C01940B3BC00400ACE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127808BF1940B3BC00400ACE /* ImageIO.framework */; };
+		127808C11940B43000400ACE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A086193B531F004112AF /* MobileCoreServices.framework */; };
+		127808CB194464A600400ACE /* CaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 127808CA194464A600400ACE /* CaptureManager.m */; };
 		12E5A38119377D9D006EF53B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E5A38019377D9D006EF53B /* CoreLocation.framework */; };
 		12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3831937839A006EF53B /* TaskMenuItemView.m */; };
 		12E5A3871937A5D4006EF53B /* TaskOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3861937A5D4006EF53B /* TaskOneViewController.m */; };
@@ -98,6 +101,9 @@
 		124E241A19376E4400E997FE /* TaskMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMenuViewController.m; sourceTree = "<group>"; };
 		124E241C19376E5A00E997FE /* TaskMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMenuView.h; sourceTree = "<group>"; };
 		124E241D19376E5A00E997FE /* TaskMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMenuView.m; sourceTree = "<group>"; };
+		127808BF1940B3BC00400ACE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		127808C9194464A600400ACE /* CaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureManager.h; sourceTree = "<group>"; };
+		127808CA194464A600400ACE /* CaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureManager.m; sourceTree = "<group>"; };
 		12E5A38019377D9D006EF53B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		12E5A3821937839A006EF53B /* TaskMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMenuItemView.h; sourceTree = "<group>"; };
 		12E5A3831937839A006EF53B /* TaskMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMenuItemView.m; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				127808C11940B43000400ACE /* MobileCoreServices.framework in Frameworks */,
+				127808C01940B3BC00400ACE /* ImageIO.framework in Frameworks */,
 				1206A089193B6413004112AF /* QuartzCore.framework in Frameworks */,
 				1206A07A193B061C004112AF /* AssetsLibrary.framework in Frameworks */,
 				1206A0701939FF00004112AF /* AVFoundation.framework in Frameworks */,
@@ -233,6 +241,24 @@
 			name = 2_TaskMenuView;
 			sourceTree = "<group>";
 		};
+		127808C219433E9400400ACE /* AVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				127808C9194464A600400ACE /* CaptureManager.h */,
+				127808CA194464A600400ACE /* CaptureManager.m */,
+			);
+			name = AVFoundation;
+			sourceTree = "<group>";
+		};
+		127808CC19446EB800400ACE /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1206A0661939C1B4004112AF /* UIColor+Enroute.h */,
+				1206A0671939C1B4004112AF /* UIColor+Enroute.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		12E5A38B1937A61B006EF53B /* TaskOne */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,14 +266,14 @@
 				12E5A3861937A5D4006EF53B /* TaskOneViewController.m */,
 				12E5A3881937A615006EF53B /* TaskOneView.h */,
 				12E5A3891937A615006EF53B /* TaskOneView.m */,
-				1206A0601938F227004112AF /* TaskOneInfoViewController.h */,
-				1206A0611938F227004112AF /* TaskOneInfoViewController.m */,
-				1206A0631938F24A004112AF /* TaskOneInfoView.h */,
-				1206A0641938F24A004112AF /* TaskOneInfoView.m */,
 				1206A0691939F35C004112AF /* TaskOneCameraViewController.h */,
 				1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */,
 				1206A06C1939F62C004112AF /* TaskOneCameraView.h */,
 				1206A06D1939F62C004112AF /* TaskOneCameraView.m */,
+				1206A0601938F227004112AF /* TaskOneInfoViewController.h */,
+				1206A0611938F227004112AF /* TaskOneInfoViewController.m */,
+				1206A0631938F24A004112AF /* TaskOneInfoView.h */,
+				1206A0641938F24A004112AF /* TaskOneInfoView.m */,
 			);
 			name = TaskOne;
 			sourceTree = "<group>";
@@ -283,6 +309,7 @@
 		12EDF06E1935DFF700E25920 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				127808BF1940B3BC00400ACE /* ImageIO.framework */,
 				1206A088193B6413004112AF /* QuartzCore.framework */,
 				1206A086193B531F004112AF /* MobileCoreServices.framework */,
 				1206A084193B5300004112AF /* MediaPlayer.framework */,
@@ -309,9 +336,9 @@
 				124E241F19376E6100E997FE /* 2_TaskMenuView */,
 				12E5A38C1937A622006EF53B /* 3_Tasks */,
 				1206A093193D067F004112AF /* Data */,
+				127808C219433E9400400ACE /* AVFoundation */,
 				1206A080193B11F4004112AF /* Camera */,
-				1206A0661939C1B4004112AF /* UIColor+Enroute.h */,
-				1206A0671939C1B4004112AF /* UIColor+Enroute.m */,
+				127808CC19446EB800400ACE /* Categories */,
 			);
 			path = "enroute-app";
 			sourceTree = "<group>";
@@ -486,6 +513,7 @@
 				1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */,
 				12EDF0801935DFF700E25920 /* AppDelegate.m in Sources */,
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
+				127808CB194464A600400ACE /* CaptureManager.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
 				1206A0A1193D1011004112AF /* TaskFactory.m in Sources */,

@@ -15,6 +15,9 @@
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *taskMenuItemViews;
 
+/* Video preview */
+@property (strong, nonatomic) UIView *videoPreviewView;
+
 - (id)initWithFrame:(CGRect)frame tasks:(Tasks *)tasks;
 
 @end

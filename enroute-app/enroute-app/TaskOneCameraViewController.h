@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskOneCameraView.h"
-#import "TaskOneView.h"
+#import "CaptureManager.h"
 
-@interface TaskOneCameraViewController : UIViewController<AVCamCaptureManagerDelegate, AVCamFileManagerDelegate>
+@interface TaskOneCameraViewController : UIViewController <CaptureManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
 
 @property (strong, nonatomic) TaskOneCameraView *view;
-@property (strong, nonatomic) CameraCaptureManager *captureManager;
-@property (strong, nonatomic) CameraFileManager *fileManager;
-@property (strong, nonatomic) NSTimer *recordTimer;
-@property (nonatomic) BOOL recordSuccess;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "CameraCaptureManager.h"
 
+#define VIDEO_FILE @"capture.mov"
+
 @implementation CameraCaptureManager
 
 - (id)init

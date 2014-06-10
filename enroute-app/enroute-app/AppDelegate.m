@@ -13,14 +13,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    /* Root / Navigation controller */
     IntroViewController *introVC = [[IntroViewController alloc] init];
     self.navC = [[UINavigationController alloc] initWithRootViewController:introVC];
-    [self.navC setNavigationBarHidden:YES];
-    self.navC.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    //[[UINavigationBar appearance] setBarTintColor:[UIColor enrouteRedColor]];
     self.window.rootViewController = self.navC;
+    
+    /* Status & Navigation bar */
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [self.navC setNavigationBarHidden:YES];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

@@ -20,7 +20,6 @@
 
 /* Video preview */
 @property (strong, nonatomic) UIView *videoPreviewView;
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
 /* Add floor */
 @property (strong, nonatomic) UIButton *btnAddFloor;
