@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import "FileManager.h"
 
 @protocol AudioCaptureManagerDelegate;
 
-@interface AudioCaptureManager : NSObject <AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface AudioCaptureManager : NSObject <AVCaptureAudioDataOutputSampleBufferDelegate, FileManagerDelegate>
 @property (weak, nonatomic) id<AudioCaptureManagerDelegate> delegate;
 - (void)startAudioRecording;
 - (void)stopAudioRecording;

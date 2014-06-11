@@ -91,13 +91,13 @@
     float offset = [self map:heading in_min:0 in_max:360 out_min:0 out_max:self.view.scrollView.frame.size.width * (self.view.taskMenuItemViews.count - 1)];
     
     if (animated) {
-        NSLog(@"%f ,%f, %f", self.previousHeading, heading , offset);
+        //NSLog(@"%f ,%f, %f", self.previousHeading, heading , offset);
         if (abs(heading - self.previousHeading) > 100) {
-            NSLog(@"true");
+            //NSLog(@"true");
             if ((heading - self.previousHeading) > 0) {
-                NSLog(@"left");
+                //NSLog(@"left");
             } else {
-                NSLog(@"right");
+                //NSLog(@"right");
             }
         } else {
             [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction

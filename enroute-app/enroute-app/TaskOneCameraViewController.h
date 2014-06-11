@@ -10,8 +10,10 @@
 #import "TaskOneCameraView.h"
 #import "AudioCaptureManager.h"
 #import "VideoCaptureManager.h"
+#import "FileManager.h"
+#import "FloorView.h"
 
-@interface TaskOneCameraViewController : UIViewController <AudioCaptureManagerDelegate, VideoCaptureManagerDelegate>
+@interface TaskOneCameraViewController : UIViewController <AudioCaptureManagerDelegate, VideoCaptureManagerDelegate, FileManagerDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) TaskOneCameraView *view;
 

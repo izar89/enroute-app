@@ -12,5 +12,7 @@
 
 + (UIColor *)enrouteBlueColor;
 + (UIColor *)enrouteRedColor;
++ (UIColor *)enrouteYellowColor;
++ (UIColor *)enrouteLightYellowColor;
 
 @end

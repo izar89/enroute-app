@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import "FileManager.h"
 
 @protocol VideoCaptureManagerDelegate;
 
-@interface VideoCaptureManager : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface VideoCaptureManager : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, FileManagerDelegate>
 @property (weak, nonatomic) id<VideoCaptureManagerDelegate> delegate;
 - (id)initWithPreviewView:(UIView *)previewView;
+- (void)setOutputDimensionsWidth:(int)outputWidth height:(int)outputHeight;
 - (void)startVideoRecording;
 - (void)stopVideoRecording;
 @end

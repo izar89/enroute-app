@@ -29,7 +29,8 @@
 		127808C11940B43000400ACE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1206A086193B531F004112AF /* MobileCoreServices.framework */; };
 		127808CF1947909B00400ACE /* VideoCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 127808CE1947909B00400ACE /* VideoCaptureManager.m */; };
 		127808D21947924300400ACE /* AudioCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 127808D11947924300400ACE /* AudioCaptureManager.m */; };
-		127808D51947B76500400ACE /* Floor.m in Sources */ = {isa = PBXBuildFile; fileRef = 127808D41947B76500400ACE /* Floor.m */; };
+		127808D819482BD000400ACE /* FloorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 127808D719482BD000400ACE /* FloorView.m */; };
+		127808DB19482DDA00400ACE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 127808DA19482DDA00400ACE /* FileManager.m */; };
 		12E5A38119377D9D006EF53B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E5A38019377D9D006EF53B /* CoreLocation.framework */; };
 		12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3831937839A006EF53B /* TaskMenuItemView.m */; };
 		12E5A3871937A5D4006EF53B /* TaskOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3861937A5D4006EF53B /* TaskOneViewController.m */; };
@@ -99,8 +100,10 @@
 		127808CE1947909B00400ACE /* VideoCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCaptureManager.m; sourceTree = "<group>"; };
 		127808D01947924300400ACE /* AudioCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioCaptureManager.h; sourceTree = "<group>"; };
 		127808D11947924300400ACE /* AudioCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioCaptureManager.m; sourceTree = "<group>"; };
-		127808D31947B76500400ACE /* Floor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Floor.h; sourceTree = "<group>"; };
-		127808D41947B76500400ACE /* Floor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Floor.m; sourceTree = "<group>"; };
+		127808D619482BD000400ACE /* FloorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloorView.h; sourceTree = "<group>"; };
+		127808D719482BD000400ACE /* FloorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloorView.m; sourceTree = "<group>"; };
+		127808D919482DDA00400ACE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		127808DA19482DDA00400ACE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		12E5A38019377D9D006EF53B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		12E5A3821937839A006EF53B /* TaskMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMenuItemView.h; sourceTree = "<group>"; };
 		12E5A3831937839A006EF53B /* TaskMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMenuItemView.m; sourceTree = "<group>"; };
@@ -221,8 +224,6 @@
 				124E241D19376E5A00E997FE /* TaskMenuView.m */,
 				12E5A3821937839A006EF53B /* TaskMenuItemView.h */,
 				12E5A3831937839A006EF53B /* TaskMenuItemView.m */,
-				127808D31947B76500400ACE /* Floor.h */,
-				127808D41947B76500400ACE /* Floor.m */,
 			);
 			name = 2_TaskMenuView;
 			sourceTree = "<group>";
@@ -234,6 +235,8 @@
 				127808CE1947909B00400ACE /* VideoCaptureManager.m */,
 				127808D01947924300400ACE /* AudioCaptureManager.h */,
 				127808D11947924300400ACE /* AudioCaptureManager.m */,
+				127808D919482DDA00400ACE /* FileManager.h */,
+				127808DA19482DDA00400ACE /* FileManager.m */,
 			);
 			name = AVFoundation;
 			sourceTree = "<group>";
@@ -258,6 +261,8 @@
 				1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */,
 				1206A06C1939F62C004112AF /* TaskOneCameraView.h */,
 				1206A06D1939F62C004112AF /* TaskOneCameraView.m */,
+				127808D619482BD000400ACE /* FloorView.h */,
+				127808D719482BD000400ACE /* FloorView.m */,
 				1206A0601938F227004112AF /* TaskOneInfoViewController.h */,
 				1206A0611938F227004112AF /* TaskOneInfoViewController.m */,
 				1206A0631938F24A004112AF /* TaskOneInfoView.h */,
@@ -500,9 +505,10 @@
 				1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */,
 				12EDF0801935DFF700E25920 /* AppDelegate.m in Sources */,
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
-				127808D51947B76500400ACE /* Floor.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
+				127808D819482BD000400ACE /* FloorView.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
+				127808DB19482DDA00400ACE /* FileManager.m in Sources */,
 				1206A0A1193D1011004112AF /* TaskFactory.m in Sources */,
 				124E241E19376E5A00E997FE /* TaskMenuView.m in Sources */,
 				124E241419376D6F00E997FE /* IntroViewController.m in Sources */,

@@ -8,11 +8,10 @@
 
 #import "VideoCaptureManager.h"
 
-#define VIDEO_FILE @"capture.mov"
-
 @interface VideoCaptureManager()
 @property (nonatomic, strong) UIView *previewView;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
+@property (nonatomic, strong) FileManager *fileManager;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureConnection *videoConnection;
 @property (nonatomic, strong) AVAssetWriter *assetWriter;
@@ -22,6 +21,8 @@
 @property (nonatomic, assign) BOOL readyToRecordVideo;
 @property (nonatomic, assign) BOOL recordingWillBeStarted;
 @property (nonatomic, assign) BOOL recordingWillBeStopped;
+@property (nonatomic, assign) int outputWidth;
+@property (nonatomic, assign) int outputHeight;
 @end
 
 @implementation VideoCaptureManager
@@ -31,6 +32,8 @@
     self = [super init];
     if (self != nil) {
         [self setUpCaptureSession];
+        self.fileManager = [[FileManager alloc] init];
+        self.fileManager.delegate = self;
     }
     return self;
 }
@@ -39,6 +42,12 @@
 {
     self.previewView = previewView;
     return [self init];
+}
+
+- (void)setOutputDimensionsWidth:(int)outputWidth height:(int)outputHeight
+{
+    self.outputWidth = outputWidth;
+    self.outputHeight = outputHeight;
 }
 
 #pragma mark - Configure Capture Session
@@ -93,11 +102,11 @@
         }
         
 		// Delete the old audio file if it exists
-		[[NSFileManager defaultManager] removeItemAtURL:[self videoOutputURL] error:nil];
+		[[NSFileManager defaultManager] removeItemAtURL:[self.fileManager videoTmpURL] error:nil];
         
 		// Create an asset writer
         NSError *error;
-        self.assetWriter = [[AVAssetWriter alloc] initWithURL:[self videoOutputURL] fileType:AVFileTypeAppleM4A error:&error];
+        self.assetWriter = [[AVAssetWriter alloc] initWithURL:[self.fileManager videoTmpURL] fileType:AVFileTypeAppleM4A error:&error];
         if (error){
             NSLog(@"%@", error);
         }
@@ -122,8 +131,10 @@
             self.recording = NO;
             
             if ([self.delegate respondsToSelector:@selector(videoRecordingFinished:)]) {
-                [self.delegate videoRecordingFinished:[self videoOutputURL]];
+                [self.delegate videoRecordingFinished:[self.fileManager videoTmpURL]];
             }
+            
+            //[self cropVideo:[self videoOutputURL]];
         }];
         
         self.assetWriterVideoInput = nil;
@@ -171,32 +182,24 @@
 
 - (BOOL) setupAssetWriterVideoInput:(CMFormatDescriptionRef)currentFormatDescription
 {
-    float bitsPerPixel;
-	CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(currentFormatDescription);
-	int numPixels = dimensions.width * dimensions.height;
-	int bitsPerSecond;
-	
-	// Assume that lower-than-SD resolutions are intended for streaming, and use a lower bitrate
-	if ( numPixels < (640 * 480) )
-		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
-	else
-		bitsPerPixel = 11.4; // This bitrate matches the quality produced by AVCaptureSessionPresetHigh.
-	
-	bitsPerSecond = numPixels * bitsPerPixel;
-	
+    // Get and set dimensions
+    CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(currentFormatDescription);
+    if(self.outputWidth == 0){
+        self.outputWidth = dimensions.width;
+    }
+    if (self.outputHeight == 0) {
+        self.outputHeight = dimensions.height;
+    }
+    
 	NSDictionary *videoCompressionSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 											  AVVideoCodecH264, AVVideoCodecKey,
-											  [NSNumber numberWithInteger:dimensions.width], AVVideoWidthKey,
-											  [NSNumber numberWithInteger:dimensions.height], AVVideoHeightKey,
-											  [NSDictionary dictionaryWithObjectsAndKeys:
-											   [NSNumber numberWithInteger:bitsPerSecond], AVVideoAverageBitRateKey,
-											   [NSNumber numberWithInteger:30], AVVideoMaxKeyFrameIntervalKey,
-											   nil], AVVideoCompressionPropertiesKey,
+											  [NSNumber numberWithInteger:self.outputWidth], AVVideoWidthKey,
+											  [NSNumber numberWithInteger:self.outputHeight], AVVideoHeightKey, // *16 else green border 
+                                              AVVideoScalingModeResizeAspectFill, AVVideoScalingModeKey, // make it crop
 											  nil];
 	if ([self.assetWriter canApplyOutputSettings:videoCompressionSettings forMediaType:AVMediaTypeVideo]) {
 		self.assetWriterVideoInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeVideo outputSettings:videoCompressionSettings];
 		self.assetWriterVideoInput.expectsMediaDataInRealTime = YES;
-		//self.assetWriterVideoInput.transform = [self transformFromCurrentVideoOrientationToOrientation:self.referenceOrientation];
 		if ([self.assetWriter canAddInput:self.assetWriterVideoInput])
 			[self.assetWriter addInput:self.assetWriterVideoInput];
 		else {
@@ -231,14 +234,6 @@
 			}
 		}
 	}
-}
-
-#pragma mark - Destination URL
-- (NSURL *)videoOutputURL
-{
-    NSString *tmpDirectory = NSTemporaryDirectory();
-    NSString *filePath = [tmpDirectory stringByAppendingPathComponent:VIDEO_FILE];
-	return [NSURL fileURLWithPath:filePath];
 }
 
 @end

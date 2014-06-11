@@ -8,9 +8,8 @@
 
 #import "AudioCaptureManager.h"
 
-#define AUDIO_FILE @"capture.m4a"
-
 @interface AudioCaptureManager()
+@property (nonatomic, strong) FileManager *fileManager;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureConnection *audioConnection;
 @property (nonatomic, strong) AVAssetWriter *assetWriter;
@@ -29,6 +28,8 @@
     self = [super init];
     if (self != nil) {
         [self setUpCaptureSession];
+        self.fileManager = [[FileManager alloc] init];
+        self.fileManager.delegate = self;
     }
     return self;
 }
@@ -74,11 +75,11 @@
         }
         
 		// Delete the old audio file if it exists
-		[[NSFileManager defaultManager] removeItemAtURL:[self audioOutputURL] error:nil];
+		[[NSFileManager defaultManager] removeItemAtURL:[self.fileManager audioTmpURL] error:nil];
         
 		// Create an asset writer
         NSError *error;
-        self.assetWriter = [[AVAssetWriter alloc] initWithURL:[self audioOutputURL] fileType:AVFileTypeAppleM4A error:&error];
+        self.assetWriter = [[AVAssetWriter alloc] initWithURL:[self.fileManager audioTmpURL] fileType:AVFileTypeAppleM4A error:&error];
         if (error){
             NSLog(@"%@", error);
         }
@@ -105,7 +106,7 @@
             self.recording = NO;
             
             if ([self.delegate respondsToSelector:@selector(audioRecordingFinished:)]) {
-                [self.delegate audioRecordingFinished:[self audioOutputURL]];
+                [self.delegate audioRecordingFinished:[self.fileManager audioTmpURL]];
             }
         }];
 	});
@@ -204,15 +205,6 @@
 			}
 		}
 	}
-}
-
-
-#pragma mark - Destination URL
-- (NSURL *)audioOutputURL
-{
-    NSString *tmpDirectory = NSTemporaryDirectory();
-    NSString *filePath = [tmpDirectory stringByAppendingPathComponent:AUDIO_FILE];
-	return [NSURL fileURLWithPath:filePath];
 }
 
 @end

@@ -43,6 +43,7 @@
     self.contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, frameHeight - self.navigationBarView.frame.size.height)];
     self.contentContainerView.center = CGPointMake(frameWidth / 2, self.contentContainerView.frame.size.height / 2 + self.navigationBarView.frame.size.height);
     self.contentContainerView.backgroundColor = [UIColor greenColor];
+    self.contentContainerView.layer.masksToBounds = YES;
     [self addSubview:self.contentContainerView];
 }
 
