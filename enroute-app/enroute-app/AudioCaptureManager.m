@@ -37,6 +37,9 @@
 #pragma mark - Configure Capture Session
 - (void)setUpCaptureSession
 {
+    // Set up serial queue for writing
+	self.writingQueue = dispatch_queue_create("AudioWritingQueue", DISPATCH_QUEUE_SERIAL);
+    
     // Set up Session
     self.captureSession = [[AVCaptureSession alloc] init];
     
@@ -56,9 +59,6 @@
 
     // Start session
     [self.captureSession startRunning];
-    
-    // Set up serial queue for writing
-	self.writingQueue = dispatch_queue_create("AudioWritingQueue", DISPATCH_QUEUE_SERIAL);
 }
 
 #pragma mark - Start/Stop Audio Recording

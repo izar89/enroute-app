@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AudioPlayer.h"
+#import "VideoPlayer.h"
 
 #define VIDEO_WIDTH 280
 #define VIDEO_HEIGHT 136
@@ -20,7 +22,12 @@
 
 /* View properties */
 @property (nonatomic, strong) UIView *videoView;
+@property (nonatomic, strong) UIView *videoPreviewView;
 @property (nonatomic, strong) UIImageView *floorBg;
+@property (nonatomic, strong) UIButton *btnPlay;
+
+@property (nonatomic, strong) AudioPlayer *audioPlayer;
+@property (nonatomic, strong) VideoPlayer *videoPlayer;
 
 - (id)initWithDefinedDimensionsAndId:(int)id;
 

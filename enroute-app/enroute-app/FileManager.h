@@ -10,15 +10,21 @@
 
 #define VIDEO_FILE @"capture.mov"
 #define AUDIO_FILE @"capture.m4a"
+#define FLOORS_DIR @"floors"
 
 @protocol FileManagerDelegate;
 
 @interface FileManager : NSObject
 
 @property (weak, nonatomic) id <FileManagerDelegate> delegate;
+- (NSString *)documentsDirectoryPath;
+- (NSString *)tempDirectoryPath;
 - (NSURL *)videoTmpURL;
 - (NSURL *)audioTmpURL;
-- (NSURL *)copyFileToDocuments:(NSURL *)fileURL fileName:(NSString *)fileName;
+- (NSURL *)floorsTmpDirUrl;
+- (void)removeFileOrDirectory:(NSURL *)fileURL;
+- (NSURL *)copyFileToDirectory:(NSString *)directoryPath fileUrl:(NSURL *)fileURL newFileName:(NSString *)fileName;
+- (NSURL *)createDirectoryAtDirectory:(NSString *)directoryPath withName:(NSString *)directoryName;
 
 @end
 

@@ -14,8 +14,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self createVideoPreviewView];
         [self createVideoView];
         [self createFloorBg];
+        [self createBtnPlay];
     }
     return self;
 }
@@ -26,11 +28,17 @@
     return [self initWithFrame:CGRectMake(0, 0, 320, 142)];
 }
 
+- (void)createVideoPreviewView
+{
+    self.videoPreviewView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
+    self.videoPreviewView.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
+    [self addSubview:self.videoPreviewView];
+}
+
 - (void)createVideoView
 {
     self.videoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
     self.videoView.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
-    //self.videoView.backgroundColor = [UIColor redColor];
     [self addSubview:self.videoView];
 }
 
@@ -40,4 +48,12 @@
     self.floorBg = [[UIImageView alloc] initWithImage:floorBgImage];
     [self addSubview:self.floorBg];
 }
+
+- (void)createBtnPlay
+{
+    self.btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnPlay.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSubview:self.btnPlay];
+}
+
 @end

@@ -35,6 +35,8 @@
 		12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3831937839A006EF53B /* TaskMenuItemView.m */; };
 		12E5A3871937A5D4006EF53B /* TaskOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3861937A5D4006EF53B /* TaskOneViewController.m */; };
 		12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3891937A615006EF53B /* TaskOneView.m */; };
+		12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9C71949627100E0770A /* AudioPlayer.m */; };
+		12ECF9CE1949B1B300E0770A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9CD1949B1B300E0770A /* VideoPlayer.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -111,6 +113,10 @@
 		12E5A3861937A5D4006EF53B /* TaskOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneViewController.m; sourceTree = "<group>"; };
 		12E5A3881937A615006EF53B /* TaskOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneView.h; sourceTree = "<group>"; };
 		12E5A3891937A615006EF53B /* TaskOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneView.m; sourceTree = "<group>"; };
+		12ECF9C61949627100E0770A /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		12ECF9C71949627100E0770A /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		12ECF9CC1949B1B300E0770A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
+		12ECF9CD1949B1B300E0770A /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -237,6 +243,10 @@
 				127808D11947924300400ACE /* AudioCaptureManager.m */,
 				127808D919482DDA00400ACE /* FileManager.h */,
 				127808DA19482DDA00400ACE /* FileManager.m */,
+				12ECF9C61949627100E0770A /* AudioPlayer.h */,
+				12ECF9C71949627100E0770A /* AudioPlayer.m */,
+				12ECF9CC1949B1B300E0770A /* VideoPlayer.h */,
+				12ECF9CD1949B1B300E0770A /* VideoPlayer.m */,
 			);
 			name = AVFoundation;
 			sourceTree = "<group>";
@@ -501,10 +511,12 @@
 				12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */,
 				12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */,
 				127808D21947924300400ACE /* AudioCaptureManager.m in Sources */,
+				12ECF9CE1949B1B300E0770A /* VideoPlayer.m in Sources */,
 				1206A09E193D0D6C004112AF /* Tasks.m in Sources */,
 				1206A06B1939F35C004112AF /* TaskOneCameraViewController.m in Sources */,
 				12EDF0801935DFF700E25920 /* AppDelegate.m in Sources */,
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
+				12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
 				127808D819482BD000400ACE /* FloorView.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,

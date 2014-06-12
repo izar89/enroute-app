@@ -16,7 +16,7 @@
     if (self) {
         self.backgroundColor = [UIColor purpleColor];
         
-        [self createNavigationBar]; //height: 44px;
+        [self createNavigationBar]; //height: 48px;
         [self createContentContainer];
     }
     return self;
@@ -24,13 +24,13 @@
 
 - (void)createNavigationBar
 {
-    self.navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 44)];
-    self.navigationBarView.backgroundColor = [UIColor enrouteRedColor];
+    self.navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 48)];
+    self.navigationBarView.backgroundColor = [UIColor enrouteLightYellowColor];
     [self addSubview:self.navigationBarView];
     
     self.btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnBack.frame = CGRectMake(0, 0, 60, self.navigationBarView.frame.size.height);
-    self.btnBack.backgroundColor = [UIColor blackColor];
+    //self.btnBack.backgroundColor = [UIColor blackColor];
     [self.btnBack setTitle:@"Back" forState:UIControlStateNormal];
     [self.navigationBarView addSubview:self.btnBack];
 }

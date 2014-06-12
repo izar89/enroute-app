@@ -14,6 +14,7 @@
 @property (nonatomic, strong) FileManager *fileManager;
 @property (nonatomic, strong) NSMutableArray *floors;
 @property (nonatomic, assign) int floorIndex;
+@property (nonatomic, assign) int selectedFloorViewIndex;
 @end
 
 @implementation TaskOneCameraViewController
@@ -24,6 +25,9 @@
     if (self) {
         self.fileManager = [[FileManager alloc] init];
         self.fileManager.delegate = self;
+        
+        [self.fileManager removeFileOrDirectory:[self.fileManager floorsTmpDirUrl]];
+        [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager floorsTmpDirUrl].lastPathComponent];
         
         self.floors = [NSMutableArray array];
         self.floorIndex = 0;
@@ -45,7 +49,7 @@
     self.audioCaptureManager = [[AudioCaptureManager alloc] init];
     self.audioCaptureManager.delegate = self;
     
-    [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchDown];
+    [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnRecordVideo addTarget:self action:@selector(btnRecordVideoDown:) forControlEvents:UIControlEventTouchDown];
     [self.view.btnRecordVideo addTarget:self action:@selector(btnRecordVideoUp:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnRecordAudio addTarget:self action:@selector(btnRecordAudioDown:) forControlEvents:UIControlEventTouchDown];
@@ -79,41 +83,100 @@
 #pragma mark - btnAddFloor
 - (void)btnAddFloorTapped:(id)sender
 {
-    NSLog(@"test");
     [self addNewFloor];
 }
 
 - (void)addNewFloor
 {
-//    FloorView *floorView = [[FloorView alloc] initWithDefinedDimensions];
-//    floorView.id = self.floorIndex;
+//    FloorView *floorView = [[FloorView alloc] initWithDefinedDimensionsAndId:self.floorIndex];
+//    [floorView.videoPreviewView addSubview:self.view.videoPreviewView];
 //    [self.view.scrollFloorsView insertSubview:floorView atIndex:0];
-//    floorView.center = CGPointMake(floorView.frame.size.width / 2, (floorView.frame.size.height / 2) + (floorView.frame.size.height * self.floors.count));
 //    [self.floors addObject:floorView];
-//    self.view.scrollFloorsView.contentSize = CGSizeMake(0, floorView.frame.size.height * self.floors.count);
-//    self.floorIndex++;
 //    
-//    self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, (floorView.frame.size.height / 2) + (floorView.frame.size.height * self.floors.count + 2));
+//    int posY = (self.floors.count) * floorView.frame.size.height;
+//    
+//    // Ground
+//    self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, posY + (floorView.frame.size.height / 2) + 2);
+//    
+//    self.view.scrollFloorsView.contentSize = CGSizeMake(0, posY);
+//    
+//    for(FloorView* floorView in self.floors){
+//        floorView.center = CGPointMake(floorView.frame.size.width/2, posY - (floorView.frame.size.height / 2));
+//        posY -= floorView.frame.size.height;
+//    }
+//    
+//    // Add floor
+//    [self.view.scrollFloorsView insertSubview:self.view.addFloorView atIndex:0];
+//    
+//    self.floorIndex++;
     
     FloorView *floorView = [[FloorView alloc] initWithDefinedDimensionsAndId:self.floorIndex];
     [self.view.scrollFloorsView insertSubview:floorView atIndex:0];
+    
     [self.floors addObject:floorView];
+    [floorView.btnPlay addTarget:self action:@selector(btnPlayTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    int posY = self.floors.count * floorView.frame.size.height;
+    self.view.scrollFloorsView.contentSize = CGSizeMake(0, self.floors.count * floorView.frame.size.height);
     
-    // Ground
-    self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, posY + (floorView.frame.size.height / 2) + 2);
-    
-    self.view.scrollFloorsView.contentSize = CGSizeMake(0, posY);
-    for(FloorView* floorView in self.floors){
+    NSArray* floors_reversed = [[self.floors reverseObjectEnumerator] allObjects];
+    int posY = floorView.frame.size.height;
+    int index = 0;
+    for(FloorView* floorView in floors_reversed){
         floorView.center = CGPointMake(floorView.frame.size.width/2, posY - (floorView.frame.size.height / 2));
-        posY -= floorView.frame.size.height;
+        if (index != 0) { // ! first item
+            posY += floorView.frame.size.height;
+        }
+        index++;
     }
+    
+    if (self.floors.count == 1) {
+        self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, self.floors.count * floorView.frame.size.height + (floorView.frame.size.height / 2) + 2);
+    } else {
+        self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, (self.floors.count - 1) * floorView.frame.size.height + (floorView.frame.size.height / 2) + 2);
+    }
+    
+    [self.view.scrollFloorsView setNeedsDisplay];
     
     // Add floor
     [self.view.scrollFloorsView insertSubview:self.view.addFloorView atIndex:0];
     
     self.floorIndex++;
+    
+    // Animate
+    if (self.floors.count != 1) {
+        [UIView animateWithDuration:2.0 animations:^{
+            self.view.floorGround.center = CGPointMake(self.view.floorGround.center.x, self.view.floorGround.center.y + floorView.frame.size.height);
+        }];
+        
+        int index2 = 0;
+        for(FloorView* floorView in floors_reversed){
+            if (index2 != 0) { // ! first item
+                [UIView animateWithDuration:2.0 animations:^{
+                    floorView.center = CGPointMake(floorView.center.x, floorView.center.y + floorView.frame.size.height);
+                }];
+            }
+            index2++;
+        }
+    }
+    
+    // Update selectedIndex and videoPreview
+    [self scrollViewDidEndDecelerating:(UIScrollView *)nil];
+}
+
+#pragma mark - btnPlay
+- (void)btnPlayTapped:(id)sender
+{
+    NSLog(@"%@", sender);
+    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    if(selectedFloorView.audioPlayer){
+        [selectedFloorView.audioPlayer startPlaying];
+        NSLog(@"playAudio");
+    }
+    if(selectedFloorView.videoPlayer){
+        [selectedFloorView.videoPlayer startPlaying];
+        NSLog(@"playVideo");
+    }
+    
 }
 
 #pragma mark - btnRecordVideo
@@ -139,9 +202,11 @@
 }
 
 #pragma mark - Delegates scrollFloorsView
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    NSLog(@"scroll");
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    int scrollIndex = self.view.scrollFloorsView.contentOffset.y / self.view.scrollFloorsView.frame.size.height;
+    self.selectedFloorViewIndex = ((int)self.floors.count - 1) - scrollIndex;
+    FloorView *floorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    [floorView.videoPreviewView addSubview:self.view.videoPreviewView];
 }
 
 #pragma mark - Delegates videoCaptureManager
@@ -168,6 +233,11 @@
 - (void)videoRecordingFinished:(NSURL *)outputFileURL
 {
     NSLog(@"videoRecordingFinished: %@", outputFileURL);
+    
+    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorView.id]];
+    selectedFloorView.videoPlayer = [[VideoPlayer alloc] initWithFrame:selectedFloorView.videoView.frame andVideoURL:videoURL];
+    
 }
 
 #pragma mark - Delegates audioCaptureManager
@@ -194,6 +264,10 @@
 - (void)audioRecordingFinished:(NSURL *)outputFileURL
 {
     NSLog(@"audioRecordingFinished: %@", outputFileURL);
+    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    NSURL *audioURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.m4a", selectedFloorView.id]];
+    NSLog(@"%@", audioURL);
+    selectedFloorView.audioPlayer = [[AudioPlayer alloc] initWithAudioURL:audioURL];
 }
 
 @end
