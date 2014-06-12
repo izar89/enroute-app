@@ -20,6 +20,9 @@
 /* Video preview */
 @property (strong, nonatomic) UIView *videoPreviewView;
 
+/* Roof */
+@property (nonatomic, strong) UIImageView *floorRoof;
+
 /* Add floor */
 @property (strong, nonatomic) UIView *addFloorView;
 @property (strong, nonatomic) UIButton *btnAddFloor;

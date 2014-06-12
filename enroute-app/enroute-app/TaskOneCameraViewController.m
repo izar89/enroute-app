@@ -58,6 +58,11 @@
     [self.view.btnRecordAudio addTarget:self action:@selector(btnRecordAudioUp:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)touch:(UIGestureRecognizer *)gesture
+{
+    NSLog(@"I was tapped");
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -98,28 +103,6 @@
 
 - (void)addNewFloor
 {
-//    FloorView *floorView = [[FloorView alloc] initWithDefinedDimensionsAndId:self.floorIndex];
-//    [floorView.videoPreviewView addSubview:self.view.videoPreviewView];
-//    [self.view.scrollFloorsView insertSubview:floorView atIndex:0];
-//    [self.floors addObject:floorView];
-//    
-//    int posY = (self.floors.count) * floorView.frame.size.height;
-//    
-//    // Ground
-//    self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, posY + (floorView.frame.size.height / 2) + 2);
-//    
-//    self.view.scrollFloorsView.contentSize = CGSizeMake(0, posY);
-//    
-//    for(FloorView* floorView in self.floors){
-//        floorView.center = CGPointMake(floorView.frame.size.width/2, posY - (floorView.frame.size.height / 2));
-//        posY -= floorView.frame.size.height;
-//    }
-//    
-//    // Add floor
-//    [self.view.scrollFloorsView insertSubview:self.view.addFloorView atIndex:0];
-//    
-//    self.floorIndex++;
-    
     FloorView *floorView = [[FloorView alloc] initWithDefinedDimensionsAndId:self.floorIndex];
     [self.view.scrollFloorsView insertSubview:floorView atIndex:0];
     
@@ -139,6 +122,7 @@
         index++;
     }
     
+    // Ground
     if (self.floors.count == 1) {
         self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, self.floors.count * floorView.frame.size.height + (floorView.frame.size.height / 2) + 2);
     } else {
@@ -147,8 +131,9 @@
     
     [self.view.scrollFloorsView setNeedsDisplay];
     
-    // Add floor
+    // "Add Floor" & Roof
     [self.view.scrollFloorsView insertSubview:self.view.addFloorView atIndex:0];
+    [self.view.scrollFloorsView insertSubview:self.view.floorRoof atIndex:0];
     
     self.floorIndex++;
     
@@ -176,8 +161,9 @@
 #pragma mark - btnPlay
 - (void)btnPlayTapped:(id)sender
 {
-    NSLog(@"%@", sender);
-    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    UIButton *btnPlay = sender;
+    FloorView *selectedFloorView = (FloorView *)btnPlay.superview;
+    //FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
     if(selectedFloorView.audioPlayer){
         [selectedFloorView.audioPlayer startPlaying];
         NSLog(@"playAudio");

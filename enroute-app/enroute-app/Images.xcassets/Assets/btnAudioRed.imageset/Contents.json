@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "floorBg.png"
+      "filename" : "btnAudioRed.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "floorBg@2x.png"
+      "filename" : "btnAudioRed@2x.png"
     }
   ],
   "info" : {

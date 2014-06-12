@@ -50,7 +50,7 @@
 
 - (void)createFloorBg
 {
-    UIImage *floorBgImage = [UIImage imageNamed:@"floorBg"];
+    UIImage *floorBgImage = [UIImage imageNamed:@"floorBgBlue"];
     self.floorBg = [[UIImageView alloc] initWithImage:floorBgImage];
     [self addSubview:self.floorBg];
 }
