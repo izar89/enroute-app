@@ -8,12 +8,18 @@
 
 #import "FloorView.h"
 
+@interface FloorView()
+@property (nonatomic, strong) FileManager *fileManager;
+@end
+
 @implementation FloorView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.fileManager = [[FileManager alloc] init];
+        
         [self createVideoPreviewView];
         [self createVideoView];
         [self createFloorBg];
@@ -37,9 +43,16 @@
 
 - (void)createVideoView
 {
+    
+    NSURL *videoURL = [self.fileManager videoTmpURL];
+    self.videoPlayer = [[VideoPlayer alloc] initWithFrame:self.videoPreviewView.bounds andVideoURL:videoURL];
+    
+    
+    
     self.videoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
     self.videoView.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
     [self addSubview:self.videoView];
+    [self.videoView addSubview:self.videoPlayer];
 }
 
 - (void)createFloorBg

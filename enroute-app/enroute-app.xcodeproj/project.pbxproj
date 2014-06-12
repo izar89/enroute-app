@@ -37,6 +37,7 @@
 		12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E5A3891937A615006EF53B /* TaskOneView.m */; };
 		12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9C71949627100E0770A /* AudioPlayer.m */; };
 		12ECF9CE1949B1B300E0770A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9CD1949B1B300E0770A /* VideoPlayer.m */; };
+		12ECF9D11949C7BD00E0770A /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9D01949C7BD00E0770A /* APIManager.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -117,6 +118,8 @@
 		12ECF9C71949627100E0770A /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
 		12ECF9CC1949B1B300E0770A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		12ECF9CD1949B1B300E0770A /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
+		12ECF9CF1949C7BD00E0770A /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		12ECF9D01949C7BD00E0770A /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -289,6 +292,15 @@
 			name = 3_Tasks;
 			sourceTree = "<group>";
 		};
+		12ECF9D21949C7C200E0770A /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				12ECF9CF1949C7BD00E0770A /* APIManager.h */,
+				12ECF9D01949C7BD00E0770A /* APIManager.m */,
+			);
+			name = AFNetworking;
+			sourceTree = "<group>";
+		};
 		12EDF0631935DFF700E25920 = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +353,7 @@
 				1206A093193D067F004112AF /* Data */,
 				127808C219433E9400400ACE /* AVFoundation */,
 				127808CC19446EB800400ACE /* Categories */,
+				12ECF9D21949C7C200E0770A /* AFNetworking */,
 			);
 			path = "enroute-app";
 			sourceTree = "<group>";
@@ -530,6 +543,7 @@
 				1206A0621938F227004112AF /* TaskOneInfoViewController.m in Sources */,
 				1206A092193D0679004112AF /* JSONDataManager.m in Sources */,
 				1206A0651938F24A004112AF /* TaskOneInfoView.m in Sources */,
+				12ECF9D11949C7BD00E0770A /* APIManager.m in Sources */,
 				12E5A3871937A5D4006EF53B /* TaskOneViewController.m in Sources */,
 				127808CF1947909B00400ACE /* VideoCaptureManager.m in Sources */,
 				12EDF07C1935DFF700E25920 /* main.m in Sources */,

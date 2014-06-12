@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AudioPlayer.h"
 #import "VideoPlayer.h"
+#import "FileManager.h"
 
 #define VIDEO_WIDTH 280
 #define VIDEO_HEIGHT 136

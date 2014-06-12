@@ -21,21 +21,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame andVideoURL:(NSURL *)videoURL
-{
-    self.videoURL = videoURL;
-    return [self initWithFrame:frame];
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self != nil) {
         self.videoPlayer = [[AVPlayer alloc] initWithURL:self.videoURL];
         self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
         
@@ -54,6 +39,12 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame andVideoURL:(NSURL *)videoURL
+{
+    self.videoURL = videoURL;
+    return [self initWithFrame:frame];
+}
+
 - (void)startPlaying
 {
     if(self.playing){
@@ -66,6 +57,7 @@
 
 - (void)stopPlaying
 {
+    NSLog(@"stop");
     [self.videoPlayer pause]; // no stop available
     self.playing = NO;
 }

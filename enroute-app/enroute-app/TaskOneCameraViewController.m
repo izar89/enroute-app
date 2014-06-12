@@ -12,6 +12,7 @@
 @property (nonatomic, strong) VideoCaptureManager *videoCaptureManager;
 @property (nonatomic, strong) AudioCaptureManager *audioCaptureManager;
 @property (nonatomic, strong) FileManager *fileManager;
+@property (nonatomic, strong) APIManager *apiManager;
 @property (nonatomic, strong) NSMutableArray *floors;
 @property (nonatomic, assign) int floorIndex;
 @property (nonatomic, assign) int selectedFloorViewIndex;
@@ -50,6 +51,7 @@
     self.audioCaptureManager.delegate = self;
     
     [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.btnSave addTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnRecordVideo addTarget:self action:@selector(btnRecordVideoDown:) forControlEvents:UIControlEventTouchDown];
     [self.view.btnRecordVideo addTarget:self action:@selector(btnRecordVideoUp:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnRecordAudio addTarget:self action:@selector(btnRecordAudioDown:) forControlEvents:UIControlEventTouchDown];
@@ -78,6 +80,14 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     self.view = [[TaskOneCameraView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height - 40)];
+}
+
+#pragma mark - btnSave
+- (void)btnSaveTapped:(id)sender
+{
+    NSLog(@"save");
+    self.apiManager = [[APIManager alloc] init];
+    [self.apiManager test:nil];
 }
 
 #pragma mark - btnAddFloor
@@ -236,8 +246,10 @@
     
     FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
     NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorView.id]];
-    selectedFloorView.videoPlayer = [[VideoPlayer alloc] initWithFrame:selectedFloorView.videoView.frame andVideoURL:videoURL];
-    
+    //selectedFloorView.videoPlayer = [[VideoPlayer alloc] initWithFrame:selectedFloorView.videoPreviewView.bounds andVideoURL:videoURL];
+    NSLog(@"%f", selectedFloorView.videoPlayer.bounds.size.height);
+    NSLog(@"%f", selectedFloorView.videoPlayer.bounds.size.width);
+    //[selectedFloorView.videoView addSubview:selectedFloorView.videoPlayer];
 }
 
 #pragma mark - Delegates audioCaptureManager
