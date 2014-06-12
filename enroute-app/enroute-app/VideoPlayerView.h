@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface VideoPlayer : UIView
+@interface VideoPlayerView : UIView
 
-- (id)initWithFrame:(CGRect)frame andVideoURL:(NSURL *)videoURL;
 - (void)startPlaying;
 - (void)stopPlaying;
+- (void)replaceCurrentItemWithURL:videoURL;
 
 @end

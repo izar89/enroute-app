@@ -228,6 +228,8 @@
 - (void)videoRecordingWillBegin
 {
     NSLog(@"videoRecordingWillBegin");
+    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    selectedFloorView.videoPlayer.alpha = 0;
 }
 
 - (void)videoRecordingBegan
@@ -245,11 +247,9 @@
     NSLog(@"videoRecordingFinished: %@", outputFileURL);
     
     FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    selectedFloorView.videoPlayer.alpha = 1;
     NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorView.id]];
-    //selectedFloorView.videoPlayer = [[VideoPlayer alloc] initWithFrame:selectedFloorView.videoPreviewView.bounds andVideoURL:videoURL];
-    NSLog(@"%f", selectedFloorView.videoPlayer.bounds.size.height);
-    NSLog(@"%f", selectedFloorView.videoPlayer.bounds.size.width);
-    //[selectedFloorView.videoView addSubview:selectedFloorView.videoPlayer];
+    [selectedFloorView.videoPlayer replaceCurrentItemWithURL:videoURL];
 }
 
 #pragma mark - Delegates audioCaptureManager

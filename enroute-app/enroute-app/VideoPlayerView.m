@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Stijn Heylen. All rights reserved.
 //
 
-#import "VideoPlayer.h"
+#import "VideoPlayerView.h"
 
-@interface VideoPlayer()
+@interface VideoPlayerView()
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic, strong) AVPlayer *videoPlayer;
 @property (nonatomic, strong) CALayer *videoPlayerLayer;
 @property (nonatomic, assign) BOOL playing;
 @end
 
-@implementation VideoPlayer
+@implementation VideoPlayerView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,6 +30,7 @@
                                                      name:AVPlayerItemDidPlayToEndTimeNotification
                                                    object:[self.videoPlayer currentItem]];
         
+        
         self.videoPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.videoPlayer];
         self.videoPlayerLayer.frame = self.layer.bounds;
         [self.layer addSublayer:self.videoPlayerLayer];
@@ -37,12 +38,6 @@
         self.playing = NO;
     }
     return self;
-}
-
-- (id)initWithFrame:(CGRect)frame andVideoURL:(NSURL *)videoURL
-{
-    self.videoURL = videoURL;
-    return [self initWithFrame:frame];
 }
 
 - (void)startPlaying
@@ -59,12 +54,20 @@
 {
     NSLog(@"stop");
     [self.videoPlayer pause]; // no stop available
+    [self.videoPlayer seekToTime:kCMTimeZero];
     self.playing = NO;
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     AVPlayerItem *p = [notification object];
     [p seekToTime:kCMTimeZero];
+}
+
+- (void)replaceCurrentItemWithURL:videoURL
+{
+    [self stopPlaying];
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:videoURL];
+    [self.videoPlayer replaceCurrentItemWithPlayerItem:playerItem];
 }
 
 @end

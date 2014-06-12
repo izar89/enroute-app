@@ -21,7 +21,7 @@
         self.fileManager = [[FileManager alloc] init];
         
         [self createVideoPreviewView];
-        [self createVideoView];
+        [self createVidePlayerView];
         [self createFloorBg];
         [self createBtnPlay];
     }
@@ -41,18 +41,11 @@
     [self addSubview:self.videoPreviewView];
 }
 
-- (void)createVideoView
+- (void)createVidePlayerView
 {
-    
-    NSURL *videoURL = [self.fileManager videoTmpURL];
-    self.videoPlayer = [[VideoPlayer alloc] initWithFrame:self.videoPreviewView.bounds andVideoURL:videoURL];
-    
-    
-    
-    self.videoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
-    self.videoView.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
-    [self addSubview:self.videoView];
-    [self.videoView addSubview:self.videoPlayer];
+    self.videoPlayer = [[VideoPlayerView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
+    self.videoPlayer.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
+    [self addSubview:self.videoPlayer];
 }
 
 - (void)createFloorBg
