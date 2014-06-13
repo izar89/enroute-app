@@ -146,9 +146,6 @@
     }
     [self.btnRecordAudio setBackgroundImage:btnAudioImage forState:UIControlStateNormal];
     NSLog(@"achanged: %@", [self.btnRecordAudio backgroundImageForState:UIControlStateNormal]);
-    
-    //[self.btnRecordAudio removeFromSuperview];
-    [self.bottomToolbarView addSubview:self.btnRecordAudio];
 }
 
 @end

@@ -105,9 +105,11 @@
         if (floorVC.id == self.selectedFloorViewIndex) {
             NSLog(@"videoReady!: %i", videoReady);
             NSLog(@"audioReady!: %i", audioReady);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
             [self.view setBtnVideoReady:videoReady];
             [self.view setBtnAudioReady:audioReady];
-            
+            });
             if (videoReady && audioReady) {
                 // Add floor ready
                 
@@ -131,6 +133,10 @@
 
 - (void)showBtnSave:(BOOL)show
 {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+   
     if(show){
         NSLog(@"show");
         [UIView animateWithDuration:2.0 animations:^{
@@ -147,6 +153,7 @@
             [self.view.btnSave removeTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
         }];
     }
+         });
 }
 
 #pragma mark - btnSave
