@@ -11,25 +11,12 @@
 #import "VideoPlayerView.h"
 #import "FileManager.h"
 
-#define VIDEO_WIDTH 280
-#define VIDEO_HEIGHT 136
-
 @interface FloorView : UIView
-
-/* Data properties */
-@property (nonatomic, assign) int id;
-@property (nonatomic, strong) NSURL *videoURL;
-@property (nonatomic, strong) NSURL *audioURL;
 
 /* View properties */
 @property (nonatomic, strong) UIView *videoPreviewView;
-@property (nonatomic, strong) VideoPlayerView *videoPlayer;
+@property (nonatomic, strong) UIView *videoPlayerView;
 @property (nonatomic, strong) UIImageView *floorBg;
 @property (nonatomic, strong) UIButton *btnPlay;
-
-@property (nonatomic, strong) AudioPlayer *audioPlayer;
-
-
-- (id)initWithDefinedDimensionsAndId:(int)id;
 
 @end

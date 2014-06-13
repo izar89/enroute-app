@@ -108,30 +108,6 @@
     self.floorRoof.center = CGPointMake(self.frame.size.width / 2, - (self.floorRoof.frame.size.height / 2 + 80));
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self.btnAddFloor];
-    if([self.btnAddFloor hitTest:point withEvent:event]){
-        [self.btnAddFloor sendActionsForControlEvents: UIControlEventTouchUpInside];
-    }
-    
-    [super touchesBegan:touches withEvent:event];
-}
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesCancelled:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesEnded:touches withEvent:event];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesMoved:touches withEvent:event];
-}
 
 @end

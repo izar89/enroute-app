@@ -66,13 +66,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self.captureManager viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //[self.captureManager viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,35 +101,39 @@
 
 - (void)addNewFloor
 {
-    FloorView *floorView = [[FloorView alloc] initWithDefinedDimensionsAndId:self.floorIndex];
-    [self.view.scrollFloorsView insertSubview:floorView atIndex:0];
+    // New Floor
+    FloorViewController *floorVC = [[FloorViewController alloc] initWithDefinedDimensionsAndId:self.floorIndex];
+    [self addChildViewController:floorVC];
+    [self.view.scrollFloorsView insertSubview:floorVC.view atIndex:0];
+    [floorVC didMoveToParentViewController:self];
+    [self.floors addObject:floorVC];
     
-    [self.floors addObject:floorView];
-    [floorView.btnPlay addTarget:self action:@selector(btnPlayTapped:) forControlEvents:UIControlEventTouchUpInside];
+    // Set contentsize
+    self.view.scrollFloorsView.contentSize = CGSizeMake(0, self.floors.count * self.view.scrollFloorsView.frame.size.height);
+    NSLog(@"%f", self.view.scrollFloorsView.contentSize.height);
     
-    self.view.scrollFloorsView.contentSize = CGSizeMake(0, self.floors.count * floorView.frame.size.height);
-    
+    // Calculate positions
     NSArray* floors_reversed = [[self.floors reverseObjectEnumerator] allObjects];
-    int posY = floorView.frame.size.height;
+    int posY = floorVC.view.frame.size.height;
     int index = 0;
-    for(FloorView* floorView in floors_reversed){
-        floorView.center = CGPointMake(floorView.frame.size.width/2, posY - (floorView.frame.size.height / 2));
+    for(FloorViewController* floorVC in floors_reversed){
+        floorVC.view.center = CGPointMake(floorVC.view.frame.size.width/2, posY - (floorVC.view.frame.size.height / 2));
         if (index != 0) { // ! first item
-            posY += floorView.frame.size.height;
+            posY += floorVC.view.frame.size.height;
         }
         index++;
     }
     
     // Ground
     if (self.floors.count == 1) {
-        self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, self.floors.count * floorView.frame.size.height + (floorView.frame.size.height / 2) + 2);
+        self.view.floorGround.center = CGPointMake(floorVC.view.frame.size.width / 2, self.floors.count * floorVC.view.frame.size.height + (floorVC.view.frame.size.height / 2) + 2);
     } else {
-        self.view.floorGround.center = CGPointMake(floorView.frame.size.width / 2, (self.floors.count - 1) * floorView.frame.size.height + (floorView.frame.size.height / 2) + 2);
+        self.view.floorGround.center = CGPointMake(floorVC.view.frame.size.width / 2, (self.floors.count - 1) * floorVC.view.frame.size.height + (floorVC.view.frame.size.height / 2) + 2);
     }
     
     [self.view.scrollFloorsView setNeedsDisplay];
     
-    // "Add Floor" & Roof
+    // "Readd Floor" & Roof (z-index reset)
     [self.view.scrollFloorsView insertSubview:self.view.addFloorView atIndex:0];
     [self.view.scrollFloorsView insertSubview:self.view.floorRoof atIndex:0];
     
@@ -140,14 +142,14 @@
     // Animate
     if (self.floors.count != 1) {
         [UIView animateWithDuration:2.0 animations:^{
-            self.view.floorGround.center = CGPointMake(self.view.floorGround.center.x, self.view.floorGround.center.y + floorView.frame.size.height);
+            self.view.floorGround.center = CGPointMake(self.view.floorGround.center.x, self.view.floorGround.center.y + floorVC.view.frame.size.height);
         }];
         
         int index2 = 0;
-        for(FloorView* floorView in floors_reversed){
+        for(FloorViewController* floorVC in floors_reversed){
             if (index2 != 0) { // ! first item
                 [UIView animateWithDuration:2.0 animations:^{
-                    floorView.center = CGPointMake(floorView.center.x, floorView.center.y + floorView.frame.size.height);
+                    floorVC.view.center = CGPointMake(floorVC.view.center.x, floorVC.view.center.y + floorVC.view.frame.size.height);
                 }];
             }
             index2++;
@@ -156,23 +158,6 @@
     
     // Update selectedIndex and videoPreview
     [self scrollViewDidEndDecelerating:(UIScrollView *)nil];
-}
-
-#pragma mark - btnPlay
-- (void)btnPlayTapped:(id)sender
-{
-    UIButton *btnPlay = sender;
-    FloorView *selectedFloorView = (FloorView *)btnPlay.superview;
-    //FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-    if(selectedFloorView.audioPlayer){
-        [selectedFloorView.audioPlayer startPlaying];
-        NSLog(@"playAudio");
-    }
-    if(selectedFloorView.videoPlayer){
-        [selectedFloorView.videoPlayer startPlaying];
-        NSLog(@"playVideo");
-    }
-    
 }
 
 #pragma mark - btnRecordVideo
@@ -201,8 +186,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int scrollIndex = self.view.scrollFloorsView.contentOffset.y / self.view.scrollFloorsView.frame.size.height;
     self.selectedFloorViewIndex = ((int)self.floors.count - 1) - scrollIndex;
-    FloorView *floorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-    [floorView.videoPreviewView addSubview:self.view.videoPreviewView];
+    FloorViewController *floorVC = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    [floorVC.view.videoPreviewView addSubview:self.view.videoPreviewView];
 }
 
 #pragma mark - Delegates videoCaptureManager
@@ -214,8 +199,6 @@
 - (void)videoRecordingWillBegin
 {
     NSLog(@"videoRecordingWillBegin");
-    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-    selectedFloorView.videoPlayer.alpha = 0;
 }
 
 - (void)videoRecordingBegan
@@ -232,10 +215,9 @@
 {
     NSLog(@"videoRecordingFinished: %@", outputFileURL);
     
-    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-    selectedFloorView.videoPlayer.alpha = 1;
-    NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorView.id]];
-    [selectedFloorView.videoPlayer replaceCurrentItemWithURL:videoURL];
+    FloorViewController *selectedFloorVC = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorVC.id]];
+    [selectedFloorVC.videoPlayer replaceCurrentItemWithURL:videoURL];
 }
 
 #pragma mark - Delegates audioCaptureManager
@@ -262,10 +244,22 @@
 - (void)audioRecordingFinished:(NSURL *)outputFileURL
 {
     NSLog(@"audioRecordingFinished: %@", outputFileURL);
-    FloorView *selectedFloorView = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-    NSURL *audioURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.m4a", selectedFloorView.id]];
-    NSLog(@"%@", audioURL);
-    selectedFloorView.audioPlayer = [[AudioPlayer alloc] initWithAudioURL:audioURL];
+    FloorViewController *selectedFloorVC = [self.floors objectAtIndex:self.selectedFloorViewIndex];
+    NSURL *audioURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.m4a", selectedFloorVC.id]];
+    selectedFloorVC.audioPlayer = [[AudioPlayer alloc] initWithAudioURL:audioURL];
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.view.btnAddFloor];
+    if([self.view.btnAddFloor hitTest:point withEvent:event]){
+        [self.view.btnAddFloor sendActionsForControlEvents: UIControlEventTouchUpInside];
+        NSLog(@"btnFlo");
+    }
+    
+    
 }
 
 @end

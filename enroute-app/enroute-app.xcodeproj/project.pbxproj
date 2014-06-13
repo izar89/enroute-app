@@ -38,6 +38,7 @@
 		12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9C71949627100E0770A /* AudioPlayer.m */; };
 		12ECF9CE1949B1B300E0770A /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9CD1949B1B300E0770A /* VideoPlayerView.m */; };
 		12ECF9D11949C7BD00E0770A /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9D01949C7BD00E0770A /* APIManager.m */; };
+		12ECF9D5194AB0E200E0770A /* FloorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9D4194AB0E200E0770A /* FloorViewController.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -120,6 +121,8 @@
 		12ECF9CD1949B1B300E0770A /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
 		12ECF9CF1949C7BD00E0770A /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		12ECF9D01949C7BD00E0770A /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		12ECF9D3194AB0E200E0770A /* FloorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloorViewController.h; sourceTree = "<group>"; };
+		12ECF9D4194AB0E200E0770A /* FloorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloorViewController.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -274,6 +277,8 @@
 				1206A06A1939F35C004112AF /* TaskOneCameraViewController.m */,
 				1206A06C1939F62C004112AF /* TaskOneCameraView.h */,
 				1206A06D1939F62C004112AF /* TaskOneCameraView.m */,
+				12ECF9D3194AB0E200E0770A /* FloorViewController.h */,
+				12ECF9D4194AB0E200E0770A /* FloorViewController.m */,
 				127808D619482BD000400ACE /* FloorView.h */,
 				127808D719482BD000400ACE /* FloorView.m */,
 				1206A0601938F227004112AF /* TaskOneInfoViewController.h */,
@@ -531,6 +536,7 @@
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
 				12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
+				12ECF9D5194AB0E200E0770A /* FloorViewController.m in Sources */,
 				127808D819482BD000400ACE /* FloorView.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
 				127808DB19482DDA00400ACE /* FileManager.m in Sources */,

@@ -11,7 +11,7 @@
 #import "AudioCaptureManager.h"
 #import "VideoCaptureManager.h"
 #import "FileManager.h"
-#import "FloorView.h"
+#import "FloorViewController.h"
 #import "APIManager.h"
 
 @interface TaskOneCameraViewController : UIViewController <AudioCaptureManagerDelegate, VideoCaptureManagerDelegate, FileManagerDelegate, UIScrollViewDelegate>

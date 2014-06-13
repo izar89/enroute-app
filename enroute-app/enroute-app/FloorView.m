@@ -21,31 +21,24 @@
         self.fileManager = [[FileManager alloc] init];
         
         [self createVideoPreviewView];
-        [self createVidePlayerView];
+        [self createVideoPlayerView];
         [self createFloorBg];
         [self createBtnPlay];
     }
     return self;
 }
 
-- (id)initWithDefinedDimensionsAndId:(int)id
-{
-    self.id = id;
-    return [self initWithFrame:CGRectMake(0, 0, 320, 142)];
-}
-
 - (void)createVideoPreviewView
 {
     self.videoPreviewView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
-    self.videoPreviewView.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
+    self.videoPreviewView.center = CGPointMake(self.frame.size.width /2 + 6 , self.frame.size.height / 2 + 2);
     [self addSubview:self.videoPreviewView];
 }
 
-- (void)createVidePlayerView
+- (void)createVideoPlayerView
 {
-    self.videoPlayer = [[VideoPlayerView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
-    self.videoPlayer.center = CGPointMake(self.frame.size.width /2 - 14 , self.frame.size.height / 2);
-    [self addSubview:self.videoPlayer];
+    self.videoPlayerView = [[UIView alloc] initWithFrame:self.videoPreviewView.frame];
+    [self addSubview:self.videoPlayerView];
 }
 
 - (void)createFloorBg
