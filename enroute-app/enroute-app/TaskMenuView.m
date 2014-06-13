@@ -27,7 +27,7 @@
         for (int i = 0; i < taskTotal; i++) {
             UIImage *bgInfo = [UIImage imageNamed:@"bgInfoTekstTaskMenuItem"];
             TaskMenuItemView *taskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, bgInfo.size.width, bgInfo.size.height + 62) task:[tasks.tasks objectAtIndex:i]];
-            taskMenuItemView.center = CGPointMake(frame.size.width / 2 + frame.size.width * i, frame.size.height / 2);
+            taskMenuItemView.center = CGPointMake(frame.size.width / 2 + frame.size.width * i, (frame.size.height / 2) + 25);
             [self.scrollView addSubview:taskMenuItemView];
             [self.taskMenuItemViews addObject:taskMenuItemView];
             if(i == 0){
@@ -36,7 +36,7 @@
         }
         
         // copy of first
-        firstTaskMenuItemView.center = CGPointMake(frame.size.width / 2  + frame.size.width * self.taskMenuItemViews.count, frame.size.height / 2);
+        firstTaskMenuItemView.center = CGPointMake(frame.size.width / 2  + frame.size.width * self.taskMenuItemViews.count, (frame.size.height / 2) + 25);
         [self.scrollView addSubview:firstTaskMenuItemView];
         [self.taskMenuItemViews addObject: firstTaskMenuItemView];
     }
