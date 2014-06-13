@@ -69,13 +69,13 @@
                      }
      ];*/
     
- //CHECK FOR FONTS
-    for (NSString *fontFamilies in [UIFont familyNames]) {
-            NSLog(@"[FONT FAMILIES] -- %@", fontFamilies);
-        for (NSString *fontFamily in [UIFont fontNamesForFamilyName:fontFamilies]) {
-            NSLog(@"[FONT FAMILY] -- %@", fontFamily);
-        }
-    }
+    //CHECK FOR FONTS
+//    for (NSString *fontFamilies in [UIFont familyNames]) {
+//            NSLog(@"[FONT FAMILIES] -- %@", fontFamilies);
+//        for (NSString *fontFamily in [UIFont fontNamesForFamilyName:fontFamilies]) {
+//            NSLog(@"[FONT FAMILY] -- %@", fontFamily);
+//        }
+//    }
 
     
 }

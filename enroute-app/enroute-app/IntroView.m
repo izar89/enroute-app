@@ -25,7 +25,7 @@
         self.btnBegin.frame = CGRectMake(0, 0, bgBtnBegin.size.width, bgBtnBegin.size.height);
         [self.btnBegin setBackgroundImage:bgBtnBegin forState:UIControlStateNormal];
         [self.btnBegin setTitleColor:[UIColor colorWithRed:0.95 green:0.96 blue:0.81 alpha:1] forState:UIControlStateNormal];
-        self.btnBegin.titleLabel.font = [UIFont fontWithName:@"Sahara" size:30];
+        self.btnBegin.titleLabel.font = [UIFont fontWithName:FONT_SAHARA size:30];
         self.btnBegin.center = CGPointMake(frame.size.width / 2, frame.size.height - 70);
         [self.btnBegin setTitle:@"BEGIN" forState:UIControlStateNormal];
         [self addSubview:self.btnBegin];
