@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0403D6D0194A61A300D28238 /* Sahara.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0403D6CF194A61A300D28238 /* Sahara.ttf */; };
 		1206A0621938F227004112AF /* TaskOneInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0611938F227004112AF /* TaskOneInfoViewController.m */; };
 		1206A0651938F24A004112AF /* TaskOneInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0641938F24A004112AF /* TaskOneInfoView.m */; };
 		1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206A0671939C1B4004112AF /* UIColor+Enroute.m */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0403D6CF194A61A300D28238 /* Sahara.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sahara.ttf; sourceTree = "<group>"; };
 		1206A0601938F227004112AF /* TaskOneInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneInfoViewController.h; sourceTree = "<group>"; };
 		1206A0611938F227004112AF /* TaskOneInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOneInfoViewController.m; sourceTree = "<group>"; };
 		1206A0631938F24A004112AF /* TaskOneInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOneInfoView.h; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				12EDF0771935DFF700E25920 /* enroute-app-Info.plist */,
+				0403D6CF194A61A300D28238 /* Sahara.ttf */,
 				12EDF0781935DFF700E25920 /* InfoPlist.strings */,
 				12EDF07B1935DFF700E25920 /* main.m */,
 				12EDF07D1935DFF700E25920 /* enroute-app-Prefix.pch */,
@@ -469,6 +472,7 @@
 			files = (
 				12EDF07A1935DFF700E25920 /* InfoPlist.strings in Resources */,
 				12EDF0821935DFF700E25920 /* Images.xcassets in Resources */,
+				0403D6D0194A61A300D28238 /* Sahara.ttf in Resources */,
 				1206A09A193D0AD3004112AF /* enroute.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) UILabel *lblTitle;
 @property (strong, nonatomic)UIButton *btnSelect;
+@property (nonatomic, strong) UIScrollView *scrollViewInfo;
 
 - (id)initWithFrame:(CGRect)frame task:(Task *)task;
 

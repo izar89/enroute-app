@@ -48,6 +48,36 @@
     for(TaskMenuItemView *taskMenuItemView in self.view.taskMenuItemViews){
         [taskMenuItemView.btnSelect addTarget:self action:@selector(btnSelectTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    
+    float randHeight = arc4random_uniform(self.view.frame.size.height);
+    float randRotation = arc4random_uniform(20);
+    float degrees = randRotation;
+    UIImage *image = [UIImage imageNamed:@"intro_huis_1"];
+    
+    UIImageView *huis1 = [[UIImageView alloc] initWithImage:image];
+    huis1.center = CGPointMake(0, randHeight);
+    huis1.transform = CGAffineTransformMakeRotation(degrees * M_PI/180);
+    [self.view addSubview:huis1];
+    
+    /*[UIView animateWithDuration:1
+                     animations:^{
+                         [huis1 setCenter:CGPointMake(heading, randHeight)];
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }
+     ];*/
+    
+/* CHECK FOR FONTS
+    for (NSString *fontFamilies in [UIFont familyNames]) {
+            NSLog(@"[FONT FAMILIES] -- %@", fontFamilies);
+        for (NSString *fontFamily in [UIFont fontNamesForFamilyName:fontFamilies]) {
+            NSLog(@"[FONT FAMILY] -- %@", fontFamily);
+        }
+    }
+*/
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,7 +111,7 @@
         return;
     
     // Use the true heading if it is valid.
-    CLLocationDirection  theHeading = ((newHeading.trueHeading > 0) ?
+    CLLocationDirection theHeading = ((newHeading.trueHeading > 0) ?
                                        newHeading.trueHeading : newHeading.magneticHeading);
     
     [self setContentOffsetWithHeading:theHeading animated:YES];

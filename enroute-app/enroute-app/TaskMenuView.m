@@ -22,18 +22,17 @@
         self.scrollView.contentSize = CGSizeMake(frame.size.width * taskTotal, 0);
         [self addSubview:self.scrollView];
         
-        NSArray *colors = @[[UIColor blueColor], [UIColor greenColor], [UIColor redColor], [UIColor yellowColor], [UIColor yellowColor], [UIColor yellowColor]];
         self.taskMenuItemViews = [NSMutableArray array];
         TaskMenuItemView *firstTaskMenuItemView;
         for (int i = 0; i < taskTotal; i++) {
-            TaskMenuItemView *taskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - 60, frame.size.height - 60) task:[tasks.tasks objectAtIndex:i]];
-            taskMenuItemView.backgroundColor = [colors objectAtIndex:i];
+            UIImage *bgInfo = [UIImage imageNamed:@"bgInfoTekstTaskMenuItem"];
+            TaskMenuItemView *taskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, bgInfo.size.width, bgInfo.size.height + 62) task:[tasks.tasks objectAtIndex:i]];
             taskMenuItemView.center = CGPointMake(frame.size.width / 2 + frame.size.width * i, frame.size.height / 2);
             [self.scrollView addSubview:taskMenuItemView];
             [self.taskMenuItemViews addObject:taskMenuItemView];
             if(i == 0){
-                firstTaskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - 60, frame.size.height - 60) task:[tasks.tasks objectAtIndex:i]];
-                firstTaskMenuItemView.backgroundColor = [colors objectAtIndex:i];
+                firstTaskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, bgInfo.size.width, bgInfo.size.height) task:[tasks.tasks objectAtIndex:i]];
+                firstTaskMenuItemView.backgroundColor = [UIColor colorWithPatternImage:bgInfo];
             }
         }
         
