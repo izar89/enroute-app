@@ -18,7 +18,7 @@
         
         int taskTotal = (int)tasks.tasks.count;
         self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
-        self.scrollView.scrollEnabled = NO;
+        self.scrollView.scrollEnabled = YES;
         self.scrollView.contentSize = CGSizeMake(frame.size.width * taskTotal, 0);
         [self addSubview:self.scrollView];
         
@@ -31,8 +31,7 @@
             [self.scrollView addSubview:taskMenuItemView];
             [self.taskMenuItemViews addObject:taskMenuItemView];
             if(i == 0){
-                firstTaskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, bgInfo.size.width, bgInfo.size.height) task:[tasks.tasks objectAtIndex:i]];
-                firstTaskMenuItemView.backgroundColor = [UIColor colorWithPatternImage:bgInfo];
+                firstTaskMenuItemView = [[TaskMenuItemView alloc] initWithFrame:CGRectMake(0, 0, bgInfo.size.width, bgInfo.size.height + 62) task:[tasks.tasks objectAtIndex:i]];
             }
         }
         
