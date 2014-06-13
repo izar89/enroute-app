@@ -14,6 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor colorWithRed:0.57 green:0.87 blue:0.78 alpha:1];
         [self createCameraView];
         
         int taskTotal = (int)tasks.tasks.count;

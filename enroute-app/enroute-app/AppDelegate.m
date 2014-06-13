@@ -15,8 +15,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     /* Root / Navigation controller */
-    IntroViewController *introVC = [[IntroViewController alloc] init];
-    self.navC = [[UINavigationController alloc] initWithRootViewController:introVC];
+    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
+    self.navC = [[UINavigationController alloc] initWithRootViewController:taskMenuVC];
     self.window.rootViewController = self.navC;
     
     /* Status & Navigation bar */

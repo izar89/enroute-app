@@ -12,6 +12,7 @@
 #import "TaskMenuItemView.h"
 #import "TaskOneViewController.h"
 #import "JSONDataManager.h"
+#import "IntroViewController.h"
 
 @interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate>
 

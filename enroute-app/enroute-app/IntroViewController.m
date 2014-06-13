@@ -18,10 +18,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.locationManager = [[CLLocationManager alloc] init];
+/*        self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         [self.locationManager startUpdatingHeading];
+*/
     }
     return self;
 }
@@ -44,7 +45,7 @@
     self.view = [[IntroView alloc] initWithFrame:bounds];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+/*- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
     [self.locationManager stopUpdatingHeading];
     
@@ -54,13 +55,12 @@
     // Use the true heading if it is valid.
     self.heading = ((newHeading.trueHeading > 0) ?
                                        newHeading.trueHeading : newHeading.magneticHeading);
-}
+}*/
 
 
 - (void)btnStartTapped:(id)sender
 {
-    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] initWithHeading:self.heading];
-    [self.navigationController pushViewController:taskMenuVC animated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 @end

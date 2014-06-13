@@ -82,6 +82,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
+    IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:nil bundle:nil];
+    [self presentViewController:introVC animated:NO completion:^{}];
+    
     [super viewWillAppear:animated];
     [self setContentOffsetWithHeading:self.previousHeading animated:NO];
     [self.locationManager startUpdatingHeading];

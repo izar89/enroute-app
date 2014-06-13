@@ -21,9 +21,11 @@
         [self addSubview:bgImageView];
         
         UIImage *bgBtnBegin = [UIImage imageNamed:@"btnBegin"];
+        UIImage *bgBtnBeginHover = [UIImage imageNamed:@"btnBeginHover"];
         self.btnBegin = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnBegin.frame = CGRectMake(0, 0, bgBtnBegin.size.width, bgBtnBegin.size.height);
         [self.btnBegin setBackgroundImage:bgBtnBegin forState:UIControlStateNormal];
+        [self.btnBegin setBackgroundImage:bgBtnBeginHover forState:UIControlStateHighlighted];
         [self.btnBegin setTitleColor:[UIColor colorWithRed:0.95 green:0.96 blue:0.81 alpha:1] forState:UIControlStateNormal];
         self.btnBegin.titleLabel.font = [UIFont fontWithName:FONT_SAHARA size:30];
         self.btnBegin.center = CGPointMake(frame.size.width / 2, frame.size.height - 70);
