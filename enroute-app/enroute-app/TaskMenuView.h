@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *taskMenuItemViews;
+@property (nonatomic, strong) UIImageView *huisImageView;
+
 
 /* Video preview */
 @property (strong, nonatomic) UIView *videoPreviewView;
