@@ -10,6 +10,6 @@
 
 @interface IntroView : UIView
 
-@property (strong, nonatomic) UIButton *btnStart;
+@property (strong, nonatomic) UIButton *btnBegin;
 
 @end
