@@ -29,6 +29,7 @@
 
 /* Floors */
 @property (strong, nonatomic) UIScrollView *scrollFloorsView;
+@property (strong, nonatomic) UIView *scrollFixView;
 @property (nonatomic, strong) UIImageView *floorGround;
 
 @end

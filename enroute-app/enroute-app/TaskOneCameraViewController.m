@@ -249,17 +249,23 @@
     selectedFloorVC.audioPlayer = [[AudioPlayer alloc] initWithAudioURL:audioURL];
 }
 
-
+#pragma mark - Reroute events
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self.view.btnAddFloor];
     if([self.view.btnAddFloor hitTest:point withEvent:event]){
         [self.view.btnAddFloor sendActionsForControlEvents: UIControlEventTouchUpInside];
-        NSLog(@"btnFlo");
     }
     
-    
+    for(FloorViewController* floorVC in self.floors){
+        CGPoint point = [touch locationInView:floorVC.view.btnPlay];
+        if([floorVC.view.btnPlay hitTest:point withEvent:event]){
+            [floorVC.view.btnPlay sendActionsForControlEvents: UIControlEventTouchUpInside];
+            NSLog(@"test");
+        }
+    }
 }
+
 
 @end

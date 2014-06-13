@@ -9,7 +9,7 @@
 #import "FloorViewController.h"
 
 @interface FloorViewController ()
-
+@property (nonatomic, assign) BOOL playing;
 @end
 
 @implementation FloorViewController
@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        self.playing = NO;
     }
     return self;
 }
@@ -48,19 +48,22 @@
 
 - (void)loadView
 {
-    self.view = [[FloorView alloc] initWithFrame:CGRectMake(0, 0, VIDEO_WIDTH, VIDEO_HEIGHT)];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    self.view = [[FloorView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, VIDEO_HEIGHT)];
 }
 
 #pragma mark - btnPlay
 - (void)btnPlayTapped:(id)sender
 {
     NSLog(@"btnPlayTapped");
-    
-    if(self.audioPlayer){
+    if(!self.playing) {
         [self.audioPlayer startPlaying];
-    }
-    if(self.videoPlayer){
         [self.videoPlayer startPlaying];
+        self.playing = true;
+    }else {
+        [self.audioPlayer stopPlaying];
+        [self.videoPlayer stopPlaying];
+        self.playing = false;
     }
 }
 

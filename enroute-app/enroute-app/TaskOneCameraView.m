@@ -21,6 +21,10 @@
         [self addFloor];
         [self roof];
         
+        self.scrollFixView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [self.scrollFixView addGestureRecognizer:self.scrollFloorsView.panGestureRecognizer];
+        [self addSubview:self.scrollFixView];
+        
         [self createBottomToolbar];
     }
     return self;
@@ -90,8 +94,9 @@
     self.btnAddFloor.center = CGPointMake(self.addFloorView.frame.size.width / 2 - 12, self.addFloorView.frame.size.height / 2 - 10);
     [self.addFloorView addSubview:self.btnAddFloor];
     
-    [self.scrollFloorsView insertSubview:self.addFloorView atIndex:0];
     self.addFloorView.center = CGPointMake(self.frame.size.width / 2, - self.addFloorView.frame.size.height / 2 + 10);
+
+    [self.scrollFloorsView insertSubview:self.addFloorView atIndex:0];
     
     [UIView animateWithDuration:2 delay:0.2f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
                      animations:^{

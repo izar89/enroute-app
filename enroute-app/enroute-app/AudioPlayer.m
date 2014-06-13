@@ -39,11 +39,7 @@
 
 - (void)startPlaying
 {
-    if(self.audioPlayer.playing){
-        [self stopPlaying];
-    } else {
-        [self.audioPlayer play];
-    }
+    [self.audioPlayer play];
 }
 
 - (void)stopPlaying

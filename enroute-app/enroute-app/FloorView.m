@@ -31,7 +31,7 @@
 - (void)createVideoPreviewView
 {
     self.videoPreviewView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
-    self.videoPreviewView.center = CGPointMake(self.frame.size.width /2 + 6 , self.frame.size.height / 2 + 2);
+    self.videoPreviewView.center = CGPointMake(self.frame.size.width /2 -13 , self.frame.size.height / 2 + 3);
     [self addSubview:self.videoPreviewView];
 }
 
@@ -51,7 +51,7 @@
 - (void)createBtnPlay
 {
     self.btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnPlay.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    self.btnPlay.frame = self.videoPreviewView.frame;
     [self addSubview:self.btnPlay];
 }
 

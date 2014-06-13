@@ -12,7 +12,6 @@
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic, strong) AVPlayer *videoPlayer;
 @property (nonatomic, strong) CALayer *videoPlayerLayer;
-@property (nonatomic, assign) BOOL playing;
 @end
 
 @implementation VideoPlayerView
@@ -34,20 +33,13 @@
         self.videoPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.videoPlayer];
         self.videoPlayerLayer.frame = self.layer.bounds;
         [self.layer addSublayer:self.videoPlayerLayer];
-        
-        self.playing = NO;
     }
     return self;
 }
 
 - (void)startPlaying
 {
-    if(self.playing){
-        [self stopPlaying];
-    } else {
-        [self.videoPlayer play];
-        self.playing = YES;
-    }
+    [self.videoPlayer play];
 }
 
 - (void)stopPlaying
@@ -55,7 +47,6 @@
     NSLog(@"stop");
     [self.videoPlayer pause]; // no stop available
     [self.videoPlayer seekToTime:kCMTimeZero];
-    self.playing = NO;
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
