@@ -81,7 +81,7 @@
         NSError *error;
         self.assetWriter = [[AVAssetWriter alloc] initWithURL:[self.fileManager audioTmpURL] fileType:AVFileTypeAppleM4A error:&error];
         if (error){
-            NSLog(@"%@", error);
+            NSLog(@"[AudioCaptureManager] Error - initWithURL: %@", error);
         }
 	});
 }
@@ -176,12 +176,12 @@
 		if ([self.assetWriter canAddInput:self.assetWriterAudioInput])
 			[self.assetWriter addInput:self.assetWriterAudioInput];
 		else {
-			NSLog(@"Couldn't add asset writer audio input.");
+			//NSLog(@"[AudioCaptureManager] Couldn't add asset writer audio input.");
             return NO;
 		}
 	}
 	else {
-		NSLog(@"Couldn't apply audio output settings.");
+		//NSLog(@"[AudioCaptureManager] Couldn't apply audio output settings.");
         return NO;
 	}
     
@@ -194,13 +194,13 @@
         if ([self.assetWriter startWriting]){
 			[self.assetWriter startSessionAtSourceTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
 		} else {
-			NSLog(@"1) %@", [self.assetWriter error]);
+			NSLog(@"[AudioCaptureManager] Error - startWriting: %@", [self.assetWriter error]);
 		}
 	} else if(self.assetWriter.status == AVAssetWriterStatusWriting){ // 1
 		if (mediaType == AVMediaTypeAudio) {
 			if (self.assetWriterAudioInput.readyForMoreMediaData) {
 				if (![self.assetWriterAudioInput appendSampleBuffer:sampleBuffer]) {
-					NSLog(@"2) %@",[self.assetWriter error]);
+					NSLog(@"[AudioCaptureManager] Error - appendSampleBuffer: %@",[self.assetWriter error]);
 				}
 			}
 		}

@@ -32,14 +32,14 @@
     self.btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.btnBack setBackgroundImage:btnBackImage forState:UIControlStateNormal];
     self.btnBack.frame = CGRectMake(0, 0,  btnBackImage.size.width, btnBackImage.size.height);
-    self.btnBack.center = CGPointMake(self.btnBack.frame.size.width / 2 + 10, self.navigationBarView.frame.size.height / 2);
+    self.btnBack.center = CGPointMake(self.btnBack.frame.size.width / 2 + 20, self.navigationBarView.frame.size.height / 2);
     [self.navigationBarView addSubview:self.btnBack];
     
     UIImage *btnInfoImage = [UIImage imageNamed:@"btnQuestion"];
     self.btnInfo = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.btnInfo setBackgroundImage:btnInfoImage forState:UIControlStateNormal];
     self.btnInfo.frame = CGRectMake(0, 0,  btnInfoImage.size.width, btnInfoImage.size.height);
-    self.btnInfo.center = CGPointMake(self.navigationBarView.frame.size.width - (self.btnInfo.frame.size.width / 2 + 10), self.navigationBarView.frame.size.height / 2);
+    self.btnInfo.center = CGPointMake(self.navigationBarView.frame.size.width - (self.btnInfo.frame.size.width / 2 + 20), self.navigationBarView.frame.size.height / 2);
     [self.navigationBarView addSubview:self.btnInfo];
 }
 

@@ -108,7 +108,7 @@
         NSError *error;
         self.assetWriter = [[AVAssetWriter alloc] initWithURL:[self.fileManager videoTmpURL] fileType:AVFileTypeAppleM4A error:&error];
         if (error){
-            NSLog(@"%@", error);
+            NSLog(@"[VideoCaptureManager] Error - initWithURL: %@", error);
         }
 	});
 }
@@ -133,8 +133,6 @@
             if ([self.delegate respondsToSelector:@selector(videoRecordingFinished:)]) {
                 [self.delegate videoRecordingFinished:[self.fileManager videoTmpURL]];
             }
-            
-            //[self cropVideo:[self videoOutputURL]];
         }];
         
         self.assetWriterVideoInput = nil;
@@ -203,12 +201,12 @@
 		if ([self.assetWriter canAddInput:self.assetWriterVideoInput])
 			[self.assetWriter addInput:self.assetWriterVideoInput];
 		else {
-			NSLog(@"Couldn't add asset writer video input.");
+			//NSLog(@"[VideoCaptureManager] Couldn't add asset writer video input.");
             return NO;
 		}
 	}
 	else {
-		NSLog(@"Couldn't apply video output settings.");
+		//NSLog(@"[VideoCaptureManager] Couldn't apply video output settings.");
         return NO;
 	}
     
@@ -221,7 +219,7 @@
         if ([self.assetWriter startWriting]){
 			[self.assetWriter startSessionAtSourceTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
 		} else {
-			NSLog(@"1) %@", [self.assetWriter error]);
+			NSLog(@"[VideoCaptureManager] Error - startWriting: %@", [self.assetWriter error]);
 		}
 	}
 	
@@ -229,7 +227,7 @@
 		if(mediaType == AVMediaTypeVideo){
 			if (self.assetWriterVideoInput.readyForMoreMediaData) {
 				if (![self.assetWriterVideoInput appendSampleBuffer:sampleBuffer]) {
-                    NSLog(@"2) %@",[self.assetWriter error]);
+                    NSLog(@"[VideoCaptureManager] Error - appendSampleBuffer: %@",[self.assetWriter error]);
 				}
 			}
 		}

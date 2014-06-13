@@ -17,6 +17,9 @@
 @property (strong, nonatomic) UIButton *btnRecordVideo;
 @property (strong, nonatomic) UIButton *btnRecordAudio;
 
+- (void)setBtnVideoReady:(BOOL)ready;
+- (void)setBtnAudioReady:(BOOL)ready;
+
 /* Video preview */
 @property (strong, nonatomic) UIView *videoPreviewView;
 

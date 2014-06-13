@@ -41,20 +41,20 @@
     self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.btnSave setBackgroundImage:btnSaveImage forState:UIControlStateNormal];
     self.btnSave.frame = CGRectMake(0, 0, btnSaveImage.size.width, btnSaveImage.size.height);
-    self.btnSave.center = CGPointMake(self.btnSave.frame.size.width / 2 + 20, self.bottomToolbarView.frame.size.height / 2);
+    self.btnSave.center = CGPointMake((self.btnSave.frame.size.width / 2 + 20) - 100, self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnSave];
     
-    UIImage *btnVideoImage = [UIImage imageNamed:@"btnVideoRed"];
+    UIImage *btnVideoImageRed = [UIImage imageNamed:@"btnVideoRed"];
     self.btnRecordVideo = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.btnRecordVideo setBackgroundImage:btnVideoImage forState:UIControlStateNormal];
-    self.btnRecordVideo.frame = CGRectMake(0, 0, btnVideoImage.size.width, btnVideoImage.size.height);
+    [self.btnRecordVideo setBackgroundImage:btnVideoImageRed forState:UIControlStateNormal];
+    self.btnRecordVideo.frame = CGRectMake(0, 0, btnVideoImageRed.size.width, btnVideoImageRed.size.height);
     self.btnRecordVideo.center = CGPointMake(self.frame.size.width - (self.btnRecordVideo.frame.size.width / 2 + 110), self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnRecordVideo];
     
-    UIImage *btnAudioImage = [UIImage imageNamed:@"btnAudioRed"];
+    UIImage *btnAudioImageRed = [UIImage imageNamed:@"btnAudioRed"];
     self.btnRecordAudio = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.btnRecordAudio setBackgroundImage:btnAudioImage forState:UIControlStateNormal];
-    self.btnRecordAudio.frame = CGRectMake(0, 0, btnAudioImage.size.width, btnAudioImage.size.height);
+    [self.btnRecordAudio setBackgroundImage:btnAudioImageRed forState:UIControlStateNormal];
+    self.btnRecordAudio.frame = CGRectMake(0, 0, btnAudioImageRed.size.width, btnAudioImageRed.size.height);
     self.btnRecordAudio.center = CGPointMake(self.frame.size.width - (self.btnRecordAudio.frame.size.width / 2 + 20), self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnRecordAudio];
 }
@@ -113,6 +113,33 @@
     self.floorRoof.center = CGPointMake(self.frame.size.width / 2, - (self.floorRoof.frame.size.height / 2 + 80));
 }
 
+- (void)setBtnVideoReady:(BOOL)ready
+{
+    UIImage *btnVideoImage;
+    if(ready){
+        btnVideoImage = [UIImage imageNamed:@"btnVideoGreen"];
+    } else {
+        btnVideoImage = [UIImage imageNamed:@"btnVideoRed"];
+    }
+    [self.btnRecordVideo setBackgroundImage:btnVideoImage forState:UIControlStateNormal];
+    NSLog(@"vchanged: %@", [self.btnRecordVideo backgroundImageForState:UIControlStateNormal]);
+}
 
+- (void)setBtnAudioReady:(BOOL)ready
+{
+    NSLog(@"%i", self.btnRecordAudio.enabled);
+    
+    UIImage *btnAudioImage;
+    if(ready){
+        btnAudioImage = [UIImage imageNamed:@"btnAudioGreen"];
+    } else {
+        btnAudioImage = [UIImage imageNamed:@"btnAudioRed"];
+    }
+    [self.btnRecordAudio setBackgroundImage:btnAudioImage forState:UIControlStateNormal];
+    NSLog(@"achanged: %@", [self.btnRecordAudio backgroundImageForState:UIControlStateNormal]);
+    
+    //[self.btnRecordAudio removeFromSuperview];
+    [self.bottomToolbarView addSubview:self.btnRecordAudio];
+}
 
 @end

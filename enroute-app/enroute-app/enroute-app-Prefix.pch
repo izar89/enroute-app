@@ -16,4 +16,4 @@
     #import "UIColor+Enroute.h"
 #endif
 
-#define TOTAL_TASKS 4
+#define FONT_SAHARA @"Sahara"

@@ -20,7 +20,7 @@
         [self addSubview:bgInfo];
         
         UIImage *bgLabel = [UIImage imageNamed:@"bgTitleTekstTaskMenuItem"];
-        UIFont *font = [UIFont fontWithName:@"Sahara" size:30];
+        UIFont *font = [UIFont fontWithName:FONT_SAHARA size:30];
         self.lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, bgLabel.size.width, bgLabel.size.height)];
         self.lblTitle.backgroundColor = [UIColor colorWithPatternImage:bgLabel];
         self.lblTitle.font = font;

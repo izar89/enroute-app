@@ -16,7 +16,11 @@
 /* View properties */
 @property (nonatomic, strong) UIView *videoPreviewView;
 @property (nonatomic, strong) UIView *videoPlayerView;
+@property (nonatomic, strong) UIView *videoProgressLoader;
 @property (nonatomic, strong) UIImageView *floorBg;
 @property (nonatomic, strong) UIButton *btnPlay;
+
+- (void)setBlue;
+- (void)setRed;
 
 @end

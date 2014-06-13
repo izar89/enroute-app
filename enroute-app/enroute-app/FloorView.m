@@ -22,6 +22,7 @@
         
         [self createVideoPreviewView];
         [self createVideoPlayerView];
+        [self createVideoProgressLoader];
         [self createFloorBg];
         [self createBtnPlay];
     }
@@ -41,10 +42,18 @@
     [self addSubview:self.videoPlayerView];
 }
 
+- (void)createVideoProgressLoader
+{
+    self.videoProgressLoader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.videoPreviewView.frame.size.width, 8)];
+    self.videoProgressLoader.center = CGPointMake(self.frame.size.width /2 -13 - self.videoProgressLoader.frame.size.width, 8);
+    self.videoProgressLoader.backgroundColor = [UIColor enrouteRedColor];
+    [self addSubview:self.videoProgressLoader];
+}
+
 - (void)createFloorBg
 {
-    UIImage *floorBgImage = [UIImage imageNamed:@"floorBgBlue"];
-    self.floorBg = [[UIImageView alloc] initWithImage:floorBgImage];
+    UIImage *floorBgImageBlue = [UIImage imageNamed:@"floorBgBlue"];
+    self.floorBg = [[UIImageView alloc] initWithImage:floorBgImageBlue];
     [self addSubview:self.floorBg];
 }
 
@@ -53,6 +62,18 @@
     self.btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnPlay.frame = self.videoPreviewView.frame;
     [self addSubview:self.btnPlay];
+}
+
+- (void)setBlue
+{
+    [self.floorBg setImage:[UIImage imageNamed:@"floorBgBlue"]];
+    self.videoProgressLoader.backgroundColor = [UIColor enrouteRedColor];
+}
+
+- (void)setRed
+{
+    [self.floorBg setImage:[UIImage imageNamed:@"floorBgRed"]];
+    self.videoProgressLoader.backgroundColor = [UIColor enrouteBlueColor];
 }
 
 @end
