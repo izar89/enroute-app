@@ -25,7 +25,7 @@
         self.lblTitle.backgroundColor = [UIColor colorWithPatternImage:bgLabel];
         self.lblTitle.font = font;
         self.lblTitle.textAlignment = NSTextAlignmentCenter;
-        self.lblTitle.textColor = [UIColor colorWithRed:0.95 green:0.96 blue:0.81 alpha:1];
+        self.lblTitle.textColor = [UIColor enrouteLightYellowColor];
         self.lblTitle.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height - 472);
         self.lblTitle.text = task.title;
         [self addSubview:self.lblTitle];

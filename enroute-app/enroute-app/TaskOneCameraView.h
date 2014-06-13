@@ -14,6 +14,7 @@
 /* Bottom toolbar */
 @property (strong, nonatomic) UIView *bottomToolbarView;
 @property (strong, nonatomic) UIButton *btnSave;
+@property (strong, nonatomic) UILabel *lblMinFloors;
 @property (strong, nonatomic) UIButton *btnRecordVideo;
 @property (strong, nonatomic) UIButton *btnRecordAudio;
 

@@ -44,6 +44,15 @@
     self.btnSave.center = CGPointMake((self.btnSave.frame.size.width / 2 + 20) - 100, self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnSave];
     
+    UIFont *font = [UIFont fontWithName:FONT_SAHARA size:26];
+    self.lblMinFloors = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    self.lblMinFloors.center = CGPointMake((self.lblMinFloors.frame.size.width / 2), self.bottomToolbarView.frame.size.height / 2);
+    self.lblMinFloors.font = font;
+    self.lblMinFloors.textColor = [UIColor enrouteRedColor];
+    self.lblMinFloors.textAlignment = NSTextAlignmentCenter;
+    self.lblMinFloors.text = @"min. 2";
+    [self.bottomToolbarView addSubview:self.lblMinFloors];
+    
     UIImage *btnVideoImageRed = [UIImage imageNamed:@"btnVideoRed"];
     self.btnRecordVideo = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.btnRecordVideo setBackgroundImage:btnVideoImageRed forState:UIControlStateNormal];

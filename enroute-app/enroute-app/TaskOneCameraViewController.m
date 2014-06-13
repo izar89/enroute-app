@@ -132,9 +132,20 @@
 - (void)showBtnSave:(BOOL)show
 {
     if(show){
-        [self.view.btnSave addTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+        NSLog(@"show");
+        [UIView animateWithDuration:2.0 animations:^{
+            self.view.btnSave.center = CGPointMake((self.view.btnSave.frame.size.width / 2 + 20), self.view.bottomToolbarView.frame.size.height / 2);
+            //self.view.lblMinFloors.center = CGPointMake((self.view.lblMinFloors.frame.size.width / 2), self.view.bottomToolbarView.frame.size.height / 2);
+        } completion:^(BOOL finished) {
+            [self.view.btnSave addTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+        }];
     } else {
-        [self.view.btnSave removeTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [UIView animateWithDuration:2.0 animations:^{
+            self.view.btnSave.center = CGPointMake((self.view.btnSave.frame.size.width / 2 + 20) - 100, self.view.bottomToolbarView.frame.size.height / 2);
+            //self.view.lblMinFloors.center = CGPointMake((self.view.lblMinFloors.frame.size.width / 2), self.view.bottomToolbarView.frame.size.height / 2);
+        } completion:^(BOOL finished) {
+            [self.view.btnSave removeTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+        }];
     }
 }
 
