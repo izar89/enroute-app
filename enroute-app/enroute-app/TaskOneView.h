@@ -14,10 +14,12 @@
 @property (strong, nonatomic) UIView *navigationBarView;
 @property (strong, nonatomic)UIButton *btnBack;
 @property (strong, nonatomic)UIButton *btnInfo;
+@property (strong, nonatomic)UIButton *btnCloseInfo;
 @property (strong, nonatomic)UIButton *btnGallery;
 
 /* Content */
 @property (strong, nonatomic) UIView *contentContainerView;
 
+- (void)setBtnInfoOpen:(BOOL)Open;
 
 @end

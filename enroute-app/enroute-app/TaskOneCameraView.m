@@ -37,13 +37,6 @@
     self.bottomToolbarView.backgroundColor = [UIColor enrouteLightYellowColor];
     [self addSubview:self.bottomToolbarView];
     
-    UIImage *btnSaveImage = [UIImage imageNamed:@"btnSave"];
-    self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.btnSave setBackgroundImage:btnSaveImage forState:UIControlStateNormal];
-    self.btnSave.frame = CGRectMake(0, 0, btnSaveImage.size.width, btnSaveImage.size.height);
-    self.btnSave.center = CGPointMake((self.btnSave.frame.size.width / 2 + 20) - 100, self.bottomToolbarView.frame.size.height / 2);
-    [self.bottomToolbarView addSubview:self.btnSave];
-    
     UIFont *font = [UIFont fontWithName:FONT_SAHARA size:26];
     self.lblMinFloors = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     self.lblMinFloors.center = CGPointMake((self.lblMinFloors.frame.size.width / 2), self.bottomToolbarView.frame.size.height / 2);
@@ -52,6 +45,13 @@
     self.lblMinFloors.textAlignment = NSTextAlignmentCenter;
     self.lblMinFloors.text = @"min. 2";
     [self.bottomToolbarView addSubview:self.lblMinFloors];
+    
+    UIImage *btnSaveImage = [UIImage imageNamed:@"btnSave"];
+    self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.btnSave setBackgroundImage:btnSaveImage forState:UIControlStateNormal];
+    self.btnSave.frame = CGRectMake(0, 0, btnSaveImage.size.width, btnSaveImage.size.height);
+    self.btnSave.center = CGPointMake((self.btnSave.frame.size.width / 2 + 20) - 100, self.bottomToolbarView.frame.size.height / 2);
+    [self.bottomToolbarView addSubview:self.btnSave];
     
     UIImage *btnVideoImageRed = [UIImage imageNamed:@"btnVideoRed"];
     self.btnRecordVideo = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -106,12 +106,6 @@
     self.addFloorView.center = CGPointMake(self.frame.size.width / 2, - self.addFloorView.frame.size.height / 2 + 10);
 
     [self.scrollFloorsView insertSubview:self.addFloorView atIndex:0];
-    
-    [UIView animateWithDuration:2 delay:0.2f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
-                     animations:^{
-                         self.addFloorView.center = CGPointMake(self.frame.size.width / 2, - self.addFloorView.frame.size.height / 2 + 5);
-                     }
-                     completion:^(BOOL finished){}];
 }
 
 - (void)roof

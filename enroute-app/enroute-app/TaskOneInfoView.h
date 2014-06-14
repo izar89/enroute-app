@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskInfo.h"
+#import "TaskInfos.h"
+#import "TaskInfoView.h"
 
 @interface TaskOneInfoView : UIView
 
-@property (strong, nonatomic) UIView *container;
-@property (strong, nonatomic) UILabel *lblInfo;
-@property (strong, nonatomic) UIButton *btnStart;
+@property (strong, nonatomic) UIScrollView *scrollInfoView;
+@property (strong, nonatomic) UIPageControl *scrollPageControl;
+@property (strong, nonatomic) NSMutableArray *taskInfoViews;
+
+- (id)initWithFrame:(CGRect)frame taskInfos:(TaskInfos *)taskInfos;
 
 @end

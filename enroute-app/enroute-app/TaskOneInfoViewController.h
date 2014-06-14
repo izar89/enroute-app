@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskOneInfoView.h"
+#import "JSONDataManager.h"
 
-@interface TaskOneInfoViewController : UIViewController
+@interface TaskOneInfoViewController : UIViewController<UIScrollViewDelegate>
 
 @property (strong, nonatomic) TaskOneInfoView *view;
 
 @end
+

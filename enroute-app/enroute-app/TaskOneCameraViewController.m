@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *floors;
 @property (nonatomic, assign) int floorIndex;
 @property (nonatomic, assign) int selectedFloorViewIndex;
+@property (nonatomic, assign) int totalFloorsReady;
 @end
 
 @implementation TaskOneCameraViewController
@@ -82,78 +83,107 @@
 - (void)loadView
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    self.view = [[TaskOneCameraView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height - 48)];
+    self.view = [[TaskOneCameraView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height)];
 }
 
 - (void)checkBuilding
 {
-    NSLog(@"-----------------------------------------------");
-    int totalFloorsReady = 0; // if = floors.count -> ready to save
-    BOOL videoReady = NO;
-    BOOL audioReady = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"-----------------------------------------------");
+        self.totalFloorsReady = 0; // if = floors.count -> ready to save
+        BOOL videoReady = NO;
+        BOOL audioReady = NO;
 
-    for(FloorViewController *floorVC in self.floors){
-        if(floorVC.videoURL){
+        for(FloorViewController *floorVC in self.floors){
+            if(floorVC.videoURL){
+                videoReady = YES;
+            }
+            if(floorVC.audioURL){
+                audioReady = YES;
+            }
+            if(videoReady && audioReady){
+                self.totalFloorsReady++;
+            }
+            if (floorVC.id == self.selectedFloorViewIndex) {
+                [self.view setBtnVideoReady:videoReady];
+                [self.view setBtnAudioReady:audioReady];
+            }
+            videoReady = audioReady = NO;
+        }
+        
+        // Add floor
+        FloorViewController *firstFloorVC = self.floors.lastObject;
+        if(firstFloorVC.videoURL){
             videoReady = YES;
         }
-        if(floorVC.audioURL){
+        if(firstFloorVC.audioURL){
             audioReady = YES;
         }
-        if(videoReady && audioReady){
-            totalFloorsReady++;
-        }
-        if (floorVC.id == self.selectedFloorViewIndex) {
-            NSLog(@"videoReady!: %i", videoReady);
-            NSLog(@"audioReady!: %i", audioReady);
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-            [self.view setBtnVideoReady:videoReady];
-            [self.view setBtnAudioReady:audioReady];
-            });
-            if (videoReady && audioReady) {
-                // Add floor ready
-                
-                NSLog(@"AddFloorReady!");
-                [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
-            } else {
-                [self.view.btnAddFloor removeTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
-            }
-        }
-        videoReady = audioReady = NO;
-    }
+        BOOL addFloorReady = videoReady && audioReady;
+        [self showBtnAddFloor:addFloorReady animated:YES]; // Show / hide add floor btn
     
-    if (self.floors.count == totalFloorsReady && totalFloorsReady >= 2) {
-        NSLog( @"SaveReady!");
-        // Save ready
-        [self showBtnSave:YES];
-    } else {
-        [self showBtnSave:NO];
-    }
+        //
+        if (self.floors.count == self.totalFloorsReady && self.totalFloorsReady >= 2) {
+            NSLog( @"SaveReady!");
+            // Save ready
+            [self showBtnSave:YES]; // Show / hide add save btn
+        } else {
+            [self showBtnSave:NO];
+        }
+        //self.view.lblMinFloors.text = [NSString stringWithFormat:@"Min. %i/2", self.totalFloorsReady];
+    });
 }
 
 - (void)showBtnSave:(BOOL)show
 {
-    
     dispatch_async(dispatch_get_main_queue(), ^{
+        if(show){
+            NSLog(@"show");
+            [UIView animateWithDuration:1.0 animations:^{
+                self.view.btnSave.center = CGPointMake((self.view.btnSave.frame.size.width / 2 + 20), self.view.bottomToolbarView.frame.size.height / 2);
+                //self.view.lblMinFloors.center = CGPointMake((self.view.lblMinFloors.frame.size.width / 2) - 100, self.view.bottomToolbarView.frame.size.height / 2);
+                self.view.lblMinFloors.alpha = 0;
+            } completion:^(BOOL finished) {
+                [self.view.btnSave addTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+            }];
+        } else {
+            [UIView animateWithDuration:1.0 animations:^{
+                self.view.btnSave.center = CGPointMake((self.view.btnSave.frame.size.width / 2 + 20) - 100, self.view.bottomToolbarView.frame.size.height / 2);
+                //self.view.lblMinFloors.center = CGPointMake((self.view.lblMinFloors.frame.size.width / 2), self.view.bottomToolbarView.frame.size.height / 2);
+                if (self.totalFloorsReady  < 2) {
+                    self.view.lblMinFloors.alpha = 1;
+                }
+                
+            } completion:^(BOOL finished) {
+                [self.view.btnSave removeTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+            }];
+        }
+    });
+}
 
-   
+- (void)showBtnAddFloor:(BOOL)show animated:(BOOL)animated{
+    dispatch_async(dispatch_get_main_queue(), ^{
     if(show){
-        NSLog(@"show");
-        [UIView animateWithDuration:2.0 animations:^{
-            self.view.btnSave.center = CGPointMake((self.view.btnSave.frame.size.width / 2 + 20), self.view.bottomToolbarView.frame.size.height / 2);
-            //self.view.lblMinFloors.center = CGPointMake((self.view.lblMinFloors.frame.size.width / 2), self.view.bottomToolbarView.frame.size.height / 2);
+        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, - self.view.addFloorView.frame.size.height / 2 + 10);
+            self.view.floorRoof.center = CGPointMake(self.view.frame.size.width / 2, - (self.view.floorRoof.frame.size.height / 2 + 80));
         } completion:^(BOOL finished) {
-            [self.view.btnSave addTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
+//            [UIView animateWithDuration:2 delay:0.2f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
+//                             animations:^{
+//                                 self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, - self.view.addFloorView.frame.size.height / 2 + 5);
+//                             }
+//                             completion:^(BOOL finished){}];
         }];
     } else {
-        [UIView animateWithDuration:2.0 animations:^{
-            self.view.btnSave.center = CGPointMake((self.view.btnSave.frame.size.width / 2 + 20) - 100, self.view.bottomToolbarView.frame.size.height / 2);
-            //self.view.lblMinFloors.center = CGPointMake((self.view.lblMinFloors.frame.size.width / 2), self.view.bottomToolbarView.frame.size.height / 2);
+        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, self.view.addFloorView.frame.size.height / 2 + 10);
+            self.view.floorRoof.center = CGPointMake(self.view.frame.size.width / 2, - (self.view.floorRoof.frame.size.height / 2) + 10);
         } completion:^(BOOL finished) {
-            [self.view.btnSave removeTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view.btnAddFloor removeTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
         }];
     }
-         });
+    });
 }
 
 #pragma mark - btnSave
@@ -259,7 +289,7 @@
         FloorViewController *selectedFloorVC = [self.floors objectAtIndex:self.selectedFloorViewIndex];
         [selectedFloorVC.view.videoProgressLoader.layer removeAllAnimations];
         [UIView animateWithDuration:0.4 animations:^{
-            selectedFloorVC.view.videoProgressLoader.alpha = 0;
+            //selectedFloorVC.view.videoProgressLoader.alpha = 0;
         } completion:^(BOOL finished) {
             selectedFloorVC.view.videoProgressLoader.center = CGPointMake(self.view.frame.size.width /2 -13 - selectedFloorVC.view.videoProgressLoader.frame.size.width, 8);
             selectedFloorVC.view.videoProgressLoader.alpha = 1;

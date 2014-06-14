@@ -17,3 +17,4 @@
 #endif
 
 #define FONT_SAHARA @"Sahara"
+#define FONT_HELVETICANEUE @"HelveticaNeue"

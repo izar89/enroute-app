@@ -16,7 +16,7 @@
                 },
                 {
                     "title": "Opdracht4",
-                      "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat.neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat."
+                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat.neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat."
                 },
                 {
                     "title": "Opdracht5",
@@ -26,6 +26,38 @@
                     "title": "Opdracht6",
                     "text": "uitleg over opdracht6"
                 }
+            ],
+            "taskOneInfos": [
+                {
+                    "text": "blablabla uitleg over 1",
+                    "imageName": "taskOneInfo1"
+                },
+                {
+                    "text": "blablabla uitleg over 2",
+                    "imageName": "taskOneInfo2"
+                },
+                {
+                    "text": "blablabla uitleg over 3",
+                    "imageName": "taskOneInfo3"
+                },
+                {
+                    "text": "blablabla uitleg over 4",
+                    "imageName": "taskOneInfo4"
+                }
+            ],
+            "taskTwoInfos": [
+                 {
+                    "text": "blablabla uitleg over 1",
+                    "imageName": "taskTwoInfo1"
+                 },
+                 {
+                    "text": "blablabla uitleg over 2",
+                    "imageName": "taskTwoInfo2"
+                 },
+                 {
+                    "text": "blablabla uitleg over 3",
+                    "imageName": "taskTwoInfo3"
+                 }
             ]
         }
     }

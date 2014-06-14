@@ -14,7 +14,7 @@
 {
     Tasks *tasks = [[Tasks alloc] init];
     tasks.tasks = [NSMutableArray array];
-    for(NSDictionary *task in [dictionary objectForKey:@"tasks"]){
+    for(NSDictionary *task in dictionary){
         [tasks.tasks addObject:[TaskFactory createTaskWithDictionary:task]];
     }
     

@@ -9,6 +9,9 @@
 #import "TaskMenuViewController.h"
 
 @interface TaskMenuViewController ()
+@property (strong, nonatomic) JSONDataManager *dataManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) float previousHeading;
 @property (nonatomic, strong) VideoCaptureManager *videoCaptureManager;
 @end
 
@@ -68,16 +71,6 @@
                          
                      }
      ];*/
-    
-    //CHECK FOR FONTS
-//    for (NSString *fontFamilies in [UIFont familyNames]) {
-//            NSLog(@"[FONT FAMILIES] -- %@", fontFamilies);
-//        for (NSString *fontFamily in [UIFont fontNamesForFamilyName:fontFamilies]) {
-//            NSLog(@"[FONT FAMILY] -- %@", fontFamily);
-//        }
-//    }
-
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated

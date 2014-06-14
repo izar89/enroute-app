@@ -9,7 +9,7 @@
 #import "TaskOneViewController.h"
 
 @interface TaskOneViewController ()
-
+@property (nonatomic, assign) BOOL infoIsOpen;
 @end
 
 @implementation TaskOneViewController
@@ -18,15 +18,19 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        self.taskOneInfoVC = [[TaskOneInfoViewController alloc] init];
-//        [self addChildViewController:self.taskOneInfoVC];
-//        [self.view addSubview:self.taskOneInfoVC.view];
-//        [self.taskOneInfoVC didMoveToParentViewController:self];
-        
         self.taskOneCameraVC = [[TaskOneCameraViewController alloc] init];
         [self addChildViewController:self.taskOneCameraVC];
         [self.view.contentContainerView addSubview:self.taskOneCameraVC.view];
         [self.taskOneCameraVC didMoveToParentViewController:self];
+        
+        [self.view.contentContainerView addSubview:self.view.btnCloseInfo];
+        
+        self.taskOneInfoVC = [[TaskOneInfoViewController alloc] init];
+        [self addChildViewController:self.taskOneInfoVC];
+        [self.view.contentContainerView addSubview:self.taskOneInfoVC.view];
+        [self.taskOneInfoVC didMoveToParentViewController:self];
+        
+        self.infoIsOpen = YES;
     }
     return self;
 }
@@ -35,6 +39,9 @@
 {
     [super viewDidLoad];
     [self.view.btnBack addTarget:self action:@selector(btnBackTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.btnInfo addTarget:self action:@selector(btnInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self showInfoView:YES animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,6 +59,55 @@
 {
     TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
     [self.navigationController pushViewController:taskMenuVC animated:YES];
+}
+
+- (void)btnInfoTapped:(id)sender
+{
+    if(self.infoIsOpen){
+        [self showInfoView: NO animated:YES];
+    } else {
+        [self showInfoView:YES animated:YES];
+    }
+}
+
+- (void)showInfoView:(BOOL)show animated:(BOOL)animated{
+    [self.view setBtnInfoOpen:show];
+    if(show){
+        self.infoIsOpen = YES;
+        if(animated){
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut animations:^{
+                self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskOneInfoVC.view.frame.size.height / 2 + 48);
+                self.view.btnCloseInfo.alpha = 0.5;
+            } completion:^(BOOL finished) {}];
+        } else {
+            self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskOneInfoVC.view.frame.size.height / 2 + 48);
+            self.view.btnCloseInfo.alpha = 0.5;
+        }
+    } else {
+        self.infoIsOpen = NO;
+        if(animated){
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn animations:^{
+                self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskOneInfoVC.view.frame.size.height / 2);
+                self.view.btnCloseInfo.alpha = 0;
+            } completion:^(BOOL finished) {}];
+        } else {
+            self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskOneInfoVC.view.frame.size.height / 2);
+            self.view.btnCloseInfo.alpha = 0;
+        }
+    }
+}
+
+#pragma mark - Reroute events
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.view.btnCloseInfo];
+    if([self.view.btnCloseInfo hitTest:point withEvent:event]){
+        CGPoint point2 = [touch locationInView:self.view.navigationBarView];
+        if(![self.view.navigationBarView hitTest:point2 withEvent:event]){
+            [self showInfoView: NO animated:YES];
+        }
+    }
 }
 
 @end

@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Tasks.h"
 #import "TasksFactory.h"
+#import "TaskInfos.h"
+#import "TaskInfosFactory.h"
 
 @interface JSONDataManager : NSObject
 
 + (JSONDataManager *)sharedInstance;
 
 @property (nonatomic,strong) Tasks *tasks;
+@property (nonatomic,strong) TaskInfos *taskOneInfos;
+@property (nonatomic,strong) TaskInfos *taskTwoInfos;
 
 @end

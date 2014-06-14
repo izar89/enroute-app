@@ -29,7 +29,10 @@
         NSArray *loadedData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
         
         if( !error ){;
-            self.tasks = [TasksFactory createTasksWithDictionary:[[loadedData objectAtIndex:0] objectForKey:@"enroute"]];
+            NSDictionary *enroute = [[loadedData objectAtIndex:0] objectForKey:@"enroute"];
+            self.tasks = [TasksFactory createTasksWithDictionary:[enroute objectForKey:@"tasks"]];
+            self.taskOneInfos = [TaskInfosFactory createTaskInfosWithDictionary:[enroute objectForKey:@"taskOneInfos"]];
+            self.taskTwoInfos = [TaskInfosFactory createTaskInfosWithDictionary:[enroute objectForKey:@"taskTwoInfos"]];
         }else {
             NSLog(@"[JSONDataManager] Problem loading JSON!");
         }

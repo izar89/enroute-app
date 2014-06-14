@@ -16,8 +16,9 @@
     if (self) {
         self.backgroundColor = [UIColor purpleColor];
         
-        [self createNavigationBar]; //height: 48px;
         [self createContentContainer];
+        [self createCloseInfoBtn];
+        [self createNavigationBar]; //height: 48px;
     }
     return self;
 }
@@ -45,14 +46,29 @@
 
 - (void)createContentContainer
 {
-    int frameWidth = self.frame.size.width;
-    int frameHeight = self.frame.size.height;
-    
-    self.contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, frameHeight - self.navigationBarView.frame.size.height)];
-    self.contentContainerView.center = CGPointMake(frameWidth / 2, self.contentContainerView.frame.size.height / 2 + self.navigationBarView.frame.size.height);
+    self.contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationBarView.frame.size.height, self.frame.size.width, self.frame.size.height - self.navigationBarView.frame.size.height)];
     self.contentContainerView.backgroundColor = [UIColor greenColor];
     self.contentContainerView.layer.masksToBounds = YES;
     [self addSubview:self.contentContainerView];
+}
+
+- (void)createCloseInfoBtn
+{
+    self.btnCloseInfo = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnCloseInfo.frame = CGRectMake(0, self.navigationBarView.frame.size.height, self.frame.size.width, self.frame.size.height);
+    self.btnCloseInfo.backgroundColor = [UIColor blackColor];
+    self.btnCloseInfo.alpha = 0.5;
+}
+
+- (void)setBtnInfoOpen:(BOOL)open
+{
+    UIImage *btnInfoImage;
+    if(open){
+        btnInfoImage = [UIImage imageNamed:@"btnClose"];
+    } else {
+        btnInfoImage = [UIImage imageNamed:@"btnQuestion"];
+    }
+    [self.btnInfo setBackgroundImage:btnInfoImage forState:UIControlStateNormal];
 }
 
 @end

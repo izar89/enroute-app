@@ -9,7 +9,7 @@
 #import "TaskOneInfoViewController.h"
 
 @interface TaskOneInfoViewController ()
-
+@property (strong, nonatomic) JSONDataManager *dataManager;
 @end
 
 @implementation TaskOneInfoViewController
@@ -18,7 +18,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.dataManager = [JSONDataManager sharedInstance];
+        
+        self.view.scrollInfoView.delegate = self;
     }
     return self;
 }
@@ -26,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view.btnStart addTarget:self action:@selector(btnStartTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,14 +39,13 @@
 - (void)loadView
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    self.view = [[TaskOneInfoView alloc] initWithFrame:bounds];
+    self.view = [[TaskOneInfoView alloc] initWithFrame:CGRectMake(0, 48, bounds.size.width, bounds.size.height - 48) taskInfos:self.dataManager.taskOneInfos];
 }
 
-- (void)btnStartTapped:(id)sender
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [self willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    int page = scrollView.contentOffset.x / scrollView.frame.size.width;
+    self.view.scrollPageControl.currentPage = page;
 }
 
 @end
