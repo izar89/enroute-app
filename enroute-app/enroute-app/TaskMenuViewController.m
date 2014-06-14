@@ -9,6 +9,7 @@
 #import "TaskMenuViewController.h"
 
 @interface TaskMenuViewController ()
+@property (nonatomic, assign) BOOL showIntro;
 @property (strong, nonatomic) JSONDataManager *dataManager;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) float previousHeading;
@@ -39,10 +40,10 @@
     return self;
 }
 
-- (id)initWithHeading:(float)heading
+- (id)initWithIntro:(BOOL)showIntro
 {
-    self.previousHeading = heading;
-    return [self init];
+    self.showIntro = showIntro;
+    return [self initWithNibName:nil bundle:nil];
 }
 
 - (void)viewDidLoad
@@ -76,11 +77,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
-    IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:nil bundle:nil];
-    [self presentViewController:introVC animated:NO completion:^{}];
-    
     [super viewWillAppear:animated];
+    
+    if(self.showIntro){
+        IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:nil bundle:nil];
+        [self presentViewController:introVC animated:NO completion:^{}];
+    }
+    
     [self setContentOffsetWithHeading:self.previousHeading animated:NO];
     [self.locationManager startUpdatingHeading];
 }

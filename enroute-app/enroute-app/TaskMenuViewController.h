@@ -15,9 +15,6 @@
 #import "IntroViewController.h"
 
 @interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate>
-
 @property (strong, nonatomic) TaskMenuView *view;
-
-- (id)initWithHeading:(float)heading;
-
+- (id)initWithIntro:(BOOL)showIntro;
 @end

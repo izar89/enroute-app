@@ -29,8 +29,6 @@
         [self addChildViewController:self.taskOneInfoVC];
         [self.view.contentContainerView addSubview:self.taskOneInfoVC.view];
         [self.taskOneInfoVC didMoveToParentViewController:self];
-        
-        self.infoIsOpen = YES;
     }
     return self;
 }
@@ -40,8 +38,22 @@
     [super viewDidLoad];
     [self.view.btnBack addTarget:self action:@selector(btnBackTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnInfo addTarget:self action:@selector(btnInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [self showInfoView:YES animated:NO];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"TaskOneInfoViewHide"]){ // Only show once
+        [self showInfoView:NO animated:NO];
+        NSLog(@"- yes");
+    } else {
+        [self showInfoView:YES animated:NO];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TaskOneInfoViewHide"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"- no");
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,11 +89,11 @@
         if(animated){
             [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut animations:^{
                 self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskOneInfoVC.view.frame.size.height / 2 + 48);
-                self.view.btnCloseInfo.alpha = 0.5;
+                self.view.btnCloseInfo.alpha = 0.3;
             } completion:^(BOOL finished) {}];
         } else {
             self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskOneInfoVC.view.frame.size.height / 2 + 48);
-            self.view.btnCloseInfo.alpha = 0.5;
+            self.view.btnCloseInfo.alpha = 0.3;
         }
     } else {
         self.infoIsOpen = NO;
@@ -93,6 +105,7 @@
         } else {
             self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskOneInfoVC.view.frame.size.height / 2);
             self.view.btnCloseInfo.alpha = 0;
+            NSLog(@"done");
         }
     }
 }

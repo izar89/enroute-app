@@ -103,7 +103,7 @@
     self.btnAddFloor.center = CGPointMake(self.addFloorView.frame.size.width / 2 - 12, self.addFloorView.frame.size.height / 2 - 10);
     [self.addFloorView addSubview:self.btnAddFloor];
     
-    self.addFloorView.center = CGPointMake(self.frame.size.width / 2, - self.addFloorView.frame.size.height / 2 + 10);
+    self.addFloorView.center = CGPointMake(self.frame.size.width / 2, self.addFloorView.frame.size.height / 2 + 10);
 
     [self.scrollFloorsView insertSubview:self.addFloorView atIndex:0];
 }
@@ -113,7 +113,7 @@
     UIImage *floorRoofImage = [UIImage imageNamed:@"floorRoof"];
     self.floorRoof = [[UIImageView alloc] initWithImage:floorRoofImage];
     [self.scrollFloorsView insertSubview:self.floorRoof atIndex:0];
-    self.floorRoof.center = CGPointMake(self.frame.size.width / 2, - (self.floorRoof.frame.size.height / 2 + 80));
+    self.floorRoof.center = CGPointMake(self.frame.size.width / 2, - (self.floorRoof.frame.size.height / 2) + 10);
 }
 
 - (void)setBtnVideoReady:(BOOL)ready

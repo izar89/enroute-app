@@ -164,24 +164,34 @@
 - (void)showBtnAddFloor:(BOOL)show animated:(BOOL)animated{
     dispatch_async(dispatch_get_main_queue(), ^{
     if(show){
-        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        if(animated){
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, - self.view.addFloorView.frame.size.height / 2 + 10);
+                self.view.floorRoof.center = CGPointMake(self.view.frame.size.width / 2, - (self.view.floorRoof.frame.size.height / 2 + 80));
+            } completion:^(BOOL finished) {
+                [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
+                //            [UIView animateWithDuration:2 delay:0.2f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
+                //                             animations:^{
+                //                                 self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, - self.view.addFloorView.frame.size.height / 2 + 5);
+                //                             }
+                //                             completion:^(BOOL finished){}];
+            }];
+        } else {
             self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, - self.view.addFloorView.frame.size.height / 2 + 10);
             self.view.floorRoof.center = CGPointMake(self.view.frame.size.width / 2, - (self.view.floorRoof.frame.size.height / 2 + 80));
-        } completion:^(BOOL finished) {
-            [self.view.btnAddFloor addTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
-//            [UIView animateWithDuration:2 delay:0.2f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
-//                             animations:^{
-//                                 self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, - self.view.addFloorView.frame.size.height / 2 + 5);
-//                             }
-//                             completion:^(BOOL finished){}];
-        }];
+        }
     } else {
-        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        if(animated){
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, self.view.addFloorView.frame.size.height / 2 + 10);
+                self.view.floorRoof.center = CGPointMake(self.view.frame.size.width / 2, - (self.view.floorRoof.frame.size.height / 2) + 10);
+            } completion:^(BOOL finished) {
+                [self.view.btnAddFloor removeTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
+            }];
+        } else {
             self.view.addFloorView.center = CGPointMake(self.view.frame.size.width / 2, self.view.addFloorView.frame.size.height / 2 + 10);
             self.view.floorRoof.center = CGPointMake(self.view.frame.size.width / 2, - (self.view.floorRoof.frame.size.height / 2) + 10);
-        } completion:^(BOOL finished) {
-            [self.view.btnAddFloor removeTarget:self action:@selector(btnAddFloorTapped:) forControlEvents:UIControlEventTouchUpInside];
-        }];
+        }
     }
     });
 }

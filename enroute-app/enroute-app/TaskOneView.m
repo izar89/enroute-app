@@ -57,7 +57,7 @@
     self.btnCloseInfo = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnCloseInfo.frame = CGRectMake(0, self.navigationBarView.frame.size.height, self.frame.size.width, self.frame.size.height);
     self.btnCloseInfo.backgroundColor = [UIColor blackColor];
-    self.btnCloseInfo.alpha = 0.5;
+    self.btnCloseInfo.alpha = 0.3;
 }
 
 - (void)setBtnInfoOpen:(BOOL)open
