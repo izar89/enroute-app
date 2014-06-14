@@ -14,11 +14,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor blueColor];
+        
         [self createBackground];
         [self createIntro];
         [self createDiscover];
         [self createBtnStart];
-        [self createForeground];
+        //[self createForeground];
     }
     return self;
 }
@@ -27,6 +29,7 @@
 {
     UIImage *bgImage = [UIImage imageNamed:@"bgIntro"];
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bgImage];
+    bgImageView.contentMode = UIViewContentModeTop; //testing on ipad 3.5inch will scale
     bgImageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self addSubview:bgImageView];
 }
@@ -51,7 +54,7 @@
 
 - (void)createDiscover
 {
-    UILabel *lblDiscover = [[UILabel alloc] initWithFrame:CGRectMake(40, 350, self.frame.size.width - 100, 30)];
+    UILabel *lblDiscover = [[UILabel alloc] initWithFrame:CGRectMake(40, 418, self.frame.size.width - 100, 30)];
     lblDiscover.font = [UIFont fontWithName:FONT_HELVETICANEUE_CONDENSEDBLACK size:18];
     lblDiscover.textAlignment = NSTextAlignmentCenter;
     lblDiscover.text = @"Kijk rond en ontdek";
@@ -65,7 +68,7 @@
     UIImage *btnStartBgImageSelected = [UIImage imageNamed:@"btnBeginHover"];
     self.btnStart = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnStart.frame = CGRectMake(0, 0, btnStartBgImage.size.width, btnStartBgImage.size.height);
-    self.btnStart.center = CGPointMake(self.frame.size.width / 2, 421);
+    self.btnStart.center = CGPointMake(self.frame.size.width / 2, 493);
     [self.btnStart setBackgroundImage:btnStartBgImage forState:UIControlStateNormal];
     [self.btnStart setBackgroundImage:btnStartBgImageSelected forState:UIControlStateHighlighted];
     [self.btnStart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
