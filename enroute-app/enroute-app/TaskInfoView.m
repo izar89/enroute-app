@@ -1,54 +1,74 @@
 //
-//  TaskInfoView.m
+//  TaskOneInfoView.m
 //  enroute-app
 //
-//  Created by Stijn Heylen on 14/06/14.
+//  Created by Stijn Heylen on 30/05/14.
 //  Copyright (c) 2014 Stijn Heylen. All rights reserved.
 //
 
 #import "TaskInfoView.h"
 
 @interface TaskInfoView()
-@property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSString *imageName;
+@property (strong, nonatomic) TaskInfos *taskInfos;
+@property (strong, nonatomic) UIView *container;
 @end
 
 @implementation TaskInfoView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame taskInfos:(TaskInfos *)taskInfos
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self createBgImage];
-        [self createInfo];
+        
+        self.taskInfos = taskInfos;
+        
+        self.backgroundColor = [UIColor clearColor];
+        [self createContainer]; // Add all subviews in container!
+        [self createInfoScroll];
+        [self createScrollPageControl];
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame text:(NSString *)text imageName:(NSString *)imageName
+- (void)createContainer
 {
-    self.text = text;
-    self.imageName = imageName;
-    return [self initWithFrame:frame];
+    UIImage *infoBg = [UIImage imageNamed:@"infoBg"];
+    UIImageView *infoBgView = [[UIImageView alloc] initWithImage:infoBg];
+    self.container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 245)];
+    [self.container addSubview:infoBgView];
+    [self addSubview:self.container];
 }
 
-- (void)createBgImage
+- (void)createInfoScroll
 {
-    UIImage *bgImage = [UIImage imageNamed:self.imageName];
-    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bgImage];
-    bgImageView.frame = CGRectMake(0, 0, bgImage.size.width, bgImage.size.height);
-    [self addSubview:bgImageView];
+    self.scrollInfoView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 237)];
+    self.scrollInfoView.pagingEnabled = YES;
+    self.scrollInfoView.clipsToBounds = NO;
+    [self.scrollInfoView setShowsHorizontalScrollIndicator:NO];
+    [self.container addSubview:self.scrollInfoView];
+    
+    int posX = 0;
+    self.taskInfoViews = [NSMutableArray array];
+    for (TaskInfo *taskInfo in self.taskInfos.taskInfos) {
+        TaskInfoItemView *taskInfoView = [[TaskInfoItemView alloc] initWithFrame:self.scrollInfoView.frame text:taskInfo.text imageName:taskInfo.imageName];
+        taskInfoView.center = CGPointMake(posX + self.frame.size.width / 2, self.scrollInfoView.frame.size.height  / 2);
+        [self.scrollInfoView addSubview:taskInfoView];
+        [self.taskInfoViews addObject:taskInfoView];
+        posX += self.frame.size.width;
+    }
+    self.scrollInfoView.contentSize = CGSizeMake(self.taskInfoViews.count * self.frame.size.width, 0);
 }
 
-- (void)createInfo
+- (void)createScrollPageControl
 {
-    UILabel *lblInfo = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, self.frame.size.width - 100, self.frame.size.height - 100)];
-    lblInfo.font = [UIFont fontWithName:FONT_HELVETICANEUE size:16];
-    lblInfo.textColor = [UIColor enrouteLightYellowColor];
-    lblInfo.text = self.text;
-    lblInfo.numberOfLines = 0;
-    [self addSubview:lblInfo];
+    self.scrollPageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
+    self.scrollPageControl.numberOfPages = self.taskInfoViews.count;
+    CGSize sizeOfPageControl = [self.scrollPageControl sizeForNumberOfPages:self.scrollPageControl.numberOfPages];
+    self.scrollPageControl.frame = CGRectMake(0, 0, sizeOfPageControl.width, sizeOfPageControl.height);
+    self.scrollPageControl.center = CGPointMake(self.container.frame.size.width / 2, self.container.frame.size.height - (sizeOfPageControl.height / 2 + 5 ));
+    
+    self.scrollPageControl.currentPageIndicatorTintColor = [UIColor enrouteLightYellowColor];
+    [self.container addSubview:self.scrollPageControl];
 }
-
 
 @end

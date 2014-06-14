@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskTwoView.h"
+#import "TaskInfoViewController.h"
+#import "TaskTwoCameraViewController.h"
+#import "TaskMenuViewController.h"
 
 @interface TaskTwoViewController : UIViewController
+
+@property (nonatomic, strong) TaskTwoView *view;
+@property (strong, nonatomic) TaskInfoViewController *taskTwoInfoVC;
+@property (strong, nonatomic) TaskTwoCameraViewController *taskTwoCameraVC;
 
 @end

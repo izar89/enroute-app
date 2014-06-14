@@ -156,6 +156,9 @@
     if(index == 0 || index == self.view.taskMenuItemViews.count - 1){
         TaskOneViewController *taskOneVC = [[TaskOneViewController alloc] init];
         [self.navigationController pushViewController:taskOneVC animated:YES];
+    } else if (index == 1){
+        TaskTwoViewController *taskTwoVC = [[TaskTwoViewController alloc] init];
+        [self.navigationController pushViewController:taskTwoVC animated:YES];
     }
 }
 

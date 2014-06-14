@@ -6,23 +6,27 @@
 //  Copyright (c) 2014 Stijn Heylen. All rights reserved.
 //
 
-#import "TaskOneInfoViewController.h"
+#import "TaskInfoViewController.h"
 
-@interface TaskOneInfoViewController ()
-@property (strong, nonatomic) JSONDataManager *dataManager;
+@interface TaskInfoViewController ()
+@property (strong, nonatomic) TaskInfos *taskInfos;
 @end
 
-@implementation TaskOneInfoViewController
+@implementation TaskInfoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.dataManager = [JSONDataManager sharedInstance];
-        
         self.view.scrollInfoView.delegate = self;
     }
     return self;
+}
+
+- (id)initWithTaskInfos:(TaskInfos *)taskInfos
+{
+    self.taskInfos = taskInfos;
+    return [self initWithNibName:nil bundle:nil];
 }
 
 - (void)viewDidLoad
@@ -39,7 +43,7 @@
 - (void)loadView
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    self.view = [[TaskOneInfoView alloc] initWithFrame:CGRectMake(0, 48, bounds.size.width, bounds.size.height - 48) taskInfos:self.dataManager.taskOneInfos];
+    self.view = [[TaskInfoView alloc] initWithFrame:CGRectMake(0, 48, bounds.size.width, bounds.size.height - 48) taskInfos:self.taskInfos];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

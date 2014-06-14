@@ -9,7 +9,8 @@
 #import "TaskTwoViewController.h"
 
 @interface TaskTwoViewController ()
-
+@property (strong, nonatomic) JSONDataManager *dataManager;
+@property (nonatomic, assign) BOOL infoIsOpen;
 @end
 
 @implementation TaskTwoViewController
@@ -18,7 +19,19 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.dataManager = [JSONDataManager sharedInstance];
+        
+        self.taskTwoCameraVC = [[TaskTwoCameraViewController alloc] init];
+        [self addChildViewController:self.taskTwoCameraVC];
+        [self.view.contentContainerView addSubview:self.taskTwoCameraVC.view];
+        [self.taskTwoCameraVC didMoveToParentViewController:self];
+        
+        [self.view.contentContainerView addSubview:self.view.btnCloseInfo];
+        
+        self.taskTwoInfoVC = [[TaskInfoViewController alloc] initWithTaskInfos:self.dataManager.taskTwoInfos];
+        [self addChildViewController:self.taskTwoInfoVC];
+        [self.view.contentContainerView addSubview:self.taskTwoInfoVC.view];
+        [self.taskTwoInfoVC didMoveToParentViewController:self];
     }
     return self;
 }
@@ -26,7 +39,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view.btnBack addTarget:self action:@selector(btnBackTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.btnInfo addTarget:self action:@selector(btnInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"TaskOneInfoViewHide"]){ // Only show once
+        [self showInfoView:NO animated:NO];
+        NSLog(@"- yes");
+    } else {
+        [self showInfoView:YES animated:NO];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TaskOneInfoViewHide"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"- no");
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +65,54 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)loadView
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    self.view = [[TaskTwoView alloc] initWithFrame:bounds];
 }
-*/
+
+- (void)btnBackTapped:(id)sender
+{
+    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
+    [self.navigationController pushViewController:taskMenuVC animated:YES];
+}
+
+- (void)btnInfoTapped:(id)sender
+{
+    if(self.infoIsOpen){
+        [self showInfoView: NO animated:YES];
+    } else {
+        [self showInfoView:YES animated:YES];
+    }
+}
+
+- (void)showInfoView:(BOOL)show animated:(BOOL)animated{
+    [self.view setBtnInfoOpen:show];
+    if(show){
+        self.infoIsOpen = YES;
+        if(animated){
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut animations:^{
+                self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskTwoInfoVC.view.frame.size.height / 2 + 48);
+                self.view.btnCloseInfo.alpha = 0.3;
+            } completion:^(BOOL finished) {}];
+        } else {
+            self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskTwoInfoVC.view.frame.size.height / 2 + 48);
+            self.view.btnCloseInfo.alpha = 0.3;
+        }
+    } else {
+        self.infoIsOpen = NO;
+        if(animated){
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn animations:^{
+                self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskTwoInfoVC.view.frame.size.height / 2);
+                self.view.btnCloseInfo.alpha = 0;
+            } completion:^(BOOL finished) {}];
+        } else {
+            self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskTwoInfoVC.view.frame.size.height / 2);
+            self.view.btnCloseInfo.alpha = 0;
+            NSLog(@"done");
+        }
+    }
+}
+
 
 @end

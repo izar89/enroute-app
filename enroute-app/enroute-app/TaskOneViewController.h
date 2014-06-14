@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskOneView.h"
-#import "TaskMenuViewController.h"
-#import "TaskOneInfoViewController.h"
+#import "TaskInfoViewController.h"
 #import "TaskOneCameraViewController.h"
+#import "TaskMenuViewController.h"
 
 @interface TaskOneViewController : UIViewController
 
 @property (strong, nonatomic) TaskOneView *view;
-@property (strong, nonatomic) TaskOneInfoViewController *taskOneInfoVC;
+@property (strong, nonatomic) TaskInfoViewController *taskOneInfoVC;
 @property (strong, nonatomic) TaskOneCameraViewController *taskOneCameraVC;
 
 @end

@@ -11,6 +11,7 @@
 #import "TaskMenuView.h"
 #import "TaskMenuItemView.h"
 #import "TaskOneViewController.h"
+#import "TaskTwoViewController.h"
 #import "JSONDataManager.h"
 #import "IntroViewController.h"
 

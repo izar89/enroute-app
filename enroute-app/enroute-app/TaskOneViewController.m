@@ -9,6 +9,7 @@
 #import "TaskOneViewController.h"
 
 @interface TaskOneViewController ()
+@property (strong, nonatomic) JSONDataManager *dataManager;
 @property (nonatomic, assign) BOOL infoIsOpen;
 @end
 
@@ -18,6 +19,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.dataManager = [JSONDataManager sharedInstance];
+        
         self.taskOneCameraVC = [[TaskOneCameraViewController alloc] init];
         [self addChildViewController:self.taskOneCameraVC];
         [self.view.contentContainerView addSubview:self.taskOneCameraVC.view];
@@ -25,7 +28,7 @@
         
         [self.view.contentContainerView addSubview:self.view.btnCloseInfo];
         
-        self.taskOneInfoVC = [[TaskOneInfoViewController alloc] init];
+        self.taskOneInfoVC = [[TaskInfoViewController alloc] initWithTaskInfos:self.dataManager.taskOneInfos];
         [self addChildViewController:self.taskOneInfoVC];
         [self.view.contentContainerView addSubview:self.taskOneInfoVC.view];
         [self.taskOneInfoVC didMoveToParentViewController:self];
