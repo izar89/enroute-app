@@ -12,7 +12,5 @@
 @interface IntroViewController : UIViewController
 
 @property (strong, nonatomic) IntroView *view;
-//@property (strong, nonatomic) CLLocationManager *locationManager;
-//@property (nonatomic) float heading;
 
 @end

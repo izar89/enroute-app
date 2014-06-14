@@ -45,6 +45,8 @@
 		12ECF9DE194C409B00E0770A /* TaskInfoFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9DD194C409B00E0770A /* TaskInfoFactory.m */; };
 		12ECF9E1194C412C00E0770A /* TaskInfosFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9E0194C412C00E0770A /* TaskInfosFactory.m */; };
 		12ECF9E4194C463C00E0770A /* TaskInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9E3194C463C00E0770A /* TaskInfoView.m */; };
+		12ECF9E8194CAD8D00E0770A /* TaskTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9E7194CAD8D00E0770A /* TaskTwoViewController.m */; };
+		12ECF9EE194CADBC00E0770A /* TaskTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9ED194CADBC00E0770A /* TaskTwoView.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -140,6 +142,10 @@
 		12ECF9E0194C412C00E0770A /* TaskInfosFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfosFactory.m; sourceTree = "<group>"; };
 		12ECF9E2194C463C00E0770A /* TaskInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfoView.h; sourceTree = "<group>"; };
 		12ECF9E3194C463C00E0770A /* TaskInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfoView.m; sourceTree = "<group>"; };
+		12ECF9E6194CAD8D00E0770A /* TaskTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTwoViewController.h; sourceTree = "<group>"; };
+		12ECF9E7194CAD8D00E0770A /* TaskTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTwoViewController.m; sourceTree = "<group>"; };
+		12ECF9EC194CADBC00E0770A /* TaskTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTwoView.h; sourceTree = "<group>"; };
+		12ECF9ED194CADBC00E0770A /* TaskTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTwoView.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -318,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				12E5A38B1937A61B006EF53B /* TaskOne */,
+				12ECF9E5194CAD6F00E0770A /* TaskTwo */,
 				12ECF9E2194C463C00E0770A /* TaskInfoView.h */,
 				12ECF9E3194C463C00E0770A /* TaskInfoView.m */,
 			);
@@ -331,6 +338,17 @@
 				12ECF9D01949C7BD00E0770A /* APIManager.m */,
 			);
 			name = AFNetworking;
+			sourceTree = "<group>";
+		};
+		12ECF9E5194CAD6F00E0770A /* TaskTwo */ = {
+			isa = PBXGroup;
+			children = (
+				12ECF9E6194CAD8D00E0770A /* TaskTwoViewController.h */,
+				12ECF9E7194CAD8D00E0770A /* TaskTwoViewController.m */,
+				12ECF9EC194CADBC00E0770A /* TaskTwoView.h */,
+				12ECF9ED194CADBC00E0770A /* TaskTwoView.m */,
+			);
+			name = TaskTwo;
 			sourceTree = "<group>";
 		};
 		12EDF0631935DFF700E25920 = {
@@ -555,6 +573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12ECF9EE194CADBC00E0770A /* TaskTwoView.m in Sources */,
 				12E5A38A1937A615006EF53B /* TaskOneView.m in Sources */,
 				12E5A3841937839A006EF53B /* TaskMenuItemView.m in Sources */,
 				127808D21947924300400ACE /* AudioCaptureManager.m in Sources */,
@@ -566,6 +585,7 @@
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
 				12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */,
 				12ECF9DB194C402F00E0770A /* TaskInfos.m in Sources */,
+				12ECF9E8194CAD8D00E0770A /* TaskTwoViewController.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
 				12ECF9DE194C409B00E0770A /* TaskInfoFactory.m in Sources */,
 				12ECF9D5194AB0E200E0770A /* FloorViewController.m in Sources */,

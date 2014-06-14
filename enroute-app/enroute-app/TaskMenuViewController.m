@@ -52,7 +52,7 @@
         [taskMenuItemView.btnSelect addTarget:self action:@selector(btnSelectTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    
+    /*
     float randHeight = arc4random_uniform(self.view.frame.size.height);
     float randRotation = arc4random_uniform(20);
     float degrees = randRotation;
@@ -63,14 +63,15 @@
     huis1.transform = CGAffineTransformMakeRotation(degrees * M_PI/180);
     [self.view addSubview:huis1];
     
-    /*[UIView animateWithDuration:1
+    [UIView animateWithDuration:1
                      animations:^{
                          [huis1 setCenter:CGPointMake(heading, randHeight)];
                      }
                      completion:^(BOOL finished){
                          
                      }
-     ];*/
+     ];
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -15,6 +15,11 @@
     return [self rgba2UIColorWithR:122 G:207 B:178 A:1];
 }
 
++ (UIColor *)enrouteDarkBlueColor
+{
+    return [self rgba2UIColorWithR:114 G:171 B:162 A:1];
+}
+
 + (UIColor *)enrouteRedColor
 {
     return [self rgba2UIColorWithR:178 G:70 B:63 A:1];

@@ -18,3 +18,6 @@
 
 #define FONT_SAHARA @"Sahara"
 #define FONT_HELVETICANEUE @"HelveticaNeue"
+#define FONT_HELVETICANEUE_MEDIUM @"HelveticaNeue-Medium"
+#define FONT_HELVETICANEUE_CONDENSEDBLACK @"HelveticaNeue-CondensedBlack"
+

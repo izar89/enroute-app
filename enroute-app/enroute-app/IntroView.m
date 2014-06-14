@@ -14,58 +14,78 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        UIImage *bgImage = [UIImage imageNamed:@"bgIntro"];
-        UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bgImage];
-        bgImageView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        [self addSubview:bgImageView];
-        
-        UIImage *bgBtnBegin = [UIImage imageNamed:@"btnBegin"];
-        UIImage *bgBtnBeginHover = [UIImage imageNamed:@"btnBeginHover"];
-        self.btnBegin = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnBegin.frame = CGRectMake(0, 0, bgBtnBegin.size.width, bgBtnBegin.size.height);
-        [self.btnBegin setBackgroundImage:bgBtnBegin forState:UIControlStateNormal];
-        [self.btnBegin setBackgroundImage:bgBtnBeginHover forState:UIControlStateHighlighted];
-        [self.btnBegin setTitleColor:[UIColor colorWithRed:0.95 green:0.96 blue:0.81 alpha:1] forState:UIControlStateNormal];
-        self.btnBegin.titleLabel.font = [UIFont fontWithName:FONT_SAHARA size:30];
-        self.btnBegin.center = CGPointMake(frame.size.width / 2, frame.size.height - 70);
-        [self.btnBegin setTitle:@"BEGIN" forState:UIControlStateNormal];
-        [self addSubview:self.btnBegin];
-        
-        UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 50, frame.size.width - 100, 30)];
-        lblTitle.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:25];
-        lblTitle.textAlignment = NSTextAlignmentCenter;
-        lblTitle.text = @"EN ROUTE";
-        lblTitle.textColor = [UIColor colorWithRed:0.7 green:0.27 blue:0.25 alpha:1];
-        [self addSubview:lblTitle];
-        
-        UILabel *lblInfo = [[UILabel alloc] initWithFrame:CGRectMake(40, lblTitle.frame.size.height + lblTitle.frame.origin.y, frame.size.width - 100, 200)];
-        lblInfo.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-        lblInfo.textAlignment = NSTextAlignmentCenter;
-//        lblInfo.text = task.text;
-        lblInfo.textColor = [UIColor colorWithRed:0.7 green:0.27 blue:0.25 alpha:1];
-        lblInfo.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.";
-        lblInfo.numberOfLines = 0;
-        [self addSubview:lblInfo];
-        
-        UILabel *lblMenuUitleg = [[UILabel alloc] initWithFrame:CGRectMake(40, frame.size.height - 150, frame.size.width - 100, 30)];
-        lblMenuUitleg.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18];
-        lblMenuUitleg.textAlignment = NSTextAlignmentCenter;
-        lblMenuUitleg.text = @"Ontdek door te draaien";
-        lblMenuUitleg.textColor = [UIColor colorWithRed:0.7 green:0.27 blue:0.25 alpha:1];
-        [self addSubview:lblMenuUitleg];
-        
-        UIImage *huis1 = [UIImage imageNamed:@"huis1"];
-        UIImageView *huis1ImageView = [[UIImageView alloc] initWithImage:huis1];
-        huis1ImageView.center = CGPointMake(frame.size.width - 10, frame.size.height - 70);
-        [self addSubview:huis1ImageView];
-        
-        UIImage *huis2 = [UIImage imageNamed:@"huis2"];
-        UIImageView *huis2ImageView = [[UIImageView alloc] initWithImage:huis2];
-        huis2ImageView.center = CGPointMake(20, frame.size.height - 40);
-        [self addSubview:huis2ImageView];
+        [self createBackground];
+        [self createIntro];
+        [self createDiscover];
+        [self createBtnStart];
+        [self createForeground];
     }
     return self;
 }
+
+- (void)createBackground
+{
+    UIImage *bgImage = [UIImage imageNamed:@"bgIntro"];
+    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bgImage];
+    bgImageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSubview:bgImageView];
+}
+
+- (void)createIntro
+{
+    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 50, self.frame.size.width - 100, 30)];
+    lblTitle.font = [UIFont fontWithName:FONT_HELVETICANEUE_CONDENSEDBLACK size:25];
+    lblTitle.textAlignment = NSTextAlignmentCenter;
+    lblTitle.text = @"EN ROUTE";
+    lblTitle.textColor = [UIColor enrouteRedColor];
+    [self addSubview:lblTitle];
+    
+    UILabel *lblIntro = [[UILabel alloc] initWithFrame:CGRectMake(40, lblTitle.frame.origin.y + 10, self.frame.size.width - 100, 200)];
+    lblIntro.font = [UIFont fontWithName:FONT_HELVETICANEUE_MEDIUM size:16];
+    lblIntro.textAlignment = NSTextAlignmentJustified;
+    lblIntro.textColor = [UIColor enrouteRedColor];
+    lblIntro.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.";
+    lblIntro.numberOfLines = 0;
+    [self addSubview:lblIntro];
+}
+
+- (void)createDiscover
+{
+    UILabel *lblDiscover = [[UILabel alloc] initWithFrame:CGRectMake(40, 350, self.frame.size.width - 100, 30)];
+    lblDiscover.font = [UIFont fontWithName:FONT_HELVETICANEUE_CONDENSEDBLACK size:18];
+    lblDiscover.textAlignment = NSTextAlignmentCenter;
+    lblDiscover.text = @"Kijk rond en ontdek";
+    lblDiscover.textColor = [UIColor enrouteDarkBlueColor];
+    [self addSubview:lblDiscover];
+}
+
+- (void)createBtnStart
+{
+    UIImage *btnStartBgImage = [UIImage imageNamed:@"btnBegin"];
+    UIImage *btnStartBgImageSelected = [UIImage imageNamed:@"btnBeginHover"];
+    self.btnStart = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnStart.frame = CGRectMake(0, 0, btnStartBgImage.size.width, btnStartBgImage.size.height);
+    self.btnStart.center = CGPointMake(self.frame.size.width / 2, 421);
+    [self.btnStart setBackgroundImage:btnStartBgImage forState:UIControlStateNormal];
+    [self.btnStart setBackgroundImage:btnStartBgImageSelected forState:UIControlStateHighlighted];
+    [self.btnStart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.btnStart.titleLabel.font = [UIFont fontWithName:FONT_SAHARA size:30];
+    [self.btnStart setTitle:@"BEGIN" forState:UIControlStateNormal];
+    [self addSubview:self.btnStart];
+}
+
+- (void)createForeground
+{
+    UIImage *house1Image = [UIImage imageNamed:@"huis1"];
+    UIImageView *house1ImageView = [[UIImageView alloc] initWithImage:house1Image];
+    house1ImageView.center = CGPointMake(self.frame.size.width - 10, self.frame.size.height - 70);
+    [self addSubview:house1ImageView];
+    
+    UIImage *house2Image = [UIImage imageNamed:@"huis2"];
+    UIImageView *house2ImageView = [[UIImageView alloc] initWithImage:house2Image];
+    house2ImageView.center = CGPointMake(20, self.frame.size.height - 40);
+    [self addSubview:house2ImageView];
+}
+
 
 @end
