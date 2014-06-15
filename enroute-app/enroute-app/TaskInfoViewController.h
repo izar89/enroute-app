@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) TaskInfoView *view;
 
-- (id)initWithTaskInfos:(TaskInfos *)taskInfos;
+- (id)initWithTaskInfos:(NSArray *)taskInfos;
 
 @end
 

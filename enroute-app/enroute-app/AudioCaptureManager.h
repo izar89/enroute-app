@@ -16,6 +16,8 @@
 @property (weak, nonatomic) id<AudioCaptureManagerDelegate> delegate;
 - (void)startAudioRecording;
 - (void)stopAudioRecording;
+- (void)startCaptureSession;
+- (void)stopCaptureSession;
 @end
 
 @protocol AudioCaptureManagerDelegate <NSObject>

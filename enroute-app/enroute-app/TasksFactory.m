@@ -10,15 +10,21 @@
 
 @implementation TasksFactory
 
-+ (Tasks *)createTasksWithDictionary:(NSDictionary *)dictionary
++ (NSArray *)createTasksWithDictionary:(NSDictionary *)dictionary
 {
-    Tasks *tasks = [[Tasks alloc] init];
-    tasks.tasks = [NSMutableArray array];
+    NSMutableArray *tasks = [NSMutableArray array];
     for(NSDictionary *task in dictionary){
-        [tasks.tasks addObject:[TaskFactory createTaskWithDictionary:task]];
+        [tasks addObject:[self createTaskWithDictionary:task]];
     }
-    
     return tasks;
+}
+
++ (Task *)createTaskWithDictionary:(NSDictionary *)dictionary
+{
+    Task *task = [[Task alloc] init];
+    task.title = [dictionary objectForKey:@"title"];
+    task.text = [dictionary objectForKey:@"text"];
+    return task;
 }
 
 @end

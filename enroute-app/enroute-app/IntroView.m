@@ -20,7 +20,7 @@
         [self createIntro];
         [self createDiscover];
         [self createBtnStart];
-        //[self createForeground];
+        [self createForeground];
     }
     return self;
 }

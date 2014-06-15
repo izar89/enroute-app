@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskMenuItemView.h"
-#import "Tasks.h"
 
 @interface TaskMenuView : UIView
 
@@ -20,6 +19,6 @@
 /* Video preview */
 @property (strong, nonatomic) UIView *videoPreviewView;
 
-- (id)initWithFrame:(CGRect)frame tasks:(Tasks *)tasks;
+- (id)initWithFrame:(CGRect)frame tasks:(NSArray *)tasks;
 
 @end

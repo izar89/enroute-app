@@ -59,6 +59,23 @@
     [self.view.btnRecordAudio addTarget:self action:@selector(btnRecordAudioUp:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.videoCaptureManager startCaptureSession];
+    [self.audioCaptureManager startCaptureSession];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.videoCaptureManager stopCaptureSession];
+    [self.audioCaptureManager stopCaptureSession];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -186,7 +203,7 @@
 {
     NSLog(@"save");
     self.apiManager = [[APIManager alloc] init];
-    [self.apiManager test:nil];
+    [self.apiManager postBuildings:self.floors];
 }
 
 #pragma mark - btnAddFloor

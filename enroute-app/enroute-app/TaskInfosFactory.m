@@ -10,15 +10,23 @@
 
 @implementation TaskInfosFactory
 
-+ (TaskInfos *)createTaskInfosWithDictionary:(NSDictionary *)dictionary
++ (NSArray *)createTaskInfosWithDictionary:(NSDictionary *)dictionary
 {
-    TaskInfos *taskInfos = [[TaskInfos alloc] init];
-    taskInfos.taskInfos = [NSMutableArray array];
+    NSMutableArray *taskInfos = [NSMutableArray array];
     for(NSDictionary *taskInfo in dictionary){
-        [taskInfos.taskInfos addObject:[TaskInfoFactory createTaskInfoWithDictionary:taskInfo]];
+        [taskInfos addObject:[self createTaskInfoWithDictionary:taskInfo]];
     }
-    
     return taskInfos;
+}
+
++ (TaskInfo *)createTaskInfoWithDictionary:(NSDictionary *)dictionary
+{
+    TaskInfo *taskInfo = [[TaskInfo alloc] init];
+    
+    taskInfo.text = [dictionary objectForKey:@"text"];
+    taskInfo.imageName = [dictionary objectForKey:@"imageName"];
+    
+    return taskInfo;
 }
 
 @end

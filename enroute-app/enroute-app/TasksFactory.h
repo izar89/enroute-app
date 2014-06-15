@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Tasks.h"
-#import "TaskFactory.h"
+#import "Task.h"
 
 @interface TasksFactory : NSObject
-
-+ (Tasks *)createTasksWithDictionary:(NSDictionary *)dictionary;
-
++ (NSArray *)createTasksWithDictionary:(NSDictionary *)dictionary;
++ (Task *)createTaskWithDictionary:(NSDictionary *)dictionary;
 @end

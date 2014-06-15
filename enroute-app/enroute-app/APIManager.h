@@ -9,9 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 #import "FileManager.h"
+#import "TaskTwoPhoto.h"
+
+@protocol APIManagerDelegate;
 
 @interface APIManager : NSObject
+@property (weak, nonatomic) id<APIManagerDelegate> delegate;
+- (void)postBuildings:(NSArray *)floors;
+- (void)postBiggieSmalls:(TaskTwoPhoto *)taskTwoPhoto;
+- (void)getBiggieSmallsOfToday;
+@end
 
-- (void)test:(NSArray *)floors;
+@protocol APIManagerDelegate <NSObject>
+@optional
 
 @end

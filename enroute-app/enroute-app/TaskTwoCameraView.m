@@ -38,19 +38,20 @@
     self.btnPhoto.center = CGPointMake(self.frame.size.width / 2, self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnPhoto];
     
-    UIImage *btnDeleteImage = [UIImage imageNamed:@"btnClose"];
-    self.btnDelete = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.btnDelete setBackgroundImage:btnDeleteImage forState:UIControlStateNormal];
-    self.btnDelete.frame = CGRectMake(0, 0, btnDeleteImage.size.width, btnDeleteImage.size.height);
-    self.btnDelete.center = CGPointMake(self.btnPhoto.center.x - 95, self.bottomToolbarView.frame.size.height / 2);
-    [self.bottomToolbarView addSubview:self.btnDelete];
-    
     UIImage *btnSavePhotoImage = [UIImage imageNamed:@"btnSavePhoto"];
     self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.btnSave setBackgroundImage:btnSavePhotoImage forState:UIControlStateNormal];
     self.btnSave.frame = CGRectMake(0, 0, btnSavePhotoImage.size.width, btnSavePhotoImage.size.height);
-    self.btnSave.center = CGPointMake(self.btnPhoto.center.x + 95, self.bottomToolbarView.frame.size.height / 2);
+    self.btnSave.center = CGPointMake(self.btnPhoto.center.x - 100, self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnSave];
+    
+    UIImage *btnDeleteImage = [UIImage imageNamed:@"btnClose"];
+    self.btnDelete = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.btnDelete setBackgroundImage:btnDeleteImage forState:UIControlStateNormal];
+    self.btnDelete.frame = CGRectMake(0, 0, btnDeleteImage.size.width, btnDeleteImage.size.height);
+    self.btnDelete.center = CGPointMake(self.btnPhoto.center.x + 100, self.bottomToolbarView.frame.size.height / 2);
+    [self.bottomToolbarView addSubview:self.btnDelete];
+
 }
 
 - (void)createPhotoPreviewView

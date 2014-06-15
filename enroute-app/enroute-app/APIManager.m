@@ -23,40 +23,55 @@
     return self;
 }
 
-- (void)test:(NSArray *)floors{
+- (void)postBuildings:(NSArray *)floors
+{
     NSString *urlString = @"http://student.howest.be/jasper.van.damme/20132014/MAIV/ENROUTE/api/buildings";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         NSError *error;
-        NSData *test = [[NSData alloc] initWithContentsOfURL:[self.fileManager videoTmpURL]];
-        [formData appendPartWithFileData:test name:@"video[]" fileName:@"capture.mov" mimeType:@"video/quicktime"];
+        NSData *video = [[NSData alloc] initWithContentsOfURL:[self.fileManager videoTmpURL]];
+        [formData appendPartWithFileData:video name:@"video[]" fileName:@"capture.mov" mimeType:@"video/quicktime"];
         if(error){
-            NSLog(@"error");
+            NSLog(@"error: %@", error);
         }
-
-        NSData *test3 = [[NSData alloc] initWithContentsOfURL:[self.fileManager videoTmpURL]];
-        [formData appendPartWithFileData:test3 name:@"video[]" fileName:@"capture.mov" mimeType:@"video/quicktime"];
+        NSData *audio = [[NSData alloc] initWithContentsOfURL:[self.fileManager audioTmpURL]];
+        [formData appendPartWithFileData:audio name:@"audio[]" fileName:@"capture.m4a" mimeType:@"audio/m4a"];
         if(error){
-            NSLog(@"error");
-        }
-        
-        NSData *test2 = [[NSData alloc] initWithContentsOfURL:[self.fileManager audioTmpURL]];
-        [formData appendPartWithFileData:test2 name:@"audio[]" fileName:@"capture.m4a" mimeType:@"audio/m4a"];
-        if(error){
-            NSLog(@"error");
+            NSLog(@"error: %@", error);
         }
         
-        NSData *test4 = [[NSData alloc] initWithContentsOfURL:[self.fileManager audioTmpURL]];
-        [formData appendPartWithFileData:test4 name:@"audio[]" fileName:@"capture.m4a" mimeType:@"audio/m4a"];
-        if(error){
-            NSLog(@"error");
-        }
-      
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)postBiggieSmalls:(TaskTwoPhoto *)taskTwoPhoto
+{
+    NSString *urlString = @"http://student.howest.be/jasper.van.damme/20132014/MAIV/ENROUTE/api/biggiesmalls";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        NSData *path = [[NSData alloc] initWithContentsOfURL:[self.fileManager photoTmpURL]];
+        [formData appendPartWithFileData:path name:@"photo[]" fileName:@"capture.jpeg" mimeType:@"image/jpeg"];
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"longitude"];
+        [formData appendPartWithFormData:[@"2" dataUsingEncoding:NSUTF8StringEncoding] name:@"latitude"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)getBiggieSmallsOfToday
+{
+    NSString *urlString = @"http://student.howest.be/jasper.van.damme/20132014/MAIV/ENROUTE/api/biggiesmalls/day";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

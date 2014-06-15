@@ -18,6 +18,8 @@
 - (void)setOutputDimensionsWidth:(int)outputWidth height:(int)outputHeight;
 - (void)startVideoRecording;
 - (void)stopVideoRecording;
+- (void)startCaptureSession;
+- (void)stopCaptureSession;
 @end
 
 @protocol VideoCaptureManagerDelegate <NSObject>

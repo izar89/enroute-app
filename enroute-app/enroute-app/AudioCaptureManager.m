@@ -61,6 +61,24 @@
     [self.captureSession startRunning];
 }
 
+- (void)startCaptureSession
+{
+    if(!self.captureSession.running && self.captureSession){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.captureSession startRunning];
+        });
+    }
+}
+
+- (void)stopCaptureSession
+{
+    if(self.captureSession.running && self.captureSession){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.captureSession stopRunning];
+        });
+    }
+}
+
 #pragma mark - Start/Stop Audio Recording
 - (void)startAudioRecording
 {

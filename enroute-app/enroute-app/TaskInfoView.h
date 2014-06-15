@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskInfo.h"
-#import "TaskInfos.h"
 #import "TaskInfoItemView.h"
 
 @interface TaskInfoView : UIView
@@ -17,6 +16,6 @@
 @property (strong, nonatomic) UIPageControl *scrollPageControl;
 @property (strong, nonatomic) NSMutableArray *taskInfoViews;
 
-- (id)initWithFrame:(CGRect)frame taskInfos:(TaskInfos *)taskInfos;
+- (id)initWithFrame:(CGRect)frame taskInfos:(NSArray *)taskInfos;
 
 @end

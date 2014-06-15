@@ -9,7 +9,7 @@
 #import "TaskInfoViewController.h"
 
 @interface TaskInfoViewController ()
-@property (strong, nonatomic) TaskInfos *taskInfos;
+@property (strong, nonatomic) NSArray *taskInfos;
 @end
 
 @implementation TaskInfoViewController
@@ -23,7 +23,7 @@
     return self;
 }
 
-- (id)initWithTaskInfos:(TaskInfos *)taskInfos
+- (id)initWithTaskInfos:(NSArray *)taskInfos
 {
     self.taskInfos = taskInfos;
     return [self initWithNibName:nil bundle:nil];

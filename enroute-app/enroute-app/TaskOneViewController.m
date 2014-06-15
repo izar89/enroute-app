@@ -69,8 +69,6 @@
 
 - (void)btnBackTapped:(id)sender
 {
-//    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
-//    [self.navigationController pushViewController:taskMenuVC animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

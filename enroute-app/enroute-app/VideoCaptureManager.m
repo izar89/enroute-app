@@ -88,6 +88,24 @@
 	self.writingQueue = dispatch_queue_create("VideoWritingQueue", DISPATCH_QUEUE_SERIAL);
 }
 
+- (void)startCaptureSession
+{
+    if(!self.captureSession.running && self.captureSession){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.captureSession startRunning];
+        });
+    }
+}
+
+- (void)stopCaptureSession
+{
+    if(self.captureSession.running && self.captureSession){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.captureSession stopRunning];
+        });
+    }
+}
+
 #pragma mark - Start/Stop Video Recording
 - (void)startVideoRecording
 {

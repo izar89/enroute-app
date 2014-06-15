@@ -84,6 +84,8 @@
         self.introHasShown = YES;
     }
     
+    [self.videoCaptureManager startCaptureSession];
+    
     [self setContentOffsetWithHeading:self.previousHeading animated:NO];
     [self.locationManager startUpdatingHeading];
 }
@@ -91,6 +93,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    [self.videoCaptureManager stopCaptureSession];
+    
     [self.locationManager stopUpdatingHeading];
 }
 

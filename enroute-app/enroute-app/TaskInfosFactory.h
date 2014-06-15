@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TaskInfos.h"
-#import "TaskInfoFactory.h"
+#import "TaskInfo.h"
 
 @interface TaskInfosFactory : NSObject
-
-+ (TaskInfos *)createTaskInfosWithDictionary:(NSDictionary *)dictionary;
-
++ (NSArray *)createTaskInfosWithDictionary:(NSDictionary *)dictionary;
++ (TaskInfo *)createTaskInfoWithDictionary:(NSDictionary *)dictionary;
 @end

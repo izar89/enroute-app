@@ -9,13 +9,13 @@
 #import "TaskInfoView.h"
 
 @interface TaskInfoView()
-@property (strong, nonatomic) TaskInfos *taskInfos;
+@property (strong, nonatomic) NSArray *taskInfos;
 @property (strong, nonatomic) UIView *container;
 @end
 
 @implementation TaskInfoView
 
-- (id)initWithFrame:(CGRect)frame taskInfos:(TaskInfos *)taskInfos
+- (id)initWithFrame:(CGRect)frame taskInfos:(NSArray *)taskInfos
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -49,7 +49,7 @@
     
     int posX = 0;
     self.taskInfoViews = [NSMutableArray array];
-    for (TaskInfo *taskInfo in self.taskInfos.taskInfos) {
+    for (TaskInfo *taskInfo in self.taskInfos) {
         TaskInfoItemView *taskInfoView = [[TaskInfoItemView alloc] initWithFrame:self.scrollInfoView.frame text:taskInfo.text imageName:taskInfo.imageName];
         taskInfoView.center = CGPointMake(posX + self.frame.size.width / 2, self.scrollInfoView.frame.size.height  / 2);
         [self.scrollInfoView addSubview:taskInfoView];

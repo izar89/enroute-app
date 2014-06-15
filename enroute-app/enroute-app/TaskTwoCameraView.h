@@ -17,6 +17,8 @@
 @property (strong, nonatomic) UIButton *btnPhoto;
 @property (strong, nonatomic) UIButton *btnSave;
 
+- (void)setBtnPhotoReady:(BOOL)ready;
+
 /* Photo preview */
 @property (strong, nonatomic) UIView *photoPreviewView;
 @property (strong, nonatomic) UIView *videoPreviewView;
