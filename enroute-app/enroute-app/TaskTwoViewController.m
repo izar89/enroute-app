@@ -36,6 +36,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,11 +49,11 @@
 {
     [super viewWillAppear:animated];
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"TaskOneInfoViewHide"]){ // Only show once
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"TaskTwoInfoViewHide"]){ // Only show once
         [self showInfoView:NO animated:NO];
     } else {
         [self showInfoView:YES animated:NO];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TaskOneInfoViewHide"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TaskTwoInfoViewHide"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }

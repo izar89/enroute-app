@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <ImageIO/CGImageProperties.h>
+#import <CoreLocation/CoreLocation.h>
 #import "FileManager.h"
 
 @protocol PhotoCaptureManagerDelegate;
@@ -16,7 +17,7 @@
 @interface PhotoCaptureManager : NSObject <FileManagerDelegate>
 @property (weak, nonatomic) id<PhotoCaptureManagerDelegate> delegate;
 - (id)initWithPreviewView:(UIView *)previewView;
-- (void)capturePhoto;
+- (void)capturePhoto:(CLLocation *)latestLocation;
 @end
 
 @protocol PhotoCaptureManagerDelegate <NSObject>

@@ -185,8 +185,8 @@
 - (void)btnSaveTapped:(id)sender
 {
     NSLog(@"save");
-//    self.apiManager = [[APIManager alloc] init];
-//    [self.apiManager test:nil];
+    self.apiManager = [[APIManager alloc] init];
+    [self.apiManager test:nil];
 }
 
 #pragma mark - btnAddFloor

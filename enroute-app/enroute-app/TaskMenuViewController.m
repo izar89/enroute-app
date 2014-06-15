@@ -23,21 +23,26 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.dataManager = [JSONDataManager sharedInstance];
-        
         self.videoCaptureManager = [[VideoCaptureManager alloc] initWithPreviewView:self.view.videoPreviewView];
-        
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-//        self.locationManager.headingFilter = 5;
-//        [self.locationManager startUpdatingHeading];
-//        NSLog(@"%f", self.locationManager.heading.magneticHeading);
-        
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest; //delete
-        [self.locationManager startUpdatingHeading]; //delete
+        self.locationManager = [self setupLocationManager];
     }
     return self;
+}
+
+- (CLLocationManager *)setupLocationManager
+{
+    CLLocationManager *locationManager =  [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    
+    //        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    //        self.locationManager.headingFilter = 5;
+    //        [self.locationManager startUpdatingHeading];
+    //        NSLog(@"%f", self.locationManager.heading.magneticHeading);
+    
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest; //delete
+    [locationManager startUpdatingHeading]; //delete
+    
+    return locationManager;
 }
 
 - (void)viewDidLoad

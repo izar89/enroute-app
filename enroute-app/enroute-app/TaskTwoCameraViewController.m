@@ -13,6 +13,8 @@
 @property (nonatomic, strong) PhotoCaptureManager *photoCaptureManager;
 @property (nonatomic, strong) FileManager *fileManager;
 @property (nonatomic, strong) APIManager *apiManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *latestLocation;
 @end
 
 @implementation TaskTwoCameraViewController
@@ -26,8 +28,19 @@
         
         [self.fileManager removeFileOrDirectory:[self.fileManager floorsTmpDirUrl]];
         [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager floorsTmpDirUrl].lastPathComponent];
+        
+        self.locationManager = [self setupLocationManager];
     }
     return self;
+}
+
+- (CLLocationManager *)setupLocationManager
+{
+    CLLocationManager *locationManager =  [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    return locationManager;
 }
 
 - (void)viewDidLoad
@@ -58,13 +71,26 @@
 - (void)btnPhotoTapped:(id)sender
 {
     NSLog(@"photo");
-    [self.photoCaptureManager capturePhoto];
+    
 }
 
-- (void)photoCaptureFinished:(NSURL *)outputFileURL{
+- (void)photoCaptureBegan
+{
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)photoCaptureFinished:(NSURL *)outputFileURL
+{
     UIImage *photo = [[UIImage alloc] initWithContentsOfFile:outputFileURL.path];
     UIImageView *photoPreviewView = [[UIImageView alloc] initWithImage:photo];
     [self.view.photoPreviewView addSubview:photoPreviewView];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [self.locationManager stopUpdatingLocation]; // Only once!
+    CLLocation *latestLocation = [locations lastObject];
+    [self.photoCaptureManager capturePhoto:latestLocation];
 }
 
 #pragma mark - btnDelete
