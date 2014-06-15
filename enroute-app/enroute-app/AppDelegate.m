@@ -15,7 +15,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     /* Root / Navigation controller */
-    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] initWithIntro:YES];
+    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
     self.navC = [[UINavigationController alloc] initWithRootViewController:taskMenuVC];
     self.window.rootViewController = self.navC;
     

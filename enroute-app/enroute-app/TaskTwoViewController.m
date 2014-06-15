@@ -49,13 +49,10 @@
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"TaskOneInfoViewHide"]){ // Only show once
         [self showInfoView:NO animated:NO];
-        NSLog(@"- yes");
     } else {
         [self showInfoView:YES animated:NO];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TaskOneInfoViewHide"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        NSLog(@"- no");
     }
 }
 
@@ -73,8 +70,7 @@
 
 - (void)btnBackTapped:(id)sender
 {
-    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
-    [self.navigationController pushViewController:taskMenuVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)btnInfoTapped:(id)sender
@@ -109,10 +105,21 @@
         } else {
             self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskTwoInfoVC.view.frame.size.height / 2);
             self.view.btnCloseInfo.alpha = 0;
-            NSLog(@"done");
         }
     }
 }
 
+#pragma mark - Reroute events
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.view.btnCloseInfo];
+    if([self.view.btnCloseInfo hitTest:point withEvent:event]){
+        CGPoint point2 = [touch locationInView:self.view.navigationBarView];
+        if(![self.view.navigationBarView hitTest:point2 withEvent:event]){
+            [self showInfoView: NO animated:YES];
+        }
+    }
+}
 
 @end

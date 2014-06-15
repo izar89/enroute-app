@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskTwoCameraView.h"
+#import "PhotoCaptureManager.h"
+#import "FileManager.h"
+#import "APIManager.h"
 
-@interface TaskTwoCameraViewController : UIViewController
+@interface TaskTwoCameraViewController : UIViewController<FileManagerDelegate, PhotoCaptureManagerDelegate>
+
+@property (nonatomic, strong) TaskTwoCameraView *view;
 
 @end

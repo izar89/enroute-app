@@ -9,7 +9,7 @@
 #import "TaskMenuViewController.h"
 
 @interface TaskMenuViewController ()
-@property (nonatomic, assign) BOOL showIntro;
+@property (nonatomic, assign) BOOL introHasShown;
 @property (strong, nonatomic) JSONDataManager *dataManager;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) float previousHeading;
@@ -38,12 +38,6 @@
         [self.locationManager startUpdatingHeading]; //delete
     }
     return self;
-}
-
-- (id)initWithIntro:(BOOL)showIntro
-{
-    self.showIntro = showIntro;
-    return [self initWithNibName:nil bundle:nil];
 }
 
 - (void)viewDidLoad
@@ -79,9 +73,10 @@
 {
     [super viewWillAppear:animated];
     
-    if(self.showIntro){
+    if(!self.introHasShown){
         IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:nil bundle:nil];
         [self presentViewController:introVC animated:NO completion:^{}];
+        self.introHasShown = YES;
     }
     
     [self setContentOffsetWithHeading:self.previousHeading animated:NO];
@@ -154,11 +149,11 @@
     UIButton *btn = (UIButton *)sender;
     int index = (int)[self.view.taskMenuItemViews indexOfObject:(TaskMenuItemView *)btn.superview];
     if(index == 0 || index == self.view.taskMenuItemViews.count - 1){
-        TaskOneViewController *taskOneVC = [[TaskOneViewController alloc] init];
-        [self.navigationController pushViewController:taskOneVC animated:YES];
-    } else if (index == 1){
         TaskTwoViewController *taskTwoVC = [[TaskTwoViewController alloc] init];
         [self.navigationController pushViewController:taskTwoVC animated:YES];
+    } else if (index == 1){
+        TaskOneViewController *taskOneVC = [[TaskOneViewController alloc] init];
+        [self.navigationController pushViewController:taskOneVC animated:YES];
     }
 }
 

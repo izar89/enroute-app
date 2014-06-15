@@ -21,10 +21,12 @@
         [self addFloor];
         [self roof];
         
+        /* Scroll outside bounds */
         self.scrollFixView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [self.scrollFixView addGestureRecognizer:self.scrollFloorsView.panGestureRecognizer];
         [self addSubview:self.scrollFixView];
         
+        /* Create bottom toolbar */
         [self createBottomToolbar];
     }
     return self;
@@ -46,7 +48,7 @@
     self.lblMinFloors.text = @"min. 2";
     [self.bottomToolbarView addSubview:self.lblMinFloors];
     
-    UIImage *btnSaveImage = [UIImage imageNamed:@"btnSave"];
+    UIImage *btnSaveImage = [UIImage imageNamed:@"btnSaveVideo"];
     self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.btnSave setBackgroundImage:btnSaveImage forState:UIControlStateNormal];
     self.btnSave.frame = CGRectMake(0, 0, btnSaveImage.size.width, btnSaveImage.size.height);
@@ -71,9 +73,6 @@
 - (void)createCameraView
 {
     self.videoPreviewView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
-    //self.videoPreviewView.center = CGPointMake(self.frame.size.width /2 - 14 , (self.frame.size.height - self.bottomToolbarView.frame.size.height) / 2);
-    //self.videoPreviewView.center = CGPointMake(self.frame.size.width /2, self.frame.size.height / 2);
-    //[self addSubview:self.videoPreviewView];
 }
 
 - (void)floors

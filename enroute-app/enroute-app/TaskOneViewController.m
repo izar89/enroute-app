@@ -49,13 +49,10 @@
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"TaskOneInfoViewHide"]){ // Only show once
         [self showInfoView:NO animated:NO];
-        NSLog(@"- yes");
     } else {
         [self showInfoView:YES animated:NO];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TaskOneInfoViewHide"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        NSLog(@"- no");
     }
 }
 
@@ -72,8 +69,9 @@
 
 - (void)btnBackTapped:(id)sender
 {
-    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
-    [self.navigationController pushViewController:taskMenuVC animated:YES];
+//    TaskMenuViewController *taskMenuVC = [[TaskMenuViewController alloc] init];
+//    [self.navigationController pushViewController:taskMenuVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)btnInfoTapped:(id)sender
@@ -108,7 +106,6 @@
         } else {
             self.taskOneInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, -self.taskOneInfoVC.view.frame.size.height / 2);
             self.view.btnCloseInfo.alpha = 0;
-            NSLog(@"done");
         }
     }
 }

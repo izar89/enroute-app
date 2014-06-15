@@ -9,7 +9,10 @@
 #import "TaskTwoCameraViewController.h"
 
 @interface TaskTwoCameraViewController ()
-
+@property (nonatomic, assign) BOOL captureSuccess;
+@property (nonatomic, strong) PhotoCaptureManager *photoCaptureManager;
+@property (nonatomic, strong) FileManager *fileManager;
+@property (nonatomic, strong) APIManager *apiManager;
 @end
 
 @implementation TaskTwoCameraViewController
@@ -18,7 +21,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.fileManager = [[FileManager alloc] init];
+        self.fileManager.delegate = self;
+        
+        [self.fileManager removeFileOrDirectory:[self.fileManager floorsTmpDirUrl]];
+        [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager floorsTmpDirUrl].lastPathComponent];
     }
     return self;
 }
@@ -26,7 +33,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.photoCaptureManager = [[PhotoCaptureManager alloc] initWithPreviewView:self.view.photoPreviewView];
+    self.photoCaptureManager.delegate = self;
+    
+    [self.view.btnPhoto addTarget:self action:@selector(btnPhotoTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.btnDelete addTarget:self action:@selector(btnDeleteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.btnSave addTarget:self action:@selector(btnSaveTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +48,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)loadView
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    self.view = [[TaskTwoCameraView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height)];
 }
-*/
+
+#pragma mark - btnPhoto
+- (void)btnPhotoTapped:(id)sender
+{
+    NSLog(@"photo");
+    [self.photoCaptureManager capturePhoto];
+}
+
+- (void)photoCaptureFinished:(NSURL *)outputFileURL{
+    UIImage *photo = [[UIImage alloc] initWithContentsOfFile:outputFileURL.path];
+    UIImageView *photoPreviewView = [[UIImageView alloc] initWithImage:photo];
+    [self.view.photoPreviewView addSubview:photoPreviewView];
+}
+
+#pragma mark - btnDelete
+- (void)btnDeleteTapped:(id)sender
+{
+    NSLog(@"delete");
+}
+
+#pragma mark - btnSave
+- (void)btnSaveTapped:(id)sender
+{
+    NSLog(@"save");
+    //    self.apiManager = [[APIManager alloc] init];
+    //    [self.apiManager test:nil];
+}
 
 @end

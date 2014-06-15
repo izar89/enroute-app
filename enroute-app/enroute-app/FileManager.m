@@ -21,6 +21,12 @@
 }
 
 #pragma mark - Destination URL
+- (NSURL *)photoTmpURL
+{
+    NSString *filePath = [[self tempDirectoryPath] stringByAppendingPathComponent:PHOTO_FILE];
+	return [NSURL fileURLWithPath:filePath];
+}
+
 - (NSURL *)videoTmpURL
 {
     NSString *filePath = [[self tempDirectoryPath] stringByAppendingPathComponent:VIDEO_FILE];

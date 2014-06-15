@@ -17,5 +17,4 @@
 
 @interface TaskMenuViewController : UIViewController<CLLocationManagerDelegate>
 @property (strong, nonatomic) TaskMenuView *view;
-- (id)initWithIntro:(BOOL)showIntro;
 @end

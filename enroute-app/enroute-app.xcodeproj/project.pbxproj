@@ -49,6 +49,7 @@
 		12ECF9EE194CADBC00E0770A /* TaskTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9ED194CADBC00E0770A /* TaskTwoView.m */; };
 		12ECF9F7194CD92B00E0770A /* TaskTwoCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9F6194CD92B00E0770A /* TaskTwoCameraViewController.m */; };
 		12ECF9FA194CD93900E0770A /* TaskTwoCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9F9194CD93900E0770A /* TaskTwoCameraView.m */; };
+		12ECFA00194D743700E0770A /* PhotoCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9FF194D743700E0770A /* PhotoCaptureManager.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -152,6 +153,8 @@
 		12ECF9F6194CD92B00E0770A /* TaskTwoCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTwoCameraViewController.m; sourceTree = "<group>"; };
 		12ECF9F8194CD93900E0770A /* TaskTwoCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTwoCameraView.h; sourceTree = "<group>"; };
 		12ECF9F9194CD93900E0770A /* TaskTwoCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTwoCameraView.m; sourceTree = "<group>"; };
+		12ECF9FE194D743700E0770A /* PhotoCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCaptureManager.h; sourceTree = "<group>"; };
+		12ECF9FF194D743700E0770A /* PhotoCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCaptureManager.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -280,6 +283,8 @@
 		127808C219433E9400400ACE /* AVFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				12ECF9FE194D743700E0770A /* PhotoCaptureManager.h */,
+				12ECF9FF194D743700E0770A /* PhotoCaptureManager.m */,
 				127808CD1947909B00400ACE /* VideoCaptureManager.h */,
 				127808CE1947909B00400ACE /* VideoCaptureManager.m */,
 				127808D01947924300400ACE /* AudioCaptureManager.h */,
@@ -598,6 +603,7 @@
 				12ECF9DB194C402F00E0770A /* TaskInfos.m in Sources */,
 				12ECF9E8194CAD8D00E0770A /* TaskTwoViewController.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
+				12ECFA00194D743700E0770A /* PhotoCaptureManager.m in Sources */,
 				12ECF9DE194C409B00E0770A /* TaskInfoFactory.m in Sources */,
 				12ECF9D5194AB0E200E0770A /* FloorViewController.m in Sources */,
 				127808D819482BD000400ACE /* FloorView.m in Sources */,

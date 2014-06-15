@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define PHOTO_FILE @"capture.jpeg"
 #define VIDEO_FILE @"capture.mov"
 #define AUDIO_FILE @"capture.m4a"
 #define FLOORS_DIR @"floors"
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) id <FileManagerDelegate> delegate;
 - (NSString *)documentsDirectoryPath;
 - (NSString *)tempDirectoryPath;
+- (NSURL *)photoTmpURL;
 - (NSURL *)videoTmpURL;
 - (NSURL *)audioTmpURL;
 - (NSURL *)floorsTmpDirUrl;
