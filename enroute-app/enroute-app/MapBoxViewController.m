@@ -92,7 +92,7 @@
     
     RMAnnotation *annotation;
     for(TaskTwoPhoto *taskTwoPhoto in self.taskTwoPhotos){
-        NSLog(@"----- %@", taskTwoPhoto.imageUrl);
+        //NSLog(@"----- %@", taskTwoPhoto.imageUrl);
         
         annotation = [[RMAnnotation alloc] initWithMapView:self.view.mapView
                                                 coordinate:CLLocationCoordinate2DMake(taskTwoPhoto.latitude, taskTwoPhoto.longitude)

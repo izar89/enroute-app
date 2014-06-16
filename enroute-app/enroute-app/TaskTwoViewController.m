@@ -90,11 +90,11 @@
         if(animated){
             [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut animations:^{
                 self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskTwoInfoVC.view.frame.size.height / 2 + 48);
-                self.view.btnCloseInfo.alpha = 0.3;
+                self.view.btnCloseInfo.alpha = 0.5;
             } completion:^(BOOL finished) {}];
         } else {
             self.taskTwoInfoVC.view.center = CGPointMake(self.view.frame.size.width / 2, self.taskTwoInfoVC.view.frame.size.height / 2 + 48);
-            self.view.btnCloseInfo.alpha = 0.3;
+            self.view.btnCloseInfo.alpha = 0.5;
         }
     } else {
         self.infoIsOpen = NO;

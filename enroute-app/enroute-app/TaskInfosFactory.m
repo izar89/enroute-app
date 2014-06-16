@@ -22,10 +22,8 @@
 + (TaskInfo *)createTaskInfoWithDictionary:(NSDictionary *)dictionary
 {
     TaskInfo *taskInfo = [[TaskInfo alloc] init];
-    
     taskInfo.text = [dictionary objectForKey:@"text"];
     taskInfo.imageName = [dictionary objectForKey:@"imageName"];
-    
     return taskInfo;
 }
 

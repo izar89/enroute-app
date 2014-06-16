@@ -37,7 +37,7 @@
 {
     int taskTotal = (int)self.tasks.count;
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
-    self.scrollView.scrollEnabled = YES;
+    self.scrollView.scrollEnabled = NO;
     self.scrollView.contentSize = CGSizeMake(self.frame.size.width * taskTotal, 0);
     [self addSubview:self.scrollView];
     

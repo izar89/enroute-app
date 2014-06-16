@@ -30,7 +30,7 @@
             "taskOneInfos": [
                 {
                     "text": "blablabla uitleg over 1",
-                    "imageName": "taskOneInfo1"
+                    "imageName": ""
                 },
                 {
                     "text": "blablabla uitleg over 2",
@@ -48,7 +48,7 @@
             "taskTwoInfos": [
                  {
                     "text": "blablabla uitleg over 1",
-                    "imageName": "taskTwoInfo1"
+                    "imageName": ""
                  },
                  {
                     "text": "blablabla uitleg over 2",
