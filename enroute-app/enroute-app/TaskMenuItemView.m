@@ -30,15 +30,16 @@
         self.lblTitle.text = task.title;
         [self addSubview:self.lblTitle];
         
-        self.scrollViewInfo = [[UIScrollView alloc] initWithFrame:CGRectMake(20, 20, frame.size.width - 60, frame.size.height - 110)];
+        self.scrollViewInfo = [[UIScrollView alloc] initWithFrame:CGRectMake(26, 20, frame.size.width - 80, frame.size.height - 110)];
         self.scrollViewInfo.scrollEnabled = YES;
         self.scrollViewInfo.bounces = YES;
         self.scrollViewInfo.contentSize = CGSizeMake(self.scrollViewInfo.frame.size.width, 0);
         [self addSubview:self.scrollViewInfo];
         UILabel *lblInfo = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollViewInfo.frame.size.width, self.scrollViewInfo.frame.size.height)];
-        lblInfo.font = [UIFont fontWithName:FONT_HELVETICANEUE_BOLD size:14];
+        lblInfo.font = [UIFont fontWithName:FONT_HELVETICANEUE_BOLD size:16];
         lblInfo.text = task.text;
-        lblInfo.textColor = [UIColor enrouteLightYellowColor];
+        lblInfo.textColor = [UIColor enrouteRedColor];
+        lblInfo.textAlignment = NSTextAlignmentCenter;
         lblInfo.numberOfLines = 0;
         [self.scrollViewInfo addSubview:lblInfo];
         

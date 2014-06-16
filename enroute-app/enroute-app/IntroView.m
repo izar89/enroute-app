@@ -43,11 +43,11 @@
     lblTitle.textColor = [UIColor enrouteRedColor];
     [self addSubview:lblTitle];
     
-    UILabel *lblIntro = [[UILabel alloc] initWithFrame:CGRectMake(40, lblTitle.frame.origin.y + 10, self.frame.size.width - 100, 200)];
-    lblIntro.font = [UIFont fontWithName:FONT_HELVETICANEUE_MEDIUM size:16];
-    lblIntro.textAlignment = NSTextAlignmentJustified;
+    UILabel *lblIntro = [[UILabel alloc] initWithFrame:CGRectMake(40, lblTitle.frame.origin.y + 20, self.frame.size.width - 100, 200)];
+    lblIntro.font = [UIFont fontWithName:FONT_HELVETICANEUE_BOLD size:16];
+    lblIntro.textAlignment = NSTextAlignmentCenter;
     lblIntro.textColor = [UIColor enrouteRedColor];
-    lblIntro.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.";
+    lblIntro.text = @"Durbuy is de kleinste stad. Maar dit wilt niet zeggen dat Durbuy moet onderdoen voor grotere steden. Kan jij door jouw creativiteit Durbuy de grootste stad laten worden?";
     lblIntro.numberOfLines = 0;
     [self addSubview:lblIntro];
 }
