@@ -32,28 +32,29 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        NSError *error;
-        NSData *video = [[NSData alloc] initWithContentsOfURL:[self.fileManager videoTmpURL]];
-        [formData appendPartWithFileData:video name:@"video[]" fileName:@"capture.mov" mimeType:@"video/quicktime"];
-        if(error){
-            NSLog(@"error: %@", error);
+        for (FloorViewController *floorVc in floors) {
+            NSError *error;
+            NSData *video = [[NSData alloc] initWithContentsOfURL:floorVc.videoURL];
+            [formData appendPartWithFileData:video name:@"video[]" fileName:[NSString stringWithFormat:@"floor_%i.mov", floorVc.id] mimeType:@"video/quicktime"];
+            if(error){
+                NSLog(@"error: %@", error);
+            }
+            NSData *audio = [[NSData alloc] initWithContentsOfURL:floorVc.audioURL];
+            [formData appendPartWithFileData:audio name:@"audio[]" fileName:[NSString stringWithFormat:@"floor_%i.m4a", floorVc.id] mimeType:@"audio/m4a"];
+            if(error){
+                NSLog(@"error: %@", error);
+            }
         }
-        NSData *audio = [[NSData alloc] initWithContentsOfURL:[self.fileManager audioTmpURL]];
-        [formData appendPartWithFileData:audio name:@"audio[]" fileName:@"capture.m4a" mimeType:@"audio/m4a"];
-        if(error){
-            NSLog(@"error: %@", error);
-        }
-        
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"[APIManager] Response: %@", responseObject);
-//        if ([self.delegate respondsToSelector:@selector(APIManagerResponse:)]) {
-//            [self.delegate APIManagerResponse:responseObject];
-//        }
+        if ([self.delegate respondsToSelector:@selector(postBuildingsResponse:)]) {
+            [self.delegate postBuildingsResponse:responseObject];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[APIManager] Error: %@", error);
-//        if ([self.delegate respondsToSelector:@selector(APIManagerError:)]) {
-//            [self.delegate APIManagerError:error];
-//        }
+        if ([self.delegate respondsToSelector:@selector(APIManagerError:)]) {
+            [self.delegate APIManagerError:error];
+        }
     }];
 }
 

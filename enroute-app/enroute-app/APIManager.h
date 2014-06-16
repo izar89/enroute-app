@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import "FileManager.h"
 #import "TaskTwoPhoto.h"
+#import "FloorViewController.h"
 
 @protocol APIManagerDelegate;
 
@@ -24,6 +25,7 @@
 @optional
 - (void)postBiggieSmallsResponse:(NSDictionary *)responseObject;
 - (void)getBiggieSmallsOfTodayResponse:(NSDictionary *)responseObject;
+- (void)postBuildingsResponse:(NSDictionary *)responseObject;
 - (void)APIManagerError:(NSError *)error;
 @optional
 

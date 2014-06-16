@@ -93,6 +93,7 @@
     UIImage *addFloorBgImage = [UIImage imageNamed:@"addFloorBgBlue"];
     UIImageView *addFloor = [[UIImageView alloc] initWithImage:addFloorBgImage];
     self.addFloorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, addFloorBgImage.size.width, addFloorBgImage.size.height)];
+    self.addFloorView.center = CGPointMake(self.frame.size.width / 2, - self.addFloorView.frame.size.height / 2 + 10);
     [self.addFloorView addSubview:addFloor];
     
     UIImage *btnAddFloorImage = [UIImage imageNamed:@"btnAddFloorRed"];
@@ -102,8 +103,7 @@
     self.btnAddFloor.center = CGPointMake(self.addFloorView.frame.size.width / 2 - 12, self.addFloorView.frame.size.height / 2 - 10);
     [self.addFloorView addSubview:self.btnAddFloor];
     
-    self.addFloorView.center = CGPointMake(self.frame.size.width / 2, self.addFloorView.frame.size.height / 2 + 10);
-
+    self.addFloorView.center = CGPointMake(self.frame.size.width / 2, - self.addFloorView.frame.size.height / 2 + 10);
     [self.scrollFloorsView insertSubview:self.addFloorView atIndex:0];
 }
 
@@ -112,7 +112,8 @@
     UIImage *floorRoofImage = [UIImage imageNamed:@"floorRoof"];
     self.floorRoof = [[UIImageView alloc] initWithImage:floorRoofImage];
     [self.scrollFloorsView insertSubview:self.floorRoof atIndex:0];
-    self.floorRoof.center = CGPointMake(self.frame.size.width / 2, - (self.floorRoof.frame.size.height / 2) + 10);
+    self.floorRoof.center = CGPointMake(self.frame.size.width / 2, - (self.floorRoof.frame.size.height / 2 + 80));
+
 }
 
 - (void)setBtnVideoReady:(BOOL)ready
@@ -124,7 +125,6 @@
         btnVideoImage = [UIImage imageNamed:@"btnVideoRed"];
     }
     [self.btnRecordVideo setBackgroundImage:btnVideoImage forState:UIControlStateNormal];
-    NSLog(@"vchanged: %@", [self.btnRecordVideo backgroundImageForState:UIControlStateNormal]);
 }
 
 - (void)setBtnAudioReady:(BOOL)ready
@@ -138,7 +138,6 @@
         btnAudioImage = [UIImage imageNamed:@"btnAudioRed"];
     }
     [self.btnRecordAudio setBackgroundImage:btnAudioImage forState:UIControlStateNormal];
-    NSLog(@"achanged: %@", [self.btnRecordAudio backgroundImageForState:UIControlStateNormal]);
 }
 
 @end

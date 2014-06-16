@@ -20,6 +20,7 @@
     if (self) {
         self.fileManager = [[FileManager alloc] init];
         
+        [self createBg];
         [self createVideoPreviewView];
         [self createVideoPlayerView];
         [self createVideoProgressLoader];
@@ -27,6 +28,15 @@
         [self createBtnPlay];
     }
     return self;
+}
+
+- (void)createBg
+{
+    self.bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 282, 138)];
+    self.bg.center = CGPointMake(self.frame.size.width /2 -13 , self.frame.size.height / 2 + 3);
+    self.bg.backgroundColor = [UIColor enrouteRedColor];
+    [self addSubview:self.bg];
+
 }
 
 - (void)createVideoPreviewView
@@ -68,12 +78,14 @@
 {
     [self.floorBg setImage:[UIImage imageNamed:@"floorBgBlue"]];
     self.videoProgressLoader.backgroundColor = [UIColor enrouteRedColor];
+    self.bg.backgroundColor = [UIColor enrouteBlueColor];
 }
 
 - (void)setRed
 {
     [self.floorBg setImage:[UIImage imageNamed:@"floorBgRed"]];
     self.videoProgressLoader.backgroundColor = [UIColor enrouteBlueColor];
+    self.bg.backgroundColor = [UIColor enrouteRedColor];
 }
 
 @end

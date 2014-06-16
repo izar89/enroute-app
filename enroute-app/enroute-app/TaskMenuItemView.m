@@ -35,6 +35,7 @@
         self.scrollViewInfo.bounces = YES;
         self.scrollViewInfo.contentSize = CGSizeMake(self.scrollViewInfo.frame.size.width, 0);
         [self addSubview:self.scrollViewInfo];
+        
         UILabel *lblInfo = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollViewInfo.frame.size.width, self.scrollViewInfo.frame.size.height)];
         lblInfo.font = [UIFont fontWithName:FONT_HELVETICANEUE_BOLD size:14];
         lblInfo.text = task.text;

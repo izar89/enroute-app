@@ -14,6 +14,7 @@
 @interface FloorView : UIView
 
 /* View properties */
+@property (nonatomic, strong) UIView *bg;
 @property (nonatomic, strong) UIView *videoPreviewView;
 @property (nonatomic, strong) UIView *videoPlayerView;
 @property (nonatomic, strong) UIView *videoProgressLoader;

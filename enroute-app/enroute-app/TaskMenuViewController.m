@@ -126,27 +126,28 @@
 - (void)setContentOffsetWithHeading:(float)heading animated:(BOOL)animated{
     float offset = [self map:heading in_min:0 in_max:360 out_min:0 out_max:self.view.scrollView.frame.size.width * (self.view.taskMenuItemViews.count - 1)];
     
-    if (animated) {
-        //NSLog(@"%f ,%f, %f", self.previousHeading, heading , offset);
-        if (abs(heading - self.previousHeading) > 100) {
-            //NSLog(@"true");
-            if ((heading - self.previousHeading) > 0) {
-                //NSLog(@"left");
-            } else {
-                //NSLog(@"right");
-            }
-        } else {
-            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
-                             animations:^{
-                                 [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO];
-                             } completion:^(BOOL finished) {}];
-        }
-    } else {
-        [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO];
-    }
-    
-    self.previousHeading = heading;
-    //[self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO]; //delete
+    // smooth scroll
+//    if (animated) {
+//        //NSLog(@"%f ,%f, %f", self.previousHeading, heading , offset);
+//        if (abs(heading - self.previousHeading) > 100) {
+//            //NSLog(@"true");
+//            if ((heading - self.previousHeading) > 0) {
+//                //NSLog(@"left");
+//            } else {
+//                //NSLog(@"right");
+//            }
+//        } else {
+//            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
+//                             animations:^{
+//                                 [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO];
+//                             } completion:^(BOOL finished) {}];
+//        }
+//    } else {
+//        [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO];
+//    }
+//    
+//    self.previousHeading = heading;
+    [self.view.scrollView setContentOffset:CGPointMake(offset, 0) animated:NO]; //delete
 }
 
 - (float)map:(float)x in_min:(float)in_min in_max:(float)in_max out_min:(float)out_min out_max:(float)out_max
