@@ -12,6 +12,7 @@
 #define VIDEO_FILE @"capture.mov"
 #define AUDIO_FILE @"capture.m4a"
 #define FLOORS_DIR @"floors"
+#define BIGGIESMALLS_DIR @"biggiesmalls"
 
 @protocol FileManagerDelegate;
 
@@ -23,10 +24,13 @@
 - (NSURL *)photoTmpURL;
 - (NSURL *)videoTmpURL;
 - (NSURL *)audioTmpURL;
-- (NSURL *)floorsTmpDirUrl;
+- (NSURL *)floorsTmpDirURL;
+- (NSURL *)biggiesmallsTmpDirURL;
+- (NSURL *)biggiesmallsDocumentsDirURL;
 - (void)removeFileOrDirectory:(NSURL *)fileURL;
 - (NSURL *)copyFileToDirectory:(NSString *)directoryPath fileUrl:(NSURL *)fileURL newFileName:(NSString *)fileName;
 - (NSURL *)createDirectoryAtDirectory:(NSString *)directoryPath withName:(NSString *)directoryName;
+- (BOOL)directoryExists:(NSString *)directoryPath;
 
 @end
 

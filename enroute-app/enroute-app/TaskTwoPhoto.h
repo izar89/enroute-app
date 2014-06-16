@@ -11,6 +11,7 @@
 
 @interface TaskTwoPhoto : NSObject
 
+@property (nonatomic, assign) int id;
 @property (nonatomic, strong) NSString *imageName;
 @property (nonatomic, strong) NSURL *imageUrl;
 @property (nonatomic, assign) double longitude;

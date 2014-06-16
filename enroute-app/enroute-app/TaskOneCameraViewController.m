@@ -30,8 +30,8 @@
         self.fileManager = [[FileManager alloc] init];
         self.fileManager.delegate = self;
         
-        [self.fileManager removeFileOrDirectory:[self.fileManager floorsTmpDirUrl]];
-        [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager floorsTmpDirUrl].lastPathComponent];
+        [self.fileManager removeFileOrDirectory:[self.fileManager floorsTmpDirURL]];
+        [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager floorsTmpDirURL].lastPathComponent];
         
         self.floors = [NSMutableArray array];
         self.floorIndex = 0;
@@ -381,7 +381,7 @@
     
     if(self.recordSuccess){
         FloorViewController *selectedFloorVC = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-        NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorVC.id]];
+        NSURL *videoURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirURL].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.mov", selectedFloorVC.id]];
         selectedFloorVC.videoURL = videoURL;
         [selectedFloorVC.videoPlayer replaceCurrentItemWithURL:selectedFloorVC.videoURL];
     }
@@ -415,7 +415,7 @@
     NSLog(@"audioRecordingFinished: %@", outputFileURL);
     
     FloorViewController *selectedFloorVC = [self.floors objectAtIndex:self.selectedFloorViewIndex];
-    NSURL *audioURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirUrl].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.m4a", selectedFloorVC.id]];
+    NSURL *audioURL = [self.fileManager copyFileToDirectory:[self.fileManager floorsTmpDirURL].path fileUrl:outputFileURL newFileName:[NSString stringWithFormat:@"floor_%i.m4a", selectedFloorVC.id]];
     selectedFloorVC.audioURL = audioURL;
     selectedFloorVC.audioPlayer = [[AudioPlayer alloc] initWithAudioURL:selectedFloorVC.audioURL];
     

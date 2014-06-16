@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <RMMapView.h>
-#import <RMMapboxSource.h>
+#import <Mapbox.h>
 
 @interface MapBoxView : UIView
 
@@ -17,6 +16,9 @@
 @property (strong, nonatomic)UIButton *btnBack;
 
 /* Map */
+@property (strong, nonatomic) UIView *photoAnnotationView;
 @property (strong, nonatomic) RMMapView *mapView;
+@property (strong, nonatomic)UIButton *btnClose;
+@property (strong, nonatomic) UIView *photoView;
 
 @end

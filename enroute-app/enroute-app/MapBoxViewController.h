@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MapBoxView.h"
+#import "APIManager.h"
+#import "TaskTwoPhotosFactory.h"
+#import "TaskTwoPhoto.h"
 
-@interface MapBoxViewController : UIViewController
+
+@interface MapBoxViewController : UIViewController<APIManagerDelegate, RMMapViewDelegate, FileManagerDelegate>
 
 @property (nonatomic, strong) MapBoxView *view;
+
+- (id)initWithNewTaskTwoPhoto:(TaskTwoPhoto *)newTaskTwoPhoto;
 
 @end

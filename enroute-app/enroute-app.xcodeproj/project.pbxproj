@@ -50,6 +50,7 @@
 		12ECFA0C194E320C00E0770A /* TaskTwoPhotosFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA0B194E320C00E0770A /* TaskTwoPhotosFactory.m */; };
 		12ECFA0F194E617C00E0770A /* MapBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA0E194E617C00E0770A /* MapBoxViewController.m */; };
 		12ECFA12194E61A900E0770A /* MapBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA11194E61A900E0770A /* MapBoxView.m */; };
+		12ECFA18194EFCCD00E0770A /* PhotoAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA17194EFCCD00E0770A /* PhotoAnnotation.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -155,6 +156,8 @@
 		12ECFA0E194E617C00E0770A /* MapBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxViewController.m; sourceTree = "<group>"; };
 		12ECFA10194E61A900E0770A /* MapBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBoxView.h; sourceTree = "<group>"; };
 		12ECFA11194E61A900E0770A /* MapBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxView.m; sourceTree = "<group>"; };
+		12ECFA16194EFCCD00E0770A /* PhotoAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAnnotation.h; sourceTree = "<group>"; };
+		12ECFA17194EFCCD00E0770A /* PhotoAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAnnotation.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -209,9 +212,9 @@
 		1206A093193D067F004112AF /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				1206A099193D0AD3004112AF /* enroute.json */,
 				1206A095193D0A4E004112AF /* Factories */,
 				1206A094193D0934004112AF /* Models */,
-				1206A099193D0AD3004112AF /* enroute.json */,
 				1206A090193D0679004112AF /* JSONDataManager.h */,
 				1206A091193D0679004112AF /* JSONDataManager.m */,
 				12ECF9CF1949C7BD00E0770A /* APIManager.h */,
@@ -347,6 +350,8 @@
 				12ECFA0E194E617C00E0770A /* MapBoxViewController.m */,
 				12ECFA10194E61A900E0770A /* MapBoxView.h */,
 				12ECFA11194E61A900E0770A /* MapBoxView.m */,
+				12ECFA16194EFCCD00E0770A /* PhotoAnnotation.h */,
+				12ECFA17194EFCCD00E0770A /* PhotoAnnotation.m */,
 			);
 			name = TaskTwo;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 				12ECFA0F194E617C00E0770A /* MapBoxViewController.m in Sources */,
 				12ECF9D5194AB0E200E0770A /* FloorViewController.m in Sources */,
 				127808D819482BD000400ACE /* FloorView.m in Sources */,
+				12ECFA18194EFCCD00E0770A /* PhotoAnnotation.m in Sources */,
 				12ECF9D8194C3F0600E0770A /* TaskInfo.m in Sources */,
 				1206A06E1939F62C004112AF /* TaskOneCameraView.m in Sources */,
 				127808DB19482DDA00400ACE /* FileManager.m in Sources */,

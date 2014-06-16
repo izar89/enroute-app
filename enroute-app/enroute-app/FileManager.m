@@ -39,9 +39,21 @@
 	return [NSURL fileURLWithPath:filePath];
 }
 
-- (NSURL *)floorsTmpDirUrl
+- (NSURL *)floorsTmpDirURL
 {
     NSString *filePath = [[self tempDirectoryPath] stringByAppendingPathComponent:FLOORS_DIR];
+	return [NSURL fileURLWithPath:filePath];
+}
+
+- (NSURL *)biggiesmallsTmpDirURL
+{
+    NSString *filePath = [[self tempDirectoryPath] stringByAppendingPathComponent:BIGGIESMALLS_DIR];
+	return [NSURL fileURLWithPath:filePath];
+}
+
+- (NSURL *)biggiesmallsDocumentsDirURL
+{
+    NSString *filePath = [[self documentsDirectoryPath] stringByAppendingPathComponent:BIGGIESMALLS_DIR];
 	return [NSURL fileURLWithPath:filePath];
 }
 
@@ -82,6 +94,19 @@
         return [NSURL fileURLWithPath:destinationPath];
     }
     return nil;
+}
+
+- (BOOL)directoryExists:(NSString *)directoryPath
+{
+    BOOL isDir;
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:&isDir];
+    if (exists) {
+        /* file exists */
+        if (isDir) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

@@ -51,7 +51,6 @@
     self.btnDelete.frame = CGRectMake(0, 0, btnDeleteImage.size.width, btnDeleteImage.size.height);
     self.btnDelete.center = CGPointMake(self.btnPhoto.center.x + 100, self.bottomToolbarView.frame.size.height / 2);
     [self.bottomToolbarView addSubview:self.btnDelete];
-
 }
 
 - (void)createPhotoPreviewView

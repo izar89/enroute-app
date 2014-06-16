@@ -22,5 +22,9 @@
 
 @protocol APIManagerDelegate <NSObject>
 @optional
+- (void)postBiggieSmallsResponse:(NSDictionary *)responseObject;
+- (void)getBiggieSmallsOfTodayResponse:(NSDictionary *)responseObject;
+- (void)APIManagerError:(NSError *)error;
+@optional
 
 @end

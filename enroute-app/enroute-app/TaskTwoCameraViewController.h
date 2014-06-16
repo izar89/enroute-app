@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #include <CoreLocation/CoreLocation.h>
+#import "MapBoxViewController.h"
 #import "TaskTwoCameraView.h"
 #import "PhotoCaptureManager.h"
 #import "FileManager.h"

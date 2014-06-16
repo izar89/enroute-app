@@ -16,7 +16,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *latestLocation;
 @property (strong, nonatomic) UIImageView *photoPreviewView;
-@property (strong, nonatomic) TaskTwoPhoto *taskTwoPhoto;
+@property (strong, nonatomic) TaskTwoPhoto *nTaskTwoPhoto;
 @end
 
 @implementation TaskTwoCameraViewController
@@ -32,8 +32,12 @@
         self.apiManager.delegate = self;
         
         // Create directory
-        [self.fileManager removeFileOrDirectory:[self.fileManager floorsTmpDirUrl]];
-        [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager floorsTmpDirUrl].lastPathComponent];
+        [self.fileManager removeFileOrDirectory:[self.fileManager biggiesmallsTmpDirURL]];
+        [self.fileManager createDirectoryAtDirectory:[self.fileManager tempDirectoryPath] withName:[self.fileManager biggiesmallsTmpDirURL].lastPathComponent];
+        
+        if(![self.fileManager directoryExists:[self.fileManager biggiesmallsDocumentsDirURL].path]){
+            [self.fileManager createDirectoryAtDirectory:[self.fileManager documentsDirectoryPath] withName:[self.fileManager biggiesmallsTmpDirURL].lastPathComponent];
+        }
         
         self.locationManager = [self setupLocationManager];
     }
@@ -68,6 +72,11 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
+    [self.photoPreviewView removeFromSuperview];
+    [self.view setBtnPhotoReady:NO];
+    [self.view.btnPhoto addTarget:self action:@selector(btnPhotoTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self showBtnSaveAndBtnDelete:NO animated:NO];
+    [self showBtnPhoto:YES animated:NO];
     [self.photoCaptureManager stopCaptureSession];
 }
 
@@ -105,10 +114,12 @@
     
     TaskTwoPhoto *newTaskTwoPhoto = [[TaskTwoPhoto alloc] init];
     newTaskTwoPhoto.imageName = [outputFileURL.path lastPathComponent];
-    newTaskTwoPhoto.imageUrl = outputFileURL;
     newTaskTwoPhoto.longitude = self.latestLocation.coordinate.longitude;
     newTaskTwoPhoto.latitude = self.latestLocation.coordinate.latitude;
-    self.taskTwoPhoto = newTaskTwoPhoto;
+    newTaskTwoPhoto.imageUrl = [self.fileManager copyFileToDirectory:[self.fileManager biggiesmallsDocumentsDirURL].path fileUrl:outputFileURL newFileName:@"temp.jpeg"];
+    self.nTaskTwoPhoto = newTaskTwoPhoto;
+    
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -138,7 +149,15 @@
 - (void)btnSaveTapped:(id)sender
 {
     NSLog(@"save");
-    [self.apiManager postBiggieSmalls:self.taskTwoPhoto];
+    [self.apiManager postBiggieSmalls:self.nTaskTwoPhoto];
+    [self showBtnSaveAndBtnDelete:NO animated:YES];
+    [self showBtnPhoto:NO animated:YES];
+}
+
+-(void)postBiggieSmallsResponse:(NSDictionary *)responseObject
+{
+    MapBoxViewController *mapBoxVC = [[MapBoxViewController alloc] initWithNewTaskTwoPhoto:self.nTaskTwoPhoto];
+    [self.navigationController pushViewController:mapBoxVC animated:YES];
 }
 
 - (void)showBtnSaveAndBtnDelete:(BOOL)show animated:(BOOL)animated{
@@ -169,5 +188,24 @@
     }
 }
 
+- (void)showBtnPhoto:(BOOL)show animated:(BOOL)animated{
+    if(show){
+        if(animated){
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+               self.view.btnPhoto.center = CGPointMake(self.view.frame.size.width / 2, self.view.bottomToolbarView.frame.size.height / 2);
+            } completion:^(BOOL finished) {}];
+        } else {
+            self.view.btnPhoto.center = CGPointMake(self.view.frame.size.width / 2, self.view.bottomToolbarView.frame.size.height / 2);
+        }
+    } else {
+        if(animated){
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.view.btnPhoto.center = CGPointMake(self.view.frame.size.width / 2, self.view.bottomToolbarView.frame.size.height / 2 + 150);
+            } completion:^(BOOL finished) {}];
+        } else {
+            self.view.btnPhoto.center = CGPointMake(self.view.frame.size.width / 2, self.view.bottomToolbarView.frame.size.height / 2 + 150);
+        }
+    }
+}
 
 @end

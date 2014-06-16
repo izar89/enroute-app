@@ -42,7 +42,7 @@
 {
     // Set up Session
     self.captureSession = [[AVCaptureSession alloc] init];
-    self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
+    self.captureSession.sessionPreset = AVCaptureSessionPreset640x480;
     
     // Set up connection
     NSError *error;

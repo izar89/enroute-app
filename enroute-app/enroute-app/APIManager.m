@@ -25,6 +25,8 @@
 
 - (void)postBuildings:(NSArray *)floors
 {
+    NSLog(@"[APIManager] postBuildings");
+    
     NSString *urlString = @"http://student.howest.be/jasper.van.damme/20132014/MAIV/ENROUTE/api/buildings";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -43,14 +45,22 @@
         }
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response: %@", responseObject);
+        NSLog(@"[APIManager] Response: %@", responseObject);
+//        if ([self.delegate respondsToSelector:@selector(APIManagerResponse:)]) {
+//            [self.delegate APIManagerResponse:responseObject];
+//        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"[APIManager] Error: %@", error);
+//        if ([self.delegate respondsToSelector:@selector(APIManagerError:)]) {
+//            [self.delegate APIManagerError:error];
+//        }
     }];
 }
 
 - (void)postBiggieSmalls:(TaskTwoPhoto *)taskTwoPhoto
 {
+    NSLog(@"[APIManager] postBiggieSmalls");
+    
     NSString *urlString = @"http://student.howest.be/jasper.van.damme/20132014/MAIV/ENROUTE/api/biggiesmalls";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -60,21 +70,35 @@
         [formData appendPartWithFormData:[[NSString stringWithFormat:@"%f", taskTwoPhoto.longitude] dataUsingEncoding:NSUTF8StringEncoding] name:@"longitude"];
         [formData appendPartWithFormData:[[NSString stringWithFormat:@"%f", taskTwoPhoto.latitude] dataUsingEncoding:NSUTF8StringEncoding] name:@"latitude"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response: %@", responseObject);
+        NSLog(@"[APIManager] Response: %@", responseObject);
+        if ([self.delegate respondsToSelector:@selector(postBiggieSmallsResponse:)]) {
+            [self.delegate postBiggieSmallsResponse:responseObject];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"[APIManager] Error: %@", error);
+//        if ([self.delegate respondsToSelector:@selector(APIManagerError:)]) {
+//            [self.delegate APIManagerError:error];
+//        }
     }];
 }
 
 - (void)getBiggieSmallsOfToday
 {
+    NSLog(@"[APIManager] getBiggieSmallsOfToday");
+    
     NSString *urlString = @"http://student.howest.be/jasper.van.damme/20132014/MAIV/ENROUTE/api/biggiesmalls/day";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response: %@", responseObject);
+        NSLog(@"[APIManager] Response: %@", responseObject);
+        if ([self.delegate respondsToSelector:@selector(getBiggieSmallsOfTodayResponse:)]) {
+            [self.delegate getBiggieSmallsOfTodayResponse:responseObject];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"[APIManager] Error: %@", error);
+        if ([self.delegate respondsToSelector:@selector(APIManagerError:)]) {
+            [self.delegate APIManagerError:error];
+        }
     }];
 }
 
