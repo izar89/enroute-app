@@ -3,59 +3,55 @@
         "enroute": {
             "tasks": [
                 {
-                    "title": "Opdracht 1",
-                    "text": "uitleg over opdracht1"
+                    "title": "Klein naar groot",
+                    "text": "Vind een klein object (bijvoorbeeld een pen). En zorg dat het klein object iets groots wordt door de camera van jouw iPhone."
                 },
                 {
-                    "title": "Opdracht 2",
-                    "text": "uitleg over opdracht2"
+                    "title": "De Nieuwstraat",
+                    "text": "Durbuy bouwt zijn grote straat! Zou jij een nieuw gebouw kunnen vormen aan de hand van de bestaande huizen?"
                 },
                 {
-                    "title": "Opdracht 3",
-                    "text": "uitleg over opdracht3"
+                    "title": "Poppenkast",
+                    "text": "Vind een verhaaltje uit, en speel in een poppenkast! Filmt uit een verre afstand om het "
                 },
                 {
-                    "title": "Opdracht 4",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. rhoncus neque."
+                    "title": "Stallone?",
+                    "text": ""
                 },
                 {
-                    "title": "Opdracht 5",
+                    "title": "Groen ter groenst.",
                     "text": "uitleg over opdracht5"
-                },
-                {
-                    "title": "Opdracht 6",
-                    "text": "uitleg over opdracht6"
                 }
             ],
             "taskOneInfos": [
                 {
-                    "text": "blablabla uitleg over 1",
+                    "text": "Durbuy bouwt zijn grote straat! Bouw een nieuw gebouw aan de hand van de bestaande huizen in Durbuy.",
                     "imageName": ""
                 },
                 {
-                    "text": "blablabla uitleg over 2",
+                    "text": "Zoek een verdieping die in het kader past. Blijf 4s drukken op de record knop.",
                     "imageName": "taskOneInfo2"
                 },
                 {
-                    "text": "blablabla uitleg over 3",
+                    "text": "Zorg dan voor een verhaal voor de gefilmde verdieping.",
                     "imageName": "taskOneInfo3"
                 },
                 {
-                    "text": "blablabla uitleg over 4",
+                    "text": "Stuur jouw verdieping door, en bekijk het op de website!",
                     "imageName": "taskOneInfo4"
                 }
             ],
             "taskTwoInfos": [
                  {
-                    "text": "blablabla uitleg over 1",
+                    "text": "Vind een klein object (bijvoorbeeld een pen). En zorg dat het klein object iets groots wordt door de camera van jouw iPhone.",
                     "imageName": ""
                  },
                  {
-                    "text": "blablabla uitleg over 2",
+                    "text": "Trek een foto met jouw klein object. (TIP: Zet hem dichtbij de camera voor een groter effect)",
                     "imageName": "taskTwoInfo2"
                  },
                  {
-                    "text": "blablabla uitleg over 3",
+                    "text": "Stuur jouw foto door, en bekijk alle andere foto's die misschien op dezelfde plaats werden getrokken.",
                     "imageName": "taskTwoInfo3"
                  }
             ]
