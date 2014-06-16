@@ -10,6 +10,7 @@
 #import "TaskTwoView.h"
 #import "TaskInfoViewController.h"
 #import "TaskTwoCameraViewController.h"
+#import "MapBoxViewController.h"
 
 @interface TaskTwoViewController : UIViewController
 

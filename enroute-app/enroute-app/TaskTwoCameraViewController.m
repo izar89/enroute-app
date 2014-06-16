@@ -80,7 +80,7 @@
 - (void)loadView
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    self.view = [[TaskTwoCameraView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height)];
+    self.view = [[TaskTwoCameraView alloc] initWithFrame:bounds];
 }
 
 #pragma mark - btnPhoto
@@ -99,11 +99,15 @@
     
     UIImage *photo = [[UIImage alloc] initWithContentsOfFile:outputFileURL.path];
     self.photoPreviewView = [[UIImageView alloc] initWithImage:photo];
+    self.photoPreviewView.contentMode = UIViewContentModeScaleAspectFill;
+    self.photoPreviewView.frame = CGRectMake(0, 0, self.view.photoPreviewView.frame.size.width, self.view.photoPreviewView.frame.size.height);
     [self.view.photoPreviewView addSubview:self.photoPreviewView];
     
     TaskTwoPhoto *newTaskTwoPhoto = [[TaskTwoPhoto alloc] init];
-    newTaskTwoPhoto.imageUrlPath = outputFileURL.path;
+    newTaskTwoPhoto.imageName = [outputFileURL.path lastPathComponent];
+    newTaskTwoPhoto.imageUrl = outputFileURL;
     newTaskTwoPhoto.longitude = self.latestLocation.coordinate.longitude;
+    newTaskTwoPhoto.latitude = self.latestLocation.coordinate.latitude;
     self.taskTwoPhoto = newTaskTwoPhoto;
 }
 

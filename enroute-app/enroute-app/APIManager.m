@@ -55,10 +55,10 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData *path = [[NSData alloc] initWithContentsOfURL:[self.fileManager photoTmpURL]];
-        [formData appendPartWithFileData:path name:@"photo[]" fileName:@"capture.jpeg" mimeType:@"image/jpeg"];
-        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"longitude"];
-        [formData appendPartWithFormData:[@"2" dataUsingEncoding:NSUTF8StringEncoding] name:@"latitude"];
+        NSData *path = [[NSData alloc] initWithContentsOfURL:taskTwoPhoto.imageUrl];
+        [formData appendPartWithFileData:path name:@"photo[]" fileName:taskTwoPhoto.imageName mimeType:@"image/jpeg"];
+        [formData appendPartWithFormData:[[NSString stringWithFormat:@"%f", taskTwoPhoto.longitude] dataUsingEncoding:NSUTF8StringEncoding] name:@"longitude"];
+        [formData appendPartWithFormData:[[NSString stringWithFormat:@"%f", taskTwoPhoto.latitude] dataUsingEncoding:NSUTF8StringEncoding] name:@"latitude"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

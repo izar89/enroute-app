@@ -22,9 +22,9 @@
 + (TaskTwoPhoto *)createTaskTwoPhotoWithDictionary:(NSDictionary *)dictionary
 {
     TaskTwoPhoto *taskTwoPhoto = [[TaskTwoPhoto alloc] init];
-    taskTwoPhoto.imageUrlPath = [dictionary objectForKey:@"url"];
-    taskTwoPhoto.latitude = [[dictionary objectForKey:@"latitude"] doubleValue];
-    taskTwoPhoto.longitude = [[dictionary objectForKey:@"longitude"] doubleValue];
+    taskTwoPhoto.imageUrl = [NSURL URLWithString:[dictionary objectForKey:@"url"]];
+    taskTwoPhoto.latitude = [[dictionary objectForKey:@"longitude"] doubleValue];
+    taskTwoPhoto.longitude = [[dictionary objectForKey:@"latitude"] doubleValue];
     return taskTwoPhoto;
 }
 

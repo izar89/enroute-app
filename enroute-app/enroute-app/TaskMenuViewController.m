@@ -156,10 +156,13 @@
 
 - (void)btnSelectTapped:(id)sender
 {
+    [self.locationManager stopUpdatingHeading];
+    
     UIButton *btn = (UIButton *)sender;
     int index = (int)[self.view.taskMenuItemViews indexOfObject:(TaskMenuItemView *)btn.superview];
     if(index == 0 || index == self.view.taskMenuItemViews.count - 1){
         TaskTwoViewController *taskTwoVC = [[TaskTwoViewController alloc] init];
+        [taskTwoVC view];
         [self.navigationController pushViewController:taskTwoVC animated:YES];
     } else if (index == 1){
         TaskOneViewController *taskOneVC = [[TaskOneViewController alloc] init];

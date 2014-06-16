@@ -42,6 +42,7 @@
 {
     // Set up Session
     self.captureSession = [[AVCaptureSession alloc] init];
+    self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
     
     // Set up connection
     NSError *error;
@@ -117,6 +118,7 @@
                  // Get attachments
                  NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
                  UIImage *image = [[UIImage alloc] initWithData:imageData];
+                 NSLog(@"1) width: %f, height: %f", image.size.width, image.size.height);
                  
                  // Save to temp
                  [UIImageJPEGRepresentation(image, 1.0) writeToFile:[self.fileManager photoTmpURL].path atomically:YES];

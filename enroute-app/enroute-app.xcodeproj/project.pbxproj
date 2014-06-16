@@ -48,6 +48,8 @@
 		12ECFA00194D743700E0770A /* PhotoCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECF9FF194D743700E0770A /* PhotoCaptureManager.m */; };
 		12ECFA03194E10CD00E0770A /* TaskTwoPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA02194E10CD00E0770A /* TaskTwoPhoto.m */; };
 		12ECFA0C194E320C00E0770A /* TaskTwoPhotosFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA0B194E320C00E0770A /* TaskTwoPhotosFactory.m */; };
+		12ECFA0F194E617C00E0770A /* MapBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA0E194E617C00E0770A /* MapBoxViewController.m */; };
+		12ECFA12194E61A900E0770A /* MapBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ECFA11194E61A900E0770A /* MapBoxView.m */; };
 		12EDF0701935DFF700E25920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF06F1935DFF700E25920 /* Foundation.framework */; };
 		12EDF0721935DFF700E25920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0711935DFF700E25920 /* CoreGraphics.framework */; };
 		12EDF0741935DFF700E25920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDF0731935DFF700E25920 /* UIKit.framework */; };
@@ -149,6 +151,10 @@
 		12ECFA02194E10CD00E0770A /* TaskTwoPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTwoPhoto.m; sourceTree = "<group>"; };
 		12ECFA0A194E320C00E0770A /* TaskTwoPhotosFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTwoPhotosFactory.h; sourceTree = "<group>"; };
 		12ECFA0B194E320C00E0770A /* TaskTwoPhotosFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTwoPhotosFactory.m; sourceTree = "<group>"; };
+		12ECFA0D194E617C00E0770A /* MapBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBoxViewController.h; sourceTree = "<group>"; };
+		12ECFA0E194E617C00E0770A /* MapBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxViewController.m; sourceTree = "<group>"; };
+		12ECFA10194E61A900E0770A /* MapBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBoxView.h; sourceTree = "<group>"; };
+		12ECFA11194E61A900E0770A /* MapBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxView.m; sourceTree = "<group>"; };
 		12EDF06C1935DFF700E25920 /* enroute-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "enroute-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EDF06F1935DFF700E25920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12EDF0711935DFF700E25920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -337,6 +343,10 @@
 				12ECF9F6194CD92B00E0770A /* TaskTwoCameraViewController.m */,
 				12ECF9F8194CD93900E0770A /* TaskTwoCameraView.h */,
 				12ECF9F9194CD93900E0770A /* TaskTwoCameraView.m */,
+				12ECFA0D194E617C00E0770A /* MapBoxViewController.h */,
+				12ECFA0E194E617C00E0770A /* MapBoxViewController.m */,
+				12ECFA10194E61A900E0770A /* MapBoxView.h */,
+				12ECFA11194E61A900E0770A /* MapBoxView.m */,
 			);
 			name = TaskTwo;
 			sourceTree = "<group>";
@@ -574,9 +584,11 @@
 				12ECF9F7194CD92B00E0770A /* TaskTwoCameraViewController.m in Sources */,
 				1206A0681939C1B4004112AF /* UIColor+Enroute.m in Sources */,
 				12ECF9C81949627100E0770A /* AudioPlayer.m in Sources */,
+				12ECFA12194E61A900E0770A /* MapBoxView.m in Sources */,
 				12ECF9E8194CAD8D00E0770A /* TaskTwoViewController.m in Sources */,
 				124E241719376D8100E997FE /* IntroView.m in Sources */,
 				12ECFA00194D743700E0770A /* PhotoCaptureManager.m in Sources */,
+				12ECFA0F194E617C00E0770A /* MapBoxViewController.m in Sources */,
 				12ECF9D5194AB0E200E0770A /* FloorViewController.m in Sources */,
 				127808D819482BD000400ACE /* FloorView.m in Sources */,
 				12ECF9D8194C3F0600E0770A /* TaskInfo.m in Sources */,

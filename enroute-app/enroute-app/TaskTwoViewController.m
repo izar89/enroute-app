@@ -41,6 +41,7 @@
     [super viewDidLoad];
     [self.view.btnBack addTarget:self action:@selector(btnBackTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view.btnInfo addTarget:self action:@selector(btnInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.btnMap addTarget:self action:@selector(btnMapTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,6 +108,12 @@
             self.view.btnCloseInfo.alpha = 0;
         }
     }
+}
+
+- (void)btnMapTapped:(id)sender
+{
+    MapBoxViewController *mapBoxVC = [[MapBoxViewController alloc] init];
+    [self.navigationController pushViewController:mapBoxVC animated:YES];
 }
 
 #pragma mark - Reroute events
